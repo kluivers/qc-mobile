@@ -8,11 +8,18 @@
 
 #import "JKAppDelegate.h"
 
+#import "JKComposition.h"
+
 @implementation JKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
+    
+    JKComposition *compo = [[JKComposition alloc] initWithPath:path];
+    [compo render];
+    
     return YES;
 }
 							

@@ -1,0 +1,21 @@
+# .gitignore in use by Joris Kluivers
+#
+# Latest version:
+# https://gist.github.com/gists/1923197
+ 
+*.DS_Store
+ 
+# Xcode
+*.pbxuser
+*.mode1v3
+*.move2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+ 
+build/
+ 
+# Generated
+*.o
+*.pyc   

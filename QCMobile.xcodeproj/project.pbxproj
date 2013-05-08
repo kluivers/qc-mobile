@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD2173A3BF300EC54BE /* GLKit.framework */; };
+		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
+		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
 		A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D01736E6FB00892B42 /* UIKit.framework */; };
 		A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D21736E6FB00892B42 /* Foundation.framework */; };
 		A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */; };
@@ -18,9 +21,17 @@
 		A9DFC9E71736E6FB00892B42 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9DFC9E61736E6FB00892B42 /* Default-568h@2x.png */; };
 		A9DFC9EA1736E6FB00892B42 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9DFC9E81736E6FB00892B42 /* MainStoryboard.storyboard */; };
 		A9DFC9ED1736E6FB00892B42 /* JKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9EC1736E6FB00892B42 /* JKViewController.m */; };
+		A9DFC9F41736E70F00892B42 /* EmptyTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9DFC9F31736E70F00892B42 /* EmptyTest.qtz */; };
+		A9DFC9F81736EC7B00892B42 /* JKPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9F71736EC7B00892B42 /* JKPatch.m */; };
+		A9DFC9FB1736ECA300892B42 /* JKComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9FA1736ECA300892B42 /* JKComposition.m */; };
+		A9DFC9FE1736EFC200892B42 /* JKUnimplementedPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A956ABD2173A3BF300EC54BE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A956ABD3173A3BF300EC54BE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A956ABD6173A409100EC54BE /* JKClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClear.h; sourceTree = "<group>"; };
+		A956ABD7173A409100EC54BE /* JKClear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKClear.m; sourceTree = "<group>"; };
 		A9DFC9CD1736E6FB00892B42 /* QCMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DFC9D01736E6FB00892B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9DFC9D21736E6FB00892B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -37,6 +48,13 @@
 		A9DFC9E91736E6FB00892B42 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		A9DFC9EB1736E6FB00892B42 /* JKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKViewController.h; sourceTree = "<group>"; };
 		A9DFC9EC1736E6FB00892B42 /* JKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKViewController.m; sourceTree = "<group>"; };
+		A9DFC9F31736E70F00892B42 /* EmptyTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = EmptyTest.qtz; sourceTree = "<group>"; };
+		A9DFC9F61736EC7B00892B42 /* JKPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPatch.h; sourceTree = "<group>"; };
+		A9DFC9F71736EC7B00892B42 /* JKPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPatch.m; sourceTree = "<group>"; };
+		A9DFC9F91736ECA300892B42 /* JKComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKComposition.h; sourceTree = "<group>"; };
+		A9DFC9FA1736ECA300892B42 /* JKComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKComposition.m; sourceTree = "<group>"; };
+		A9DFC9FC1736EFC200892B42 /* JKUnimplementedPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKUnimplementedPatch.h; sourceTree = "<group>"; };
+		A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKUnimplementedPatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +65,25 @@
 				A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */,
 				A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */,
 				A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */,
+				A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */,
+				A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A956ABD9173A409500EC54BE /* Patches */ = {
+			isa = PBXGroup;
+			children = (
+				A9DFC9F61736EC7B00892B42 /* JKPatch.h */,
+				A9DFC9F71736EC7B00892B42 /* JKPatch.m */,
+				A956ABD6173A409100EC54BE /* JKClear.h */,
+				A956ABD7173A409100EC54BE /* JKClear.m */,
+			);
+			name = Patches;
+			sourceTree = "<group>";
+		};
 		A9DFC9C41736E6FB00892B42 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +107,8 @@
 				A9DFC9D01736E6FB00892B42 /* UIKit.framework */,
 				A9DFC9D21736E6FB00892B42 /* Foundation.framework */,
 				A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */,
+				A956ABD2173A3BF300EC54BE /* GLKit.framework */,
+				A956ABD3173A3BF300EC54BE /* OpenGLES.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,6 +116,7 @@
 		A9DFC9D61736E6FB00892B42 /* QCMobile */ = {
 			isa = PBXGroup;
 			children = (
+				A9DFC9F51736EAD000892B42 /* Quartz Composer */,
 				A9DFC9DF1736E6FB00892B42 /* JKAppDelegate.h */,
 				A9DFC9E01736E6FB00892B42 /* JKAppDelegate.m */,
 				A9DFC9E81736E6FB00892B42 /* MainStoryboard.storyboard */,
@@ -96,6 +130,7 @@
 		A9DFC9D71736E6FB00892B42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A9DFC9F31736E70F00892B42 /* EmptyTest.qtz */,
 				A9DFC9D81736E6FB00892B42 /* QCMobile-Info.plist */,
 				A9DFC9D91736E6FB00892B42 /* InfoPlist.strings */,
 				A9DFC9DC1736E6FB00892B42 /* main.m */,
@@ -105,6 +140,18 @@
 				A9DFC9E61736E6FB00892B42 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A9DFC9F51736EAD000892B42 /* Quartz Composer */ = {
+			isa = PBXGroup;
+			children = (
+				A956ABD9173A409500EC54BE /* Patches */,
+				A9DFC9F91736ECA300892B42 /* JKComposition.h */,
+				A9DFC9FA1736ECA300892B42 /* JKComposition.m */,
+				A9DFC9FC1736EFC200892B42 /* JKUnimplementedPatch.h */,
+				A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */,
+			);
+			name = "Quartz Composer";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +211,7 @@
 				A9DFC9E51736E6FB00892B42 /* Default@2x.png in Resources */,
 				A9DFC9E71736E6FB00892B42 /* Default-568h@2x.png in Resources */,
 				A9DFC9EA1736E6FB00892B42 /* MainStoryboard.storyboard in Resources */,
+				A9DFC9F41736E70F00892B42 /* EmptyTest.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +225,10 @@
 				A9DFC9DD1736E6FB00892B42 /* main.m in Sources */,
 				A9DFC9E11736E6FB00892B42 /* JKAppDelegate.m in Sources */,
 				A9DFC9ED1736E6FB00892B42 /* JKViewController.m in Sources */,
+				A9DFC9F81736EC7B00892B42 /* JKPatch.m in Sources */,
+				A9DFC9FB1736ECA300892B42 /* JKComposition.m in Sources */,
+				A9DFC9FE1736EFC200892B42 /* JKUnimplementedPatch.m in Sources */,
+				A956ABD8173A409100EC54BE /* JKClear.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +351,7 @@
 				A9DFC9F21736E6FB00892B42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
