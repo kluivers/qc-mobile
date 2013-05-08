@@ -11,6 +11,7 @@
 @interface JKPatch : NSObject
 
 @property(nonatomic, readonly) NSDictionary *userInfo;
+@property(nonatomic, readonly) BOOL enable;
 
 + (id) patchWithDictionary:(NSDictionary *)dict;
 

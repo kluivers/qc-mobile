@@ -14,12 +14,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
-    
-    JKComposition *compo = [[JKComposition alloc] initWithPath:path];
-    [compo render];
-    
     return YES;
 }
 							

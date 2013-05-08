@@ -10,6 +10,7 @@
 		A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD2173A3BF300EC54BE /* GLKit.framework */; };
 		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
+		A956ABDC173A697A00EC54BE /* JKQCView.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABDB173A697A00EC54BE /* JKQCView.m */; };
 		A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D01736E6FB00892B42 /* UIKit.framework */; };
 		A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D21736E6FB00892B42 /* Foundation.framework */; };
 		A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 		A956ABD3173A3BF300EC54BE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A956ABD6173A409100EC54BE /* JKClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClear.h; sourceTree = "<group>"; };
 		A956ABD7173A409100EC54BE /* JKClear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKClear.m; sourceTree = "<group>"; };
+		A956ABDA173A697A00EC54BE /* JKQCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKQCView.h; sourceTree = "<group>"; };
+		A956ABDB173A697A00EC54BE /* JKQCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKQCView.m; sourceTree = "<group>"; };
 		A9DFC9CD1736E6FB00892B42 /* QCMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DFC9D01736E6FB00892B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9DFC9D21736E6FB00892B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +153,8 @@
 				A9DFC9FA1736ECA300892B42 /* JKComposition.m */,
 				A9DFC9FC1736EFC200892B42 /* JKUnimplementedPatch.h */,
 				A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */,
+				A956ABDA173A697A00EC54BE /* JKQCView.h */,
+				A956ABDB173A697A00EC54BE /* JKQCView.m */,
 			);
 			name = "Quartz Composer";
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				A9DFC9FB1736ECA300892B42 /* JKComposition.m in Sources */,
 				A9DFC9FE1736EFC200892B42 /* JKUnimplementedPatch.m in Sources */,
 				A956ABD8173A409100EC54BE /* JKClear.m in Sources */,
+				A956ABDC173A697A00EC54BE /* JKQCView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

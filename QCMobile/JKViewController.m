@@ -7,8 +7,10 @@
 //
 
 #import "JKViewController.h"
+#import "JKComposition.h"
+#import "JKQCView.h"
 
-@interface JKViewController ()
+@interface JKViewController () <GLKViewDelegate>
 
 @end
 
@@ -17,13 +19,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    self.qcView.context = context;
+    self.qcView.delegate = self;
+	
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
+    
+    JKComposition *composition = [[JKComposition alloc] initWithPath:path];
+    
+    self.qcView.composition = composition;
+    [self.qcView setNeedsDisplay];
+    
+    NSLog(@"Context: %@", self.qcView.context);
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

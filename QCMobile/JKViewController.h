@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class JKQCView;
+
 @interface JKViewController : UIViewController
+
+@property(nonatomic, weak) IBOutlet JKQCView *qcView;
 
 @end
