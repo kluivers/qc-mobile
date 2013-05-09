@@ -8,6 +8,7 @@
 
 #import <GLKit/GLKit.h>
 
+#import "JKContext.h"
 #import "JKSprite.h"
 
 @implementation JKSprite
@@ -17,13 +18,22 @@
     return YES;
 }
 
-- (void) executeAtTime:(NSTimeInterval)time
+- (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
     
     GLKMatrix4 transform = GLKMatrix4MakeTranslation(self.inputX, self.inputY, self.inputZ);
     
-    effect.transform.modelviewMatrix = transform;
+    GLKMatrix4 rotateX = GLKMatrix4MakeXRotation(GLKMathDegreesToRadians(self.inputRX));
+    GLKMatrix4 rotateY = GLKMatrix4MakeYRotation(GLKMathDegreesToRadians(self.inputRY));
+    GLKMatrix4 rotateZ = GLKMatrix4MakeZRotation(GLKMathDegreesToRadians(self.inputRZ));
+    
+    GLKMatrix4 rotation = GLKMatrix4Multiply(GLKMatrix4Multiply(rotateX, rotateY), rotateZ);
+    
+    CGFloat ratio = context.size.width / context.size.height;
+    GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, ratio, 1.0);
+    
+    effect.transform.modelviewMatrix = GLKMatrix4Multiply(GLKMatrix4Multiply(transform, scale), rotation);
     
     [effect prepareToDraw];
     

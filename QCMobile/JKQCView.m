@@ -41,11 +41,16 @@
     return self;
 }
 
+- (CGSize) size
+{
+    return self.bounds.size;
+}
+
 - (void) drawRect:(CGRect)rect
 {
     [_baseEffect prepareToDraw];
     
-    [self.composition renderAtTime:[[NSDate date] timeIntervalSinceDate:_startDate]];
+    [self.composition renderInContext:self atTime:[[NSDate date] timeIntervalSinceDate:_startDate]];
 }
 
 - (void) layoutSubviews
@@ -76,6 +81,7 @@
 
 - (void) stopAnimation
 {
+    self.frameRate = 0.0f;
     [_link invalidate];
     _link = nil;
 }

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol JKContext;
+
 @interface JKComposition : NSObject
 
 @property(readonly) NSString *frameworkVersion;
@@ -15,7 +17,7 @@
 
 - (id) initWithPath:(NSString *)path;
 
-- (void) renderAtTime:(NSTimeInterval)timeInterval;
+- (void) renderInContext:(id<JKContext>)context atTime:(NSTimeInterval)timeInterval;
 
 
 @end

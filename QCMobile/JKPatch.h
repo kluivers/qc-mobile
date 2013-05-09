@@ -8,16 +8,25 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol JKContext;
+
 @interface JKPatch : NSObject
 
 @property(nonatomic, readonly) NSDictionary *userInfo;
 @property(nonatomic, readonly) BOOL enable;
 @property(nonatomic, readonly) NSString *key;
 
+@property(nonatomic, readonly) NSDictionary *customInputPorts;
+
+- (id) initWithState:(NSDictionary *)state key:(NSString *)key;
+
 + (id) patchWithDictionary:(NSDictionary *)dict;
 
 - (BOOL) isRenderer;
 
-- (void) executeAtTime:(NSTimeInterval)time;
+- (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time;
+
+- (void) setValue:(id)value forInputKey:(NSString *)key;
+- (id) valueForOutputKey:(NSString *)key;
 
 @end

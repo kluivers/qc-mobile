@@ -8,6 +8,7 @@
 
 #import <objc/runtime.h>
 
+#import "JKContext.h"
 #import "JKPatch.h"
 #import "JKUnimplementedPatch.h"
 #import "JKConnection.h"
@@ -64,6 +65,7 @@
         if (customInputStates) {
             [self setDefaultInputStates:customInputStates];
         }
+        _customInputPorts = customInputStates;
     }
     
     return self;
@@ -144,7 +146,7 @@
     return NO;
 }
 
-- (void) executeAtTime:(NSTimeInterval)time
+- (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if (!self.enable) {
         return;
@@ -161,12 +163,12 @@
     
     NSArray *renderers = [self.nodes filteredArrayUsingPredicate:predicate];
     for (JKPatch *patch in renderers) {
-        [self resolveConnectionsForDestination:patch time:time];
-        [patch executeAtTime:time];
+        [self resolveConnectionsForDestination:patch time:time inContext:context];
+        [patch execute:context atTime:time];
     }
 }
 
-- (void) resolveConnectionsForDestination:(JKPatch *)destination time:(NSTimeInterval)time
+- (void) resolveConnectionsForDestination:(JKPatch *)destination time:(NSTimeInterval)time inContext:(id<JKContext>)context
 {
     NSPredicate *destinationPort = [NSPredicate predicateWithFormat:@"destinationNode == %@", destination.key];
     NSArray *connections = [self.connections filteredArrayUsingPredicate:destinationPort];
@@ -174,14 +176,14 @@
     for (JKConnection *connection in connections) {
         JKPatch *source = [self patchWithKey:connection.sourceNode];
         
-        [self resolveConnectionsForDestination:source time:time];
+        [self resolveConnectionsForDestination:source time:time inContext:context];
         
         // TODO: check if source executed already
-        [source executeAtTime:time];
+        [source execute:context atTime:time];
         
-        id sourceValue = [source valueForKey:connection.sourcePort];
+        id sourceValue = [source valueForOutputKey:connection.sourcePort];
         if (sourceValue) {
-            [destination setValue:sourceValue forKey:connection.destinationPort];
+            [destination setValue:sourceValue forInputKey:connection.destinationPort];
         }
     }
 }
@@ -195,6 +197,16 @@
     }
     
     return nil;
+}
+
+- (void) setValue:(id)value forInputKey:(NSString *)key
+{
+    [self setValue:value forKey:key];
+}
+
+- (id) valueForOutputKey:(NSString *)key
+{
+    return [self valueForKey:key];
 }
 
 @end

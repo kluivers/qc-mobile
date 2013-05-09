@@ -8,6 +8,7 @@
 
 #import "JKComposition.h"
 
+#import "JKContext.h"
 #import "JKPatch.h"
 
 @interface JKComposition ()
@@ -37,6 +38,8 @@
             NSLog(@"%@", readError);
         }
         
+        NSLog(@"Compostion: %@", composition);
+        
         _frameworkVersion = composition[@"frameworkVersion"];
         _compositionDescription = composition[@"description"];
         
@@ -46,9 +49,9 @@
     return self;
 }
 
-- (void) renderAtTime:(NSTimeInterval)timeInterval
+- (void) renderInContext:(id<JKContext>)context atTime:(NSTimeInterval)timeInterval
 {
-    [self.rootPatch executeAtTime:timeInterval];
+    [self.rootPatch execute:context atTime:timeInterval];
 }
 
 @end

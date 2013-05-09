@@ -43,23 +43,10 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
 
 #define JK_INTERPOLATION_COUNT 4
 
-@interface JKPatch (Private)
-- (id) initWithState:(NSDictionary *)state key:(NSString *)key;
-@end
-
 @implementation JKInterpolation {
 }
 
-- (id) initWithState:(NSDictionary *)state key:(NSString *)key
-{
-    self = [super initWithState:state key:key];
-    if (self) {
-        NSLog(@"Interpolation state: %@", state);
-    }
-    return self;
-}
-
-- (void) executeAtTime:(NSTimeInterval)time
+- (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     CGFloat start = self.inputValue1;
     CGFloat end = self.inputValue2;

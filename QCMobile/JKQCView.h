@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
+#import "JKContext.h"
+
 @class JKComposition;
 
-@interface JKQCView : GLKView
+@interface JKQCView : GLKView <JKContext>
 
 @property(nonatomic, strong) JKComposition *composition;
 

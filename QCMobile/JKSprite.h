@@ -16,5 +16,8 @@
 @property(nonatomic, assign) CGFloat inputY;
 @property(nonatomic, assign) CGFloat inputX;
 @property(nonatomic, assign) CGFloat inputZ;
+@property(nonatomic, assign) CGFloat inputRX;
+@property(nonatomic, assign) CGFloat inputRY;
+@property(nonatomic, assign) CGFloat inputRZ;
 
 @end

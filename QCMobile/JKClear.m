@@ -15,7 +15,7 @@
     return YES;
 }
 
-- (void) executeAtTime:(NSTimeInterval)time
+- (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if (!self.enable) {
         return;
