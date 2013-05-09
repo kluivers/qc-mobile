@@ -6,12 +6,20 @@
 //  Copyright (c) 2013 Joris Kluivers. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "JKQCView.h"
 #import "JKComposition.h"
 
+@interface JKQCView ()
+- (void) render:(CADisplayLink *)link;
+@end
 
 @implementation JKQCView {
     GLKBaseEffect *_baseEffect;
+    
+    CADisplayLink *_link;
+    NSDate *_startDate;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -34,7 +42,7 @@
 {
     [_baseEffect prepareToDraw];
     
-    [self.composition render];
+    [self.composition renderAtTime:[[NSDate date] timeIntervalSinceDate:_startDate]];
 }
 
 - (void) layoutSubviews
@@ -53,6 +61,30 @@
     _baseEffect.transform.projectionMatrix = projection;
     
     [self setNeedsDisplay];
+}
+
+- (void) startAnimation
+{
+    _startDate = [NSDate date];
+    
+    _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
+    [_link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void) stopAnimation
+{
+    [_link invalidate];
+    _link = nil;
+}
+
+- (BOOL) isAnimating
+{
+    return _link != nil;
+}
+
+- (void) render:(CADisplayLink *)link
+{
+    [self display];
 }
 
 @end

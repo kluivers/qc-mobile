@@ -15,7 +15,7 @@
     return YES;
 }
 
-- (void) execute
+- (void) executeAtTime:(NSTimeInterval)time
 {
     if (!self.enable) {
         return;

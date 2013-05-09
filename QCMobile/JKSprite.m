@@ -17,7 +17,7 @@
     return YES;
 }
 
-- (void) execute
+- (void) executeAtTime:(NSTimeInterval)time
 {
     GLfloat vertices[12] = {
         -0.5, -0.5, 0,

@@ -12,12 +12,27 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="qXL-g6-HQZ" customClass="JKQCView"/>
+                            <glkView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXL-g6-HQZ" customClass="JKQCView"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPz-qf-kwD">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toggle:" destination="2" eventType="touchUpInside" id="ZlC-Gh-dSR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qXL-g6-HQZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="2EQ-8Q-5di"/>
                             <constraint firstItem="qXL-g6-HQZ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="78" id="CTV-Ec-bec"/>
+                            <constraint firstItem="HPz-qf-kwD" firstAttribute="centerX" secondItem="qXL-g6-HQZ" secondAttribute="centerX" type="default" id="otB-Kt-oOs"/>
+                            <constraint firstAttribute="bottom" secondItem="HPz-qf-kwD" secondAttribute="bottom" constant="125" id="u6l-ex-x6v"/>
                             <constraint firstAttribute="bottom" secondItem="qXL-g6-HQZ" secondAttribute="bottom" constant="220" id="ypG-7c-iuh"/>
                             <constraint firstItem="qXL-g6-HQZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="zec-5w-YLP"/>
                         </constraints>
@@ -37,6 +52,7 @@
         <class className="JKViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/JKViewController.h"/>
             <relationships>
+                <relationship kind="action" name="toggle:"/>
                 <relationship kind="outlet" name="qcView" candidateClass="JKQCView"/>
             </relationships>
         </class>

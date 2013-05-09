@@ -15,4 +15,8 @@
 
 @property(nonatomic, strong) JKComposition *composition;
 
+- (void) startAnimation;
+- (void) stopAnimation;
+- (BOOL) isAnimating;
+
 @end

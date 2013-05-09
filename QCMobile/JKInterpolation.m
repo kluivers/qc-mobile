@@ -6,18 +6,34 @@
 //  Copyright (c) 2013 Joris Kluivers. All rights reserved.
 //
 
+#import <tgmath.h>
+
 #import "JKInterpolation.h"
+
+@interface JKPatch (Private)
+- (id) initWithState:(NSDictionary *)state key:(NSString *)key;
+@end
 
 @implementation JKInterpolation
 
-- (void) execute
+- (id) initWithState:(NSDictionary *)state key:(NSString *)key
 {
-    NSLog(@"Duration: %f", self.inputDuration);
-    
+    self = [super initWithState:state key:key];
+    if (self) {
+        NSLog(@"Interpolation state: %@", state);
+    }
+    return self;
+}
+
+- (void) executeAtTime:(NSTimeInterval)time
+{
     CGFloat start = self.inputValue1;
     CGFloat end = self.inputValue2;
     
-    NSLog(@"Interpolate from %f to %f", start, end);
+    CGFloat progress = fmodf(time, self.inputDuration);
+    
+    _outputValue = start + (end - start) * progress;
+    NSLog(@"output: %f", _outputValue);
 }
 
 @end

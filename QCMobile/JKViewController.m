@@ -33,5 +33,19 @@
     NSLog(@"Context: %@", self.qcView.context);
 }
 
+- (void) viewDidAppear:(BOOL)animated
+{
+    [self.qcView startAnimation];
+}
+
+- (IBAction) toggle:(id)sender
+{
+    if ([self.qcView isAnimating]) {
+        [self.qcView stopAnimation];
+    } else {
+        [self.qcView startAnimation];
+    }
+}
+
 
 @end

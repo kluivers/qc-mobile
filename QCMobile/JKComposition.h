@@ -15,7 +15,7 @@
 
 - (id) initWithPath:(NSString *)path;
 
-- (void) render;
+- (void) renderAtTime:(NSTimeInterval)timeInterval;
 
 
 @end

@@ -18,6 +18,6 @@
 
 - (BOOL) isRenderer;
 
-- (void) execute;
+- (void) executeAtTime:(NSTimeInterval)time;
 
 @end

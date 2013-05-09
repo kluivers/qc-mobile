@@ -46,9 +46,10 @@
     return self;
 }
 
-- (void) render
+- (void) renderAtTime:(NSTimeInterval)timeInterval
 {
-    [self.rootPatch execute];
+    NSLog(@"Time interval: %f", timeInterval);
+    [self.rootPatch executeAtTime:timeInterval];
 }
 
 @end

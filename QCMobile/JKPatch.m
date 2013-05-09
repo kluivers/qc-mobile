@@ -33,14 +33,14 @@
         _enable = YES;
         _key = key;
         
-        NSLog(@"Patch: %@", state);
+//        NSLog(@"Patch: %@", state);
         
         NSData *userInfoData = state[@"userInfo"];
         if (userInfoData) {
             // TODO: Stop using private API
 #pragma message "This uses undocumented private API"
             _userInfo = [NSUnarchiver unarchiveObjectWithData:userInfoData];
-            NSLog(@"Unarchived userInfo: %@", _userInfo);
+//            NSLog(@"Unarchived userInfo: %@", _userInfo);
         }
         
         NSMutableArray *connections = [NSMutableArray array];
@@ -108,9 +108,7 @@
         
         if (typeClass) {
             id obj = [self convertValue:value toClass:typeClass];
-            NSLog(@"New value: %@", obj);
             if (obj) {
-                NSLog(@"Set new value for: %@", key);
                 [self setValue:obj forKey:key];
             }
         }
@@ -123,9 +121,6 @@
 
 - (id) convertValue:(NSDictionary *)value toClass:(Class)type
 {
-    NSLog(@"Convert: %@", value);
-    NSLog(@"into: %@", NSStringFromClass(type));
-    
     if (type == [UIColor class]) {
         CGFloat red = [[value objectForKey:@"red"] floatValue];
         CGFloat green = [[value objectForKey:@"green"] floatValue];
@@ -145,7 +140,7 @@
     return NO;
 }
 
-- (void) execute
+- (void) executeAtTime:(NSTimeInterval)time
 {
     if (!self.enable) {
         return;
@@ -162,12 +157,12 @@
     
     NSArray *renderers = [self.nodes filteredArrayUsingPredicate:predicate];
     for (JKPatch *patch in renderers) {
-        [self resolveConnectionsForDestination:patch];
-        [patch execute];
+        [self resolveConnectionsForDestination:patch time:time];
+        [patch executeAtTime:time];
     }
 }
 
-- (void) resolveConnectionsForDestination:(JKPatch *)destination
+- (void) resolveConnectionsForDestination:(JKPatch *)destination time:(NSTimeInterval)time
 {
     NSPredicate *destinationPort = [NSPredicate predicateWithFormat:@"destinationNode == %@", destination.key];
     NSArray *connections = [self.connections filteredArrayUsingPredicate:destinationPort];
@@ -175,14 +170,13 @@
     for (JKConnection *connection in connections) {
         JKPatch *source = [self patchWithKey:connection.sourceNode];
         
-        [self resolveConnectionsForDestination:source];
+        [self resolveConnectionsForDestination:source time:time];
         
         // TODO: check if source executed already
-        [source execute];
+        [source executeAtTime:time];
         
         id sourceValue = [source valueForKey:connection.sourcePort];
         if (sourceValue) {
-            NSLog(@"Connect %@ to value %@", connection.destinationPort, sourceValue);
             [destination setValue:sourceValue forKey:connection.destinationPort];
         }
     }

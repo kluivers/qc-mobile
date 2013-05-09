@@ -14,4 +14,6 @@
 
 @property(nonatomic, weak) IBOutlet JKQCView *qcView;
 
+- (IBAction) toggle:(id)sender;
+
 @end
