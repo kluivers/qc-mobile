@@ -21,8 +21,6 @@
         return;
     }
     
-    NSLog(@"Clear with color: %@", self.inputColor);
-    
     CGFloat red = 0.0, green = 0.0f, blue = 0.0f, alpha = 0.0f;
     [self.inputColor getRed:&red green:&green blue:&blue alpha:&alpha];
     

@@ -16,6 +16,11 @@
 
 @implementation JKViewController
 
+- (void) dealloc
+{
+    [self.qcView removeObserver:self forKeyPath:@"frameRate"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,7 +35,7 @@
     self.qcView.composition = composition;
     [self.qcView setNeedsDisplay];
     
-    NSLog(@"Context: %@", self.qcView.context);
+    [self.qcView addObserver:self forKeyPath:@"frameRate" options:0 context:NULL];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -44,6 +49,15 @@
         [self.qcView stopAnimation];
     } else {
         [self.qcView startAnimation];
+    }
+}
+
+- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"frameRate"]) {
+        self.rateLabel.text = [NSString stringWithFormat:@"%.0f fps", self.qcView.frameRate];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 

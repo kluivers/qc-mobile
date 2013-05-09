@@ -19,6 +19,15 @@
 
 - (void) executeAtTime:(NSTimeInterval)time
 {
+    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+    
+    GLKMatrix4 transform = GLKMatrix4MakeTranslation(self.inputX, self.inputY, self.inputZ);
+    
+    effect.transform.modelviewMatrix = transform;
+    
+    [effect prepareToDraw];
+    
+    
     GLfloat vertices[12] = {
         -0.5, -0.5, 0,
         0.5, -0.5, 0,
@@ -38,8 +47,6 @@
         colors[n+2] = blue;
         colors[n+3] = alpha;
     }
-    
-    NSLog(@"Draw sprite!");
     
     glClear(GL_COLOR_BUFFER_BIT);
     

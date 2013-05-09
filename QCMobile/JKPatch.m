@@ -38,7 +38,7 @@
         NSData *userInfoData = state[@"userInfo"];
         if (userInfoData) {
             // TODO: Stop using private API
-#pragma message "This uses undocumented private API"
+#pragma message "This uses undocumented private API on iOS"
             _userInfo = [NSUnarchiver unarchiveObjectWithData:userInfoData];
 //            NSLog(@"Unarchived userInfo: %@", _userInfo);
         }
@@ -58,6 +58,11 @@
         NSDictionary *inputStates = state[@"ivarInputPortStates"];
         if (inputStates) {
             [self setDefaultInputStates:inputStates];
+        }
+        
+        NSDictionary *customInputStates = state[@"customInputPortStates"];
+        if (customInputStates) {
+            [self setDefaultInputStates:customInputStates];
         }
     }
     
@@ -112,9 +117,8 @@
                 [self setValue:obj forKey:key];
             }
         }
-    }
-    
-    if ([typeAttribute isEqualToString:@"Tf"]) {
+    } else {
+        // primitive type, set boxed value
         [self setValue:value forKey:key];
     }
 }

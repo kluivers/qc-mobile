@@ -14,6 +14,7 @@
 @property(nonatomic, assign) NSInteger inputRepeat;
 @property(nonatomic, assign) CGFloat inputValue1;
 @property(nonatomic, assign) CGFloat inputValue2;
+@property(nonatomic, assign) NSInteger inputInterpolation;
 
 @property(nonatomic, readonly) CGFloat outputValue;
 

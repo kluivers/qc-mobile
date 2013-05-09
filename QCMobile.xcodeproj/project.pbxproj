@@ -15,6 +15,7 @@
 		A9BD52CD173AD55900F21C39 /* JKConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CC173AD55900F21C39 /* JKConnection.m */; };
 		A9BD52D0173BAA9800F21C39 /* JKInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */; };
 		A9BD52D2173BD61300F21C39 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BD52D1173BD61300F21C39 /* QuartzCore.framework */; };
+		A9BD52D6173C0F4000F21C39 /* JKInterpolationMath.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52D5173C0F4000F21C39 /* JKInterpolationMath.m */; };
 		A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D01736E6FB00892B42 /* UIKit.framework */; };
 		A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D21736E6FB00892B42 /* Foundation.framework */; };
 		A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */; };
@@ -46,6 +47,8 @@
 		A9BD52CE173BAA9800F21C39 /* JKInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolation.h; sourceTree = "<group>"; };
 		A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInterpolation.m; sourceTree = "<group>"; };
 		A9BD52D1173BD61300F21C39 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A9BD52D4173C0F4000F21C39 /* JKInterpolationMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolationMath.h; sourceTree = "<group>"; };
+		A9BD52D5173C0F4000F21C39 /* JKInterpolationMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInterpolationMath.m; sourceTree = "<group>"; };
 		A9DFC9CD1736E6FB00892B42 /* QCMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DFC9D01736E6FB00892B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9DFC9D21736E6FB00892B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -103,6 +106,15 @@
 				A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */,
 			);
 			name = Patches;
+			sourceTree = "<group>";
+		};
+		A9BD52D3173C0F2300F21C39 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				A9BD52D4173C0F4000F21C39 /* JKInterpolationMath.h */,
+				A9BD52D5173C0F4000F21C39 /* JKInterpolationMath.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		A9DFC9C41736E6FB00892B42 = {
@@ -167,6 +179,7 @@
 		A9DFC9F51736EAD000892B42 /* Quartz Composer */ = {
 			isa = PBXGroup;
 			children = (
+				A9BD52D3173C0F2300F21C39 /* Util */,
 				A956ABD9173A409500EC54BE /* Patches */,
 				A9DFC9F91736ECA300892B42 /* JKComposition.h */,
 				A9DFC9FA1736ECA300892B42 /* JKComposition.m */,
@@ -257,6 +270,7 @@
 				A956ABDF173A90CB00EC54BE /* JKSprite.m in Sources */,
 				A9BD52CD173AD55900F21C39 /* JKConnection.m in Sources */,
 				A9BD52D0173BAA9800F21C39 /* JKInterpolation.m in Sources */,
+				A9BD52D6173C0F4000F21C39 /* JKInterpolationMath.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

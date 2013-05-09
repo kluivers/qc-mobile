@@ -15,6 +15,8 @@
 
 @property(nonatomic, strong) JKComposition *composition;
 
+@property(nonatomic, readonly) CGFloat frameRate;
+
 - (void) startAnimation;
 - (void) stopAnimation;
 - (BOOL) isAnimating;

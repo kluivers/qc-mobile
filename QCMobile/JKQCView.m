@@ -12,6 +12,9 @@
 #import "JKComposition.h"
 
 @interface JKQCView ()
+
+@property(nonatomic, readwrite, assign) CGFloat frameRate;
+
 - (void) render:(CADisplayLink *)link;
 @end
 
@@ -84,6 +87,8 @@
 
 - (void) render:(CADisplayLink *)link
 {
+    self.frameRate = 1.0f / link.duration;
+    
     [self display];
 }
 

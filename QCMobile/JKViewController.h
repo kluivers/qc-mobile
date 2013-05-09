@@ -13,6 +13,7 @@
 @interface JKViewController : UIViewController
 
 @property(nonatomic, weak) IBOutlet JKQCView *qcView;
+@property(nonatomic, weak) IBOutlet UILabel *rateLabel;
 
 - (IBAction) toggle:(id)sender;
 
