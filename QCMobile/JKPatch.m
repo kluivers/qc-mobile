@@ -6,10 +6,11 @@
 //  Copyright (c) 2013 Joris Kluivers. All rights reserved.
 //
 
+#import <objc/runtime.h>
+
 #import "JKPatch.h"
 #import "JKUnimplementedPatch.h"
-
-#import <objc/runtime.h>
+#import "JKConnection.h"
 
 @interface NSUnarchiver : NSCoder
 +(id)unarchiveObjectWithData:(id)data;
@@ -17,17 +18,20 @@
 
 @interface JKPatch ()
 @property(nonatomic, strong) NSArray *nodes;
+@property(nonatomic, strong) NSArray *connections;
 @property(nonatomic, strong) NSDictionary *userInfo;
+@property(nonatomic, strong) NSString *key;
 @end
 
 @implementation JKPatch
 
-- (id) initWithState:(NSDictionary *)state
+- (id) initWithState:(NSDictionary *)state key:(NSString *)key
 {
     self = [super init];
     
     if (self) {
         _enable = YES;
+        _key = key;
         
         NSLog(@"Patch: %@", state);
         
@@ -38,6 +42,12 @@
             _userInfo = [NSUnarchiver unarchiveObjectWithData:userInfoData];
             NSLog(@"Unarchived userInfo: %@", _userInfo);
         }
+        
+        NSMutableArray *connections = [NSMutableArray array];
+        for (NSString *key in [state[@"connections"] allKeys]) {
+            [connections addObject:[JKConnection connectionWithKey:key ports:state[@"connections"][key]]];
+        }
+        _connections = [NSArray arrayWithArray:connections];
         
         NSMutableArray *nodes = [NSMutableArray array];
         for (NSDictionary *node in state[@"nodes"]) {
@@ -63,7 +73,7 @@
         return [[JKUnimplementedPatch alloc] initWithName:patchClassName];
     }
     
-    return [[patchClass alloc] initWithState:dict[@"state"]];
+    return [[patchClass alloc] initWithState:dict[@"state"] key:dict[@"key"]];
 }
 
 #pragma mark -
@@ -82,10 +92,15 @@
     id classType = [self class];
     
     objc_property_t property = class_getProperty(classType, [key UTF8String]);
+    if (property == NULL) {
+        NSLog(@"Property %@ not implemented", key);
+        return;
+    }
+    
     const char *propertyAttributes = property_getAttributes(property);
     
     NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
-    NSString * typeAttribute = attributes[0];
+    NSString *typeAttribute = attributes[0];
     
     if ([typeAttribute hasPrefix:@"T@"] && [typeAttribute length] > 1) {
         NSString *typeClassName = [typeAttribute substringWithRange:NSMakeRange(3, [typeAttribute length]-4)];
@@ -99,6 +114,10 @@
                 [self setValue:obj forKey:key];
             }
         }
+    }
+    
+    if ([typeAttribute isEqualToString:@"Tf"]) {
+        [self setValue:value forKey:key];
     }
 }
 
@@ -126,7 +145,7 @@
     return NO;
 }
 
-- (void) render
+- (void) execute
 {
     if (!self.enable) {
         return;
@@ -138,11 +157,46 @@
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRenderer = %@", @YES];
 
-    // render each rendering patch in order found in document
+    // start executing each endpoint
+    // for now endpoints are just renderers
+    
     NSArray *renderers = [self.nodes filteredArrayUsingPredicate:predicate];
     for (JKPatch *patch in renderers) {
-        [patch render];
+        [self resolveConnectionsForDestination:patch];
+        [patch execute];
     }
+}
+
+- (void) resolveConnectionsForDestination:(JKPatch *)destination
+{
+    NSPredicate *destinationPort = [NSPredicate predicateWithFormat:@"destinationNode == %@", destination.key];
+    NSArray *connections = [self.connections filteredArrayUsingPredicate:destinationPort];
+    
+    for (JKConnection *connection in connections) {
+        JKPatch *source = [self patchWithKey:connection.sourceNode];
+        
+        [self resolveConnectionsForDestination:source];
+        
+        // TODO: check if source executed already
+        [source execute];
+        
+        id sourceValue = [source valueForKey:connection.sourcePort];
+        if (sourceValue) {
+            NSLog(@"Connect %@ to value %@", connection.destinationPort, sourceValue);
+            [destination setValue:sourceValue forKey:connection.destinationPort];
+        }
+    }
+}
+
+- (JKPatch *) patchWithKey:(NSString *)key
+{
+    for (JKPatch *patch in self.nodes) {
+        if ([patch.key isEqualToString:key]) {
+            return patch;
+        }
+    }
+    
+    return nil;
 }
 
 @end

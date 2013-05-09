@@ -15,7 +15,7 @@
     return YES;
 }
 
-- (void) render
+- (void) execute
 {
     if (!self.enable) {
         return;

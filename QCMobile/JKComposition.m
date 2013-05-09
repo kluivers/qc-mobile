@@ -48,7 +48,7 @@
 
 - (void) render
 {
-    [self.rootPatch render];
+    [self.rootPatch execute];
 }
 
 @end

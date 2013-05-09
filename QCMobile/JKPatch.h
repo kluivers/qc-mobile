@@ -12,11 +12,12 @@
 
 @property(nonatomic, readonly) NSDictionary *userInfo;
 @property(nonatomic, readonly) BOOL enable;
+@property(nonatomic, readonly) NSString *key;
 
 + (id) patchWithDictionary:(NSDictionary *)dict;
 
 - (BOOL) isRenderer;
 
-- (void) render;
+- (void) execute;
 
 @end

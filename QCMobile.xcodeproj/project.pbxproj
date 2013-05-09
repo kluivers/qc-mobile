@@ -11,6 +11,9 @@
 		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
 		A956ABDC173A697A00EC54BE /* JKQCView.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABDB173A697A00EC54BE /* JKQCView.m */; };
+		A956ABDF173A90CB00EC54BE /* JKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABDE173A90CB00EC54BE /* JKSprite.m */; };
+		A9BD52CD173AD55900F21C39 /* JKConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CC173AD55900F21C39 /* JKConnection.m */; };
+		A9BD52D0173BAA9800F21C39 /* JKInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */; };
 		A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D01736E6FB00892B42 /* UIKit.framework */; };
 		A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D21736E6FB00892B42 /* Foundation.framework */; };
 		A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */; };
@@ -35,6 +38,12 @@
 		A956ABD7173A409100EC54BE /* JKClear.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKClear.m; sourceTree = "<group>"; };
 		A956ABDA173A697A00EC54BE /* JKQCView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKQCView.h; sourceTree = "<group>"; };
 		A956ABDB173A697A00EC54BE /* JKQCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKQCView.m; sourceTree = "<group>"; };
+		A956ABDD173A90CB00EC54BE /* JKSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSprite.h; sourceTree = "<group>"; };
+		A956ABDE173A90CB00EC54BE /* JKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSprite.m; sourceTree = "<group>"; };
+		A9BD52CB173AD55900F21C39 /* JKConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKConnection.h; sourceTree = "<group>"; };
+		A9BD52CC173AD55900F21C39 /* JKConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKConnection.m; sourceTree = "<group>"; };
+		A9BD52CE173BAA9800F21C39 /* JKInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolation.h; sourceTree = "<group>"; };
+		A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInterpolation.m; sourceTree = "<group>"; };
 		A9DFC9CD1736E6FB00892B42 /* QCMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DFC9D01736E6FB00892B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9DFC9D21736E6FB00892B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +92,12 @@
 				A9DFC9F71736EC7B00892B42 /* JKPatch.m */,
 				A956ABD6173A409100EC54BE /* JKClear.h */,
 				A956ABD7173A409100EC54BE /* JKClear.m */,
+				A956ABDD173A90CB00EC54BE /* JKSprite.h */,
+				A956ABDE173A90CB00EC54BE /* JKSprite.m */,
+				A9BD52CB173AD55900F21C39 /* JKConnection.h */,
+				A9BD52CC173AD55900F21C39 /* JKConnection.m */,
+				A9BD52CE173BAA9800F21C39 /* JKInterpolation.h */,
+				A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */,
 			);
 			name = Patches;
 			sourceTree = "<group>";
@@ -235,6 +250,9 @@
 				A9DFC9FE1736EFC200892B42 /* JKUnimplementedPatch.m in Sources */,
 				A956ABD8173A409100EC54BE /* JKClear.m in Sources */,
 				A956ABDC173A697A00EC54BE /* JKQCView.m in Sources */,
+				A956ABDF173A90CB00EC54BE /* JKSprite.m in Sources */,
+				A9BD52CD173AD55900F21C39 /* JKConnection.m in Sources */,
+				A9BD52D0173BAA9800F21C39 /* JKInterpolation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

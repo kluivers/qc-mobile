@@ -10,7 +10,7 @@
 #import "JKComposition.h"
 #import "JKQCView.h"
 
-@interface JKViewController () <GLKViewDelegate>
+@interface JKViewController ()
 
 @end
 
@@ -22,7 +22,6 @@
     
     EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     self.qcView.context = context;
-    self.qcView.delegate = self;
 	
     NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
     
