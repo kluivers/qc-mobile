@@ -19,5 +19,6 @@
 @property(nonatomic, assign) CGFloat inputRX;
 @property(nonatomic, assign) CGFloat inputRY;
 @property(nonatomic, assign) CGFloat inputRZ;
+@property(nonatomic, strong) CIImage *inputImage;
 
 @end
