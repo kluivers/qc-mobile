@@ -57,7 +57,7 @@
         GLint oldFramebuffer = 0;
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFramebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
-        [qcContext.ciContext drawImage:self.inputImage inRect:CGRectMake(0, 0, 512, 512) fromRect:self.inputImage.extent];
+        [qcContext.ciContext drawImage:self.inputImage inRect:CGRectMake(0, 0, 256, 256) fromRect:self.inputImage.extent];
         
         glBindFramebuffer(GL_FRAMEBUFFER, oldFramebuffer);
         
@@ -69,15 +69,18 @@
         effect.texture2d0.envMode = GLKTextureEnvModeReplace;
         effect.texture2d0.target = GLKTextureTarget2D;
         effect.texture2d0.name = _sourceTexture;
+        
+        // todo: modulate texture color
+        // glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     }
     
     [effect prepareToDraw];
     
     GLfloat vertices[12] = {
-        -0.5, -0.5, 0,
-        0.5, -0.5, 0,
-        -0.5, 0.5, 0,
-        0.5, 0.5, 0
+        -self.inputWidth/2, -self.inputHeight/2, 0,
+        self.inputWidth/2, -self.inputHeight/2, 0,
+        -self.inputWidth/2, self.inputHeight/2, 0,
+        self.inputWidth/2, self.inputHeight/2, 0
     };
     
     GLfloat colors[16];
@@ -113,7 +116,12 @@
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_TRUE, 0, colors);
     
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
+    glDisable(GL_BLEND);
     
     glDisableVertexAttribArray(GLKVertexAttribPosition);
     glDisableVertexAttribArray(GLKVertexAttribColor);
@@ -153,7 +161,7 @@
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 512, 512, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
   
     error = glGetError();
     if (error != GL_NO_ERROR) {
@@ -169,8 +177,8 @@
     }
     
     // clear to pink (testing)
-    glClearColor(1.0, 0.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
+    //glClearColor(1.0, 0.0, 1.0, 1.0);
+    //glClear(GL_COLOR_BUFFER_BIT);
     
     // unbind the _sourceTexture
     glBindTexture(GL_TEXTURE_2D, 0);
