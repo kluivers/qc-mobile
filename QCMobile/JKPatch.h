@@ -24,6 +24,7 @@
 
 - (BOOL) isRenderer;
 
+- (void) startExecuting:(id<JKContext>)context;
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time;
 
 - (void) setValue:(id)value forInputKey:(NSString *)key;

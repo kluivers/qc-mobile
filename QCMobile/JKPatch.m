@@ -146,6 +146,15 @@
     return NO;
 }
 
+- (void) startExecuting:(id<JKContext>)context
+{
+    for (JKPatch *patch in self.nodes) {
+        if ([patch respondsToSelector:@selector(startExecuting:)]) {
+            [patch startExecuting:context];
+        }
+    }
+}
+
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if (!self.enable) {

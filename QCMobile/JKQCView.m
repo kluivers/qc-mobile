@@ -10,6 +10,7 @@
 
 #import "JKQCView.h"
 #import "JKComposition.h"
+#import "JKPatch.h"
 
 @interface JKQCView ()
 
@@ -23,6 +24,9 @@
     
     CADisplayLink *_link;
     NSDate *_startDate;
+    NSDate *_prevFrameDate;
+    
+    CIContext *_ciContext;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -41,16 +45,39 @@
     return self;
 }
 
+#pragma mark - JKContext
+
 - (CGSize) size
 {
     return self.bounds.size;
 }
 
+- (EAGLContext *) glContext
+{
+    return self.context;
+}
+
+- (CIContext *) ciContext
+{
+    if (!_ciContext) {
+        _ciContext = [CIContext contextWithEAGLContext:self.glContext];
+    }
+    
+    return _ciContext;
+}
+
 - (void) drawRect:(CGRect)rect
 {
     [_baseEffect prepareToDraw];
+
+    NSDate *current = [NSDate date];
     
-    [self.composition renderInContext:self atTime:[[NSDate date] timeIntervalSinceDate:_startDate]];
+    CGFloat rate = 1.0 / [current timeIntervalSinceDate:_prevFrameDate];
+    self.frameRate = rate;
+    
+    [self.composition.rootPatch execute:self atTime:[current timeIntervalSinceDate:_startDate]];
+    
+    _prevFrameDate = current;
 }
 
 - (void) layoutSubviews
@@ -73,7 +100,10 @@
 
 - (void) startAnimation
 {
+    [self.composition.rootPatch startExecuting:self];
+    
     _startDate = [NSDate date];
+    _prevFrameDate = _startDate;
     
     _link = [CADisplayLink displayLinkWithTarget:self selector:@selector(render:)];
     [_link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -93,7 +123,7 @@
 
 - (void) render:(CADisplayLink *)link
 {
-    self.frameRate = 1.0f / link.duration;
+    //self.frameRate = 1.0f / link.duration;
     
     [self display];
 }

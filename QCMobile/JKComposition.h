@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @protocol JKContext;
+@class JKPatch;
 
 @interface JKComposition : NSObject
 
 @property(readonly) NSString *frameworkVersion;
 @property(readonly) NSString *compositionDescription;
+@property(nonatomic, readonly) JKPatch *rootPatch;
 
 - (id) initWithPath:(NSString *)path;
 

@@ -8,6 +8,8 @@
 
 #import "JKPatch.h"
 
+@class CIImage;
+
 @interface JKSprite : JKPatch
 
 @property(nonatomic, strong) UIColor *inputColor;
