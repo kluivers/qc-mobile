@@ -22,6 +22,7 @@
 @property(nonatomic, strong) NSArray *connections;
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) NSString *key;
+@property(nonatomic, strong) NSString *identifier;
 @end
 
 @implementation JKPatch
@@ -80,7 +81,13 @@
         return [[JKUnimplementedPatch alloc] initWithName:patchClassName];
     }
     
-    return [[patchClass alloc] initWithState:dict[@"state"] key:dict[@"key"]];
+    JKPatch *patch = [[patchClass alloc] initWithState:dict[@"state"] key:dict[@"key"]];
+    
+    if (dict[@"identifier"]) {
+        patch.identifier = dict[@"identifier"];
+    }
+    
+    return patch;
 }
 
 #pragma mark -

@@ -19,6 +19,7 @@
 		A9BD52DA173C26F700F21C39 /* JKMath.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52D9173C26F700F21C39 /* JKMath.m */; };
 		A9BD52DD173CE71300F21C39 /* JKImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52DC173CE71300F21C39 /* JKImageLoader.m */; };
 		A9BD52DF173CEA0900F21C39 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BD52DE173CEA0900F21C39 /* CoreImage.framework */; };
+		A9BD52E2173E36C200F21C39 /* JKImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52E1173E36C200F21C39 /* JKImageFilter.m */; };
 		A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D01736E6FB00892B42 /* UIKit.framework */; };
 		A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D21736E6FB00892B42 /* Foundation.framework */; };
 		A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */; };
@@ -58,6 +59,8 @@
 		A9BD52DB173CE71300F21C39 /* JKImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageLoader.h; sourceTree = "<group>"; };
 		A9BD52DC173CE71300F21C39 /* JKImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageLoader.m; sourceTree = "<group>"; };
 		A9BD52DE173CEA0900F21C39 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		A9BD52E0173E36C200F21C39 /* JKImageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageFilter.h; sourceTree = "<group>"; };
+		A9BD52E1173E36C200F21C39 /* JKImageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageFilter.m; sourceTree = "<group>"; };
 		A9DFC9CD1736E6FB00892B42 /* QCMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DFC9D01736E6FB00892B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9DFC9D21736E6FB00892B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -112,6 +115,8 @@
 				A956ABDE173A90CB00EC54BE /* JKSprite.m */,
 				A9BD52DB173CE71300F21C39 /* JKImageLoader.h */,
 				A9BD52DC173CE71300F21C39 /* JKImageLoader.m */,
+				A9BD52E0173E36C200F21C39 /* JKImageFilter.h */,
+				A9BD52E1173E36C200F21C39 /* JKImageFilter.m */,
 				A9BD52D8173C26F700F21C39 /* JKMath.h */,
 				A9BD52D9173C26F700F21C39 /* JKMath.m */,
 				A9BD52CB173AD55900F21C39 /* JKConnection.h */,
@@ -289,6 +294,7 @@
 				A9BD52D6173C0F4000F21C39 /* JKInterpolationMath.m in Sources */,
 				A9BD52DA173C26F700F21C39 /* JKMath.m in Sources */,
 				A9BD52DD173CE71300F21C39 /* JKImageLoader.m in Sources */,
+				A9BD52E2173E36C200F21C39 /* JKImageFilter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

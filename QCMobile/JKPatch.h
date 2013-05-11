@@ -15,6 +15,7 @@
 @property(nonatomic, readonly) NSDictionary *userInfo;
 @property(nonatomic, readonly) BOOL enable;
 @property(nonatomic, readonly) NSString *key;
+@property(nonatomic, readonly) NSString *identifier;
 
 @property(nonatomic, readonly) NSDictionary *customInputPorts;
 
