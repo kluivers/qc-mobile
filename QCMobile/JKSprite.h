@@ -12,6 +12,8 @@
 
 @interface JKSprite : JKPatch
 
+@property(nonatomic, readonly) NSUInteger antialiasing;
+
 @property(nonatomic, strong) UIColor *inputColor;
 @property(nonatomic, assign) CGFloat inputHeight;
 @property(nonatomic, assign) CGFloat inputWidth;

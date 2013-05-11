@@ -13,14 +13,18 @@
 #import "JKSprite.h"
 
 @implementation JKSprite {
+    BOOL _didSetup;
     GLuint _textureFramebuffer;
     GLuint _sourceTexture;
+    NSUInteger _antialiasing;
 }
 
 - (id) initWithState:(NSDictionary *)state key:(NSString *)key
 {
     self = [super initWithState:state key:key];
     if (self) {
+        _antialiasing = [state[@"antialiasing"] unsignedIntegerValue];
+        _didSetup = NO;
     }
     return self;
 }
@@ -32,8 +36,14 @@
 
 - (void) startExecuting:(id<JKContext>)context
 {
+    if (_didSetup) {
+        return;
+    }
+    
     [EAGLContext setCurrentContext:context.glContext];
     [self setupCoreImageFramebuffer];
+    
+    _didSetup = YES;
 }
 
 - (void) execute:(id<JKContext>)qcContext atTime:(NSTimeInterval)time
