@@ -76,13 +76,16 @@
             NSLog(@"error = %d", error);
         }
         
-        effect.texture2d0.envMode = GLKTextureEnvModeReplace;
+        effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         effect.texture2d0.target = GLKTextureTarget2D;
         effect.texture2d0.name = _sourceTexture;
-        
-        // todo: modulate texture color
-        // glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     }
+    
+    GLfloat red, green, blue, alpha;
+    [self.inputColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    effect.useConstantColor = YES;
+    effect.constantColor = GLKVector4Make(red, green, blue, alpha);
     
     [effect prepareToDraw];
     
@@ -92,19 +95,6 @@
         -self.inputWidth/2, self.inputHeight/2, 0,
         self.inputWidth/2, self.inputHeight/2, 0
     };
-    
-    GLfloat colors[16];
-    
-    GLfloat red, green, blue, alpha;
-    [self.inputColor getRed:&red green:&green blue:&blue alpha:&alpha];
-    
-    for (int i=0; i<4; i++) {
-        int n = i*4;
-        colors[n+0] = red;
-        colors[n+1] = green;
-        colors[n+2] = blue;
-        colors[n+3] = alpha;
-    }
     
     glClear(GL_COLOR_BUFFER_BIT);
     
@@ -121,10 +111,7 @@
     }
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glEnableVertexAttribArray(GLKVertexAttribColor);
-    
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_TRUE, 0, colors);
     
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
