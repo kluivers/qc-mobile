@@ -54,6 +54,12 @@
     }
 }
 
+- (IBAction) blurRadiusChanged:(UISlider *)slider
+{
+    NSLog(@"new slider value: %f", slider.value);
+    [self.qcView setValue:@(slider.value) forInputKey:@"Radius"];
+}
+
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"frameRate"]) {

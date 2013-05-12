@@ -16,5 +16,6 @@
 @property(nonatomic, weak) IBOutlet UILabel *rateLabel;
 
 - (IBAction) toggle:(id)sender;
+- (IBAction) blurRadiusChanged:(id)sender;
 
 @end
