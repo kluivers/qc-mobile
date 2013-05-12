@@ -32,5 +32,6 @@
 - (id) valueForOutputKey:(NSString *)key;
 
 - (BOOL) didValueForInputKeyChange:(NSString *)inputKey;
+- (void) markInputKeyAsChanged:(NSString *)inputKey;
 
 @end

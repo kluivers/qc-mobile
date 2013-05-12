@@ -19,18 +19,25 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (![self didValueForInputKeyChange:@"inputImage"]) {
+    if (![self didValueForInputKeyChange:@"inputImage"] && ![self didValueForInputKeyChange:@"inputRadius"]) {
         return;
     }
     
-    NSNumber *inputRadius = self.customInputPorts[@"inputRadius"][@"value"];
-    
-    // TODO: generalize customInputPortStates for filters
-    [_filter setValue:inputRadius forKey:@"inputRadius"];
-    
-    [_filter setValue:self.inputImage forKey:@"inputImage"];
-    
     _outputImage = [_filter valueForKey:@"outputImage"];
+}
+
+- (void) setValue:(id)value forInputKey:(NSString *)key
+{
+    if ([[_filter inputKeys] containsObject:key]) {
+        if ([[_filter valueForKey:key] isEqual:value]) {
+            return;
+        }
+        
+        [_filter setValue:value forKey:key];
+        [self markInputKeyAsChanged:key];
+    } else {
+        [super setValue:value forKey:key];
+    }
 }
 
 @end

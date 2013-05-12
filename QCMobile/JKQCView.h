@@ -23,4 +23,6 @@
 - (void) stopAnimation;
 - (BOOL) isAnimating;
 
+- (void) setValue:(id)value forInputKey:(NSString *)key;
+
 @end

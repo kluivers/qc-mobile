@@ -128,4 +128,9 @@
     [self display];
 }
 
+- (void) setValue:(id)value forInputKey:(NSString *)key
+{
+    [self.composition.rootPatch setValue:value forInputKey:key];
+}
+
 @end

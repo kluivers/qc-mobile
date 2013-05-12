@@ -24,6 +24,7 @@
 @property(nonatomic, strong) NSString *key;
 @property(nonatomic, strong) NSString *identifier;
 @property(nonatomic, readonly) NSMutableArray *changedInputKeys;
+@property(nonatomic, readonly) NSDictionary *publishedInputPorts;
 
 - (void) resetChangedInputKeys;
 
@@ -73,6 +74,13 @@
             [self setDefaultInputStates:customInputStates];
         }
         _customInputPorts = customInputStates;
+        
+        NSMutableDictionary *publishedInputPorts = [NSMutableDictionary dictionary];
+        NSArray *publishedInputPortsState = state[@"publishedInputPorts"];
+        for (NSDictionary *inputPort in publishedInputPortsState) {
+            [publishedInputPorts setObject:inputPort forKey:inputPort[@"key"]];
+        }
+        _publishedInputPorts = publishedInputPorts;
     }
     
     return self;
@@ -225,15 +233,33 @@
 
 - (void) setValue:(id)value forInputKey:(NSString *)key
 {
+    NSDictionary *inputPort = [self.publishedInputPorts objectForKey:key];
+    if (inputPort) {
+        NSLog(@"Set published input ports! %@", inputPort);
+        
+        NSString *node = inputPort[@"node"];
+        NSString *port = inputPort[@"port"];
+        
+        JKPatch *childPatch = [self patchWithKey:node];
+        [childPatch setValue:value forInputKey:port];
+        
+        return;
+    }
+    
     if ([[self valueForKey:key] isEqual:value]) {
         return;
     }
     
-    if (![self.changedInputKeys containsObject:key]) {
-        [self.changedInputKeys addObject:key];
-    }
+    [self markInputKeyAsChanged:key];
     
     [self setValue:value forKey:key];
+}
+
+- (void) markInputKeyAsChanged:(NSString *)inputKey
+{
+    if (![self.changedInputKeys containsObject:inputKey]) {
+        [self.changedInputKeys addObject:inputKey];
+    }
 }
 
 - (id) valueForOutputKey:(NSString *)key

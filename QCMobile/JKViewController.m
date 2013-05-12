@@ -36,6 +36,8 @@
     [self.qcView setNeedsDisplay];
     
     [self.qcView addObserver:self forKeyPath:@"frameRate" options:0 context:NULL];
+    
+    [self.qcView setValue:@5.0 forInputKey:@"Radius"];
 }
 
 - (void) viewDidAppear:(BOOL)animated
