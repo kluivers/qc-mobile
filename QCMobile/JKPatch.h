@@ -31,4 +31,6 @@
 - (void) setValue:(id)value forInputKey:(NSString *)key;
 - (id) valueForOutputKey:(NSString *)key;
 
+- (BOOL) didValueForInputKeyChange:(NSString *)inputKey;
+
 @end

@@ -23,6 +23,10 @@
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) NSString *key;
 @property(nonatomic, strong) NSString *identifier;
+@property(nonatomic, readonly) NSMutableArray *changedInputKeys;
+
+- (void) resetChangedInputKeys;
+
 @end
 
 @implementation JKPatch
@@ -34,6 +38,8 @@
     if (self) {
         _enable = YES;
         _key = key;
+        
+        _changedInputKeys = [NSMutableArray array];
         
 //        NSLog(@"Patch: %@", state);
         
@@ -181,6 +187,7 @@
     for (JKPatch *patch in renderers) {
         [self resolveConnectionsForDestination:patch time:time inContext:context];
         [patch execute:context atTime:time];
+        [patch resetChangedInputKeys];
     }
 }
 
@@ -196,6 +203,7 @@
         
         // TODO: check if source executed already
         [source execute:context atTime:time];
+        [source resetChangedInputKeys];
         
         id sourceValue = [source valueForOutputKey:connection.sourcePort];
         if (sourceValue) {
@@ -217,12 +225,30 @@
 
 - (void) setValue:(id)value forInputKey:(NSString *)key
 {
+    if ([[self valueForKey:key] isEqual:value]) {
+        return;
+    }
+    
+    if (![self.changedInputKeys containsObject:key]) {
+        [self.changedInputKeys addObject:key];
+    }
+    
     [self setValue:value forKey:key];
 }
 
 - (id) valueForOutputKey:(NSString *)key
 {
     return [self valueForKey:key];
+}
+
+- (BOOL) didValueForInputKeyChange:(NSString *)inputKey
+{
+    return [self.changedInputKeys containsObject:inputKey];
+}
+
+- (void) resetChangedInputKeys
+{
+    [self.changedInputKeys removeAllObjects];
 }
 
 @end

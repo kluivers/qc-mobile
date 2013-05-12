@@ -19,6 +19,10 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
+    if (![self didValueForInputKeyChange:@"inputImage"]) {
+        return;
+    }
+    
     NSNumber *inputRadius = self.customInputPorts[@"inputRadius"][@"value"];
     
     // TODO: generalize customInputPortStates for filters

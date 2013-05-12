@@ -63,10 +63,13 @@
     
     effect.transform.modelviewMatrix = GLKMatrix4Multiply(GLKMatrix4Multiply(transform, scale), rotation);
     
-    if (self.inputImage) {
+    if (self.inputImage && [self didValueForInputKeyChange:@"inputImage"]) {
+        // only redraws image when image actually changed
+        
         GLint oldFramebuffer = 0;
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFramebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
+        
         [qcContext.ciContext drawImage:self.inputImage inRect:CGRectMake(0, 0, 256, 256) fromRect:self.inputImage.extent];
         
         glBindFramebuffer(GL_FRAMEBUFFER, oldFramebuffer);
@@ -75,7 +78,9 @@
         if (error != GL_NO_ERROR) {
             NSLog(@"error = %d", error);
         }
-        
+    }
+    
+    if (self.inputImage) {
         effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         effect.texture2d0.target = GLKTextureTarget2D;
         effect.texture2d0.name = _sourceTexture;
