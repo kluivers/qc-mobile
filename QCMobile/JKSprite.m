@@ -52,6 +52,10 @@
 
 - (void) execute:(id<JKContext>)qcContext atTime:(NSTimeInterval)time
 {
+    if (![self._enable boolValue]) {
+        return;
+    }
+    
     GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
     
     GLKMatrix4 transform = GLKMatrix4MakeTranslation(self.inputX, self.inputY, self.inputZ);
@@ -90,11 +94,8 @@
         effect.texture2d0.name = _sourceTexture;
     }
     
-    GLfloat red, green, blue, alpha;
-    [self.inputColor getRed:&red green:&green blue:&blue alpha:&alpha];
-    
     effect.useConstantColor = YES;
-    effect.constantColor = GLKVector4Make(red, green, blue, alpha);
+    effect.constantColor = GLKVector4Make(self.inputColor.red, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
     
     [effect prepareToDraw];
     

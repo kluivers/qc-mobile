@@ -42,7 +42,7 @@
     self = [super init];
     
     if (self) {
-        _enable = YES;
+        __enable = @YES;
         _key = dict[@"key"];
         _identifier = dict[@"identifier"];
         
@@ -86,6 +86,11 @@
             [publishedInputPorts setObject:inputPort forKey:inputPort[@"key"]];
         }
         _publishedInputPorts = publishedInputPorts;
+        
+        for (NSString *key in state[@"systemInputPortStates"]) {
+            id value = state[@"systemInputPortStates"][key][@"value"];
+            [self safeSetValue:value forKey:key];
+        }
     }
     
     return self;
@@ -165,17 +170,15 @@
 
 - (id) convertValue:(id)value toClass:(Class)type
 {
-    NSLog(@"From: %@ to %@", value, NSStringFromClass(type));
+    NSLog(@"From: %@ (%@) to %@", value, NSStringFromClass([value class]), NSStringFromClass(type));
     
-    if (type == [UIColor class] || type == [CIColor class]) {
+    if (type == [CIColor class]) {
         CGFloat red = [[value objectForKey:@"red"] floatValue];
         CGFloat green = [[value objectForKey:@"green"] floatValue];
         CGFloat blue = [[value objectForKey:@"blue"] floatValue];
         CGFloat alpha = [[value objectForKey:@"alpha"] floatValue];
         
-        UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
-        
-        return (type == [CIColor class]) ? [[CIColor alloc] initWithColor:color] : color;
+        return [CIColor colorWithRed:red green:green blue:blue alpha:alpha];
         
     } else if (type == [NSNumber class]) {
         return value;
@@ -210,7 +213,7 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (!self.enable) {
+    if (!self._enable) {
         return;
     }
     

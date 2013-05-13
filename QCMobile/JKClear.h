@@ -10,6 +10,6 @@
 
 @interface JKClear : JKPatch
 
-@property(nonatomic, strong) UIColor *inputColor;
+@property(nonatomic, strong) CIColor *inputColor;
 
 @end

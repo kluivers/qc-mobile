@@ -17,14 +17,11 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (!self.enable) {
+    if (![self._enable boolValue]) {
         return;
     }
     
-    CGFloat red = 0.0, green = 0.0f, blue = 0.0f, alpha = 0.0f;
-    [self.inputColor getRed:&red green:&green blue:&blue alpha:&alpha];
-    
-    glClearColor(red, green, blue, alpha);
+    glClearColor(self.inputColor.red, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

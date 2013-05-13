@@ -14,7 +14,7 @@
 
 @property(nonatomic, readonly) NSUInteger antialiasing;
 
-@property(nonatomic, strong) UIColor *inputColor;
+@property(nonatomic, strong) CIColor *inputColor;
 @property(nonatomic, assign) CGFloat inputHeight;
 @property(nonatomic, assign) CGFloat inputWidth;
 @property(nonatomic, assign) CGFloat inputY;
