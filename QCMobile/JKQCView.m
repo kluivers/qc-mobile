@@ -60,7 +60,9 @@
 - (CIContext *) ciContext
 {
     if (!_ciContext) {
-        _ciContext = [CIContext contextWithEAGLContext:self.glContext];
+        _ciContext = [CIContext contextWithEAGLContext:self.glContext options:@{
+            kCIContextWorkingColorSpace: [NSNull null]
+        }];
     }
     
     return _ciContext;

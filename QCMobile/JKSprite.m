@@ -19,10 +19,12 @@
     NSUInteger _antialiasing;
 }
 
-- (id) initWithState:(NSDictionary *)state key:(NSString *)key
+- (id) initWithDictionary:(NSDictionary *)dict
 {
-    self = [super initWithState:state key:key];
+    self = [super initWithDictionary:dict];
     if (self) {
+        NSDictionary *state = dict[@"state"];
+        
         _antialiasing = [state[@"antialiasing"] unsignedIntegerValue];
         _didSetup = NO;
     }
@@ -36,6 +38,8 @@
 
 - (void) startExecuting:(id<JKContext>)context
 {
+    [super startExecuting:context];
+    
     if (_didSetup) {
         return;
     }
@@ -93,6 +97,7 @@
     effect.constantColor = GLKVector4Make(red, green, blue, alpha);
     
     [effect prepareToDraw];
+    
     
     GLfloat vertices[12] = {
         -self.inputWidth/2, -self.inputHeight/2, 0,

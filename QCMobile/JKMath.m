@@ -10,10 +10,12 @@
 
 @implementation JKMath
 
-- (id) initWithState:(NSDictionary *)state key:(NSString *)key
+- (id) initWithDictionary:(NSDictionary *)dict
 {
-    self = [super initWithState:state key:key];
+    self = [super initWithDictionary:dict];
     if (self) {
+        NSDictionary *state = dict[@"state"];
+        
         _numberOfOperations = [state[@"numberOfOperations"] integerValue];
     }
     return self;

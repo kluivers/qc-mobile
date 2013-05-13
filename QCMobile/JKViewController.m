@@ -28,7 +28,7 @@
     EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     self.qcView.context = context;
 	
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Test2" ofType:@"qtz"];
     
     JKComposition *composition = [[JKComposition alloc] initWithPath:path];
     
@@ -37,7 +37,7 @@
     
     [self.qcView addObserver:self forKeyPath:@"frameRate" options:0 context:NULL];
     
-    [self.qcView setValue:@5.0 forInputKey:@"Radius"];
+//    [self.qcView setValue:@5.0 forInputKey:@"Radius"];
 }
 
 - (void) viewDidAppear:(BOOL)animated
@@ -57,7 +57,7 @@
 - (IBAction) blurRadiusChanged:(UISlider *)slider
 {
     NSLog(@"new slider value: %f", slider.value);
-    [self.qcView setValue:@(slider.value) forInputKey:@"Radius"];
+//    [self.qcView setValue:@(slider.value) forInputKey:@"Radius"];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

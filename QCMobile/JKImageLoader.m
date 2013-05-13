@@ -12,10 +12,12 @@
     CIImage *_outputImage;
 }
 
-- (id) initWithState:(NSDictionary *)state key:(NSString *)key
+- (id) initWithDictionary:(NSDictionary *)dict
 {
-    self = [super initWithState:state key:key];
+    self = [super initWithDictionary:dict];
     if (self) {
+        NSDictionary *state = dict[@"state"];
+        
         // TODO: automate setting properties
         _allImages = [state[@"allImages"] integerValue];
         _colorCorrection = [state[@"colorCorrection"] integerValue];

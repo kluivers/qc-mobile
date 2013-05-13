@@ -25,24 +25,35 @@
 @property(nonatomic, strong) NSString *identifier;
 @property(nonatomic, readonly) NSMutableArray *changedInputKeys;
 @property(nonatomic, readonly) NSDictionary *publishedInputPorts;
+@property(nonatomic, readonly) NSDictionary *inputStates;
 
 - (void) resetChangedInputKeys;
 
 @end
 
-@implementation JKPatch
+@implementation JKPatch {
+    NSMutableArray *_inputPorts;
+    NSMutableDictionary *_inputPortClass;
+    NSMutableDictionary *_inputPortValues;
+}
 
-- (id) initWithState:(NSDictionary *)state key:(NSString *)key
+- (id) initWithDictionary:(NSDictionary *)dict
 {
     self = [super init];
     
     if (self) {
         _enable = YES;
-        _key = key;
+        _key = dict[@"key"];
+        _identifier = dict[@"identifier"];
         
+        _inputPorts = [NSMutableArray array];
+        _inputPortClass = [NSMutableDictionary dictionary];
+        _inputPortValues = [NSMutableDictionary dictionary];
         _changedInputKeys = [NSMutableArray array];
         
 //        NSLog(@"Patch: %@", state);
+        
+        NSDictionary *state = dict[@"state"];
         
         NSData *userInfoData = state[@"userInfo"];
         if (userInfoData) {
@@ -64,15 +75,9 @@
         }
         _nodes = [NSArray arrayWithArray:nodes];
         
-        NSDictionary *inputStates = state[@"ivarInputPortStates"];
-        if (inputStates) {
-            [self setDefaultInputStates:inputStates];
-        }
+        _inputStates = state[@"ivarInputPortStates"];
         
         NSDictionary *customInputStates = state[@"customInputPortStates"];
-        if (customInputStates) {
-            [self setDefaultInputStates:customInputStates];
-        }
         _customInputPorts = customInputStates;
         
         NSMutableDictionary *publishedInputPorts = [NSMutableDictionary dictionary];
@@ -95,16 +100,20 @@
         return [[JKUnimplementedPatch alloc] initWithName:patchClassName];
     }
     
-    JKPatch *patch = [[patchClass alloc] initWithState:dict[@"state"] key:dict[@"key"]];
-    
-    if (dict[@"identifier"]) {
-        patch.identifier = dict[@"identifier"];
-    }
-    
-    return patch;
+    return [[patchClass alloc] initWithDictionary:dict];
 }
 
 #pragma mark -
+
+- (void) addInputPortType:(NSString *)type key:(NSString *)key
+{
+    NSLog(@"%s - %@", __func__, key);
+    
+    if (![_inputPorts containsObject:key]) {
+        [_inputPorts addObject:key];
+        _inputPortClass[key] = type;
+    }
+}
 
 - (void) setDefaultInputStates:(NSDictionary *)inputStates
 {
@@ -117,6 +126,13 @@
 
 - (void) safeSetValue:(NSDictionary *)value forKey:(NSString *)key
 {
+    if ([_inputPorts containsObject:key]) {
+        NSString *className = _inputPortClass[key];
+        id newValue = [self convertValue:value toClass:NSClassFromString(className)];
+        [self setValue:newValue forInputKey:key];
+        return;
+    }
+    
     id classType = [self class];
     
     objc_property_t property = class_getProperty(classType, [key UTF8String]);
@@ -130,32 +146,40 @@
     NSArray *attributes = [[NSString stringWithUTF8String:propertyAttributes] componentsSeparatedByString:@","];
     NSString *typeAttribute = attributes[0];
     
-    if ([typeAttribute hasPrefix:@"T@"] && [typeAttribute length] > 1) {
+    if ([typeAttribute hasPrefix:@"T@"] && [typeAttribute length] > 2) {
+        
         NSString *typeClassName = [typeAttribute substringWithRange:NSMakeRange(3, [typeAttribute length]-4)];
         Class typeClass = NSClassFromString(typeClassName);
         
         if (typeClass) {
             id obj = [self convertValue:value toClass:typeClass];
             if (obj) {
-                [self setValue:obj forKey:key];
+                [self setValue:obj forInputKey:key];
             }
         }
     } else {
         // primitive type, set boxed value
-        [self setValue:value forKey:key];
+        [self setValue:value forInputKey:key];
     }
 }
 
-- (id) convertValue:(NSDictionary *)value toClass:(Class)type
+- (id) convertValue:(id)value toClass:(Class)type
 {
-    if (type == [UIColor class]) {
+    NSLog(@"From: %@ to %@", value, NSStringFromClass(type));
+    
+    if (type == [UIColor class] || type == [CIColor class]) {
         CGFloat red = [[value objectForKey:@"red"] floatValue];
         CGFloat green = [[value objectForKey:@"green"] floatValue];
         CGFloat blue = [[value objectForKey:@"blue"] floatValue];
         CGFloat alpha = [[value objectForKey:@"alpha"] floatValue];
         
-        return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
-    }
+        UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+        
+        return (type == [CIColor class]) ? [[CIColor alloc] initWithColor:color] : color;
+        
+    } else if (type == [NSNumber class]) {
+        return value;
+    } 
     
     return nil;
 }
@@ -169,6 +193,14 @@
 
 - (void) startExecuting:(id<JKContext>)context
 {
+    if (_inputStates) {
+        [self setDefaultInputStates:_inputStates];
+    }
+    
+    if (_customInputPorts) {
+        [self setDefaultInputStates:_customInputPorts];
+    }
+    
     for (JKPatch *patch in self.nodes) {
         if ([patch respondsToSelector:@selector(startExecuting:)]) {
             [patch startExecuting:context];
@@ -233,6 +265,22 @@
 
 - (void) setValue:(id)value forInputKey:(NSString *)key
 {
+    if ([_inputPorts containsObject:key]) {
+        if ([_inputPortValues[key] isEqual:value]) {
+            return;
+        }
+        
+        if (!value) {
+            [_inputPortValues removeObjectForKey:key];
+        } else {
+            [_inputPortValues setObject:value forKey:key];
+        }
+        
+        [self markInputKeyAsChanged:key];
+        
+        return;
+    }
+    
     NSDictionary *inputPort = [self.publishedInputPorts objectForKey:key];
     if (inputPort) {
         NSLog(@"Set published input ports! %@", inputPort);
@@ -267,9 +315,23 @@
     return [self valueForKey:key];
 }
 
+- (id) valueForInputKey:(NSString *)key
+{
+    if ([_inputPorts containsObject:key]) {
+        return [_inputPortValues objectForKey:key];
+    }
+    
+    return [self valueForKey:key];
+}
+
 - (BOOL) didValueForInputKeyChange:(NSString *)inputKey
 {
     return [self.changedInputKeys containsObject:inputKey];
+}
+
+- (BOOL) didValuesForInputKeysChange
+{
+    return [self.changedInputKeys count] > 0;
 }
 
 - (void) resetChangedInputKeys

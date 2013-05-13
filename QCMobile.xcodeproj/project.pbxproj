@@ -21,6 +21,8 @@
 		A9BD52DF173CEA0900F21C39 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BD52DE173CEA0900F21C39 /* CoreImage.framework */; };
 		A9BD52E2173E36C200F21C39 /* JKImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52E1173E36C200F21C39 /* JKImageFilter.m */; };
 		A9BD52E517400E2300F21C39 /* JKSplitter.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52E417400E2300F21C39 /* JKSplitter.m */; };
+		A9BD52E717411F8E00F21C39 /* Test2.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9BD52E617411F8E00F21C39 /* Test2.qtz */; };
+		A9BD52EA174122DD00F21C39 /* JKTextImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52E9174122DD00F21C39 /* JKTextImage.m */; };
 		A9DFC9D11736E6FB00892B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D01736E6FB00892B42 /* UIKit.framework */; };
 		A9DFC9D31736E6FB00892B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D21736E6FB00892B42 /* Foundation.framework */; };
 		A9DFC9D51736E6FB00892B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9DFC9D41736E6FB00892B42 /* CoreGraphics.framework */; };
@@ -64,6 +66,9 @@
 		A9BD52E1173E36C200F21C39 /* JKImageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageFilter.m; sourceTree = "<group>"; };
 		A9BD52E317400E2300F21C39 /* JKSplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSplitter.h; sourceTree = "<group>"; };
 		A9BD52E417400E2300F21C39 /* JKSplitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSplitter.m; sourceTree = "<group>"; };
+		A9BD52E617411F8E00F21C39 /* Test2.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = Test2.qtz; sourceTree = "<group>"; };
+		A9BD52E8174122DD00F21C39 /* JKTextImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKTextImage.h; sourceTree = "<group>"; };
+		A9BD52E9174122DD00F21C39 /* JKTextImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKTextImage.m; sourceTree = "<group>"; };
 		A9DFC9CD1736E6FB00892B42 /* QCMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9DFC9D01736E6FB00892B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9DFC9D21736E6FB00892B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +125,8 @@
 				A9BD52DC173CE71300F21C39 /* JKImageLoader.m */,
 				A9BD52E0173E36C200F21C39 /* JKImageFilter.h */,
 				A9BD52E1173E36C200F21C39 /* JKImageFilter.m */,
+				A9BD52E8174122DD00F21C39 /* JKTextImage.h */,
+				A9BD52E9174122DD00F21C39 /* JKTextImage.m */,
 				A9BD52E317400E2300F21C39 /* JKSplitter.h */,
 				A9BD52E417400E2300F21C39 /* JKSplitter.m */,
 				A9BD52D8173C26F700F21C39 /* JKMath.h */,
@@ -189,6 +196,7 @@
 		A9DFC9D71736E6FB00892B42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A9BD52E617411F8E00F21C39 /* Test2.qtz */,
 				A9DFC9F31736E70F00892B42 /* EmptyTest.qtz */,
 				A9DFC9D81736E6FB00892B42 /* QCMobile-Info.plist */,
 				A9DFC9D91736E6FB00892B42 /* InfoPlist.strings */,
@@ -275,6 +283,7 @@
 				A9DFC9E71736E6FB00892B42 /* Default-568h@2x.png in Resources */,
 				A9DFC9EA1736E6FB00892B42 /* MainStoryboard.storyboard in Resources */,
 				A9DFC9F41736E70F00892B42 /* EmptyTest.qtz in Resources */,
+				A9BD52E717411F8E00F21C39 /* Test2.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +310,7 @@
 				A9BD52DD173CE71300F21C39 /* JKImageLoader.m in Sources */,
 				A9BD52E2173E36C200F21C39 /* JKImageFilter.m in Sources */,
 				A9BD52E517400E2300F21C39 /* JKSplitter.m in Sources */,
+				A9BD52EA174122DD00F21C39 /* JKTextImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

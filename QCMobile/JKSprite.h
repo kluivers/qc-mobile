@@ -23,6 +23,9 @@
 @property(nonatomic, assign) CGFloat inputRX;
 @property(nonatomic, assign) CGFloat inputRY;
 @property(nonatomic, assign) CGFloat inputRZ;
+@property(nonatomic, strong) NSNumber *inputCulling;
+@property(nonatomic, strong) NSNumber *inputBlending;
+@property(nonatomic, strong) NSNumber *inputZBuffer;
 @property(nonatomic, strong) CIImage *inputImage;
 
 @end
