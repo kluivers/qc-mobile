@@ -20,7 +20,7 @@
 @end
 
 @implementation JKQCView {
-    GLKBaseEffect *_baseEffect;
+    GLKBaseEffect *_effect;
     
     CADisplayLink *_link;
     NSDate *_startDate;
@@ -33,7 +33,6 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _baseEffect = [[GLKBaseEffect alloc] init];
         
         // TODO: update on resize
         
@@ -57,6 +56,15 @@
     return self.context;
 }
 
+- (GLKBaseEffect *) effect
+{
+    if (!_effect) {
+        _effect = [[GLKBaseEffect alloc] init];
+    }
+    
+    return _effect;
+}
+
 - (CIContext *) ciContext
 {
     if (!_ciContext) {
@@ -68,9 +76,14 @@
     return _ciContext;
 }
 
+- (GLKMatrix4) projectionMatrix
+{
+    return GLKMatrix4MakeOrtho(-1, 1, -1, 1, 1, -1);
+}
+
 - (void) drawRect:(CGRect)rect
 {
-    [_baseEffect prepareToDraw];
+    //[_baseEffect prepareToDraw];
 
     NSDate *current = [NSDate date];
     
@@ -86,16 +99,16 @@
 {
     [super layoutSubviews];
     
-    // TODO: figure out correct translation
-    GLKMatrix4 lookAt = GLKMatrix4MakeLookAt(0, 0, -1.9, 0, 0, 0, 0, 1, 0);
-    _baseEffect.transform.modelviewMatrix = lookAt;
-    
-    CGFloat width = CGRectGetWidth(self.bounds);
-    CGFloat height = CGRectGetHeight(self.bounds);
-    CGFloat ratio = width / height;
-    
-    GLKMatrix4 projection = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45.0), ratio, .01f, 100.0f);
-    _baseEffect.transform.projectionMatrix = projection;
+//    // TODO: figure out correct translation
+//    GLKMatrix4 lookAt = GLKMatrix4MakeLookAt(0, 0, -1.9, 0, 0, 0, 0, 1, 0);
+//    _baseEffect.transform.modelviewMatrix = lookAt;
+//    
+//    CGFloat width = CGRectGetWidth(self.bounds);
+//    CGFloat height = CGRectGetHeight(self.bounds);
+//    CGFloat ratio = width / height;
+//    
+//    GLKMatrix4 projection = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(45.0), ratio, .01f, 100.0f);
+//    _baseEffect.transform.projectionMatrix = projection;
     
     [self setNeedsDisplay];
 }

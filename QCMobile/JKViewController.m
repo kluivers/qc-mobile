@@ -29,6 +29,7 @@
     self.qcView.context = context;
 	
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Test2" ofType:@"qtz"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
     
     JKComposition *composition = [[JKComposition alloc] initWithPath:path];
     

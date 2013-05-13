@@ -170,7 +170,7 @@
 
 - (id) convertValue:(id)value toClass:(Class)type
 {
-    NSLog(@"From: %@ (%@) to %@", value, NSStringFromClass([value class]), NSStringFromClass(type));
+//    NSLog(@"From: %@ (%@) to %@", value, NSStringFromClass([value class]), NSStringFromClass(type));
     
     if (type == [CIColor class]) {
         CGFloat red = [[value objectForKey:@"red"] floatValue];

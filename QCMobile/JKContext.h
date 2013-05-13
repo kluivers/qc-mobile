@@ -7,13 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
-@class EAGLContext, CIContext;
+@class EAGLContext, GLKBaseEffect, CIContext;
 
 @protocol JKContext <NSObject>
 
 @property(nonatomic, readonly) CGSize size;
 @property(nonatomic, readonly) EAGLContext *glContext;
+@property(nonatomic, readonly) GLKBaseEffect *effect;
 @property(nonatomic, readonly) CIContext *ciContext;
+@property(nonatomic, readonly) GLKMatrix4 projectionMatrix;
 
 @end

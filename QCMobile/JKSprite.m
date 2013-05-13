@@ -56,9 +56,11 @@
         return;
     }
     
+//    GLKBaseEffect *effect = qcContext.effect;
+    // TODO: reusing the same effect messes up the color on vertices
     GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
     
-    GLKMatrix4 transform = GLKMatrix4MakeTranslation(self.inputX, self.inputY, self.inputZ);
+    GLKMatrix4 translate = GLKMatrix4MakeTranslation(self.inputX, self.inputY, self.inputZ);
     
     GLKMatrix4 rotateX = GLKMatrix4MakeXRotation(GLKMathDegreesToRadians(self.inputRX));
     GLKMatrix4 rotateY = GLKMatrix4MakeYRotation(GLKMathDegreesToRadians(self.inputRY));
@@ -69,7 +71,10 @@
     CGFloat ratio = qcContext.size.width / qcContext.size.height;
     GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, ratio, 1.0);
     
-    effect.transform.modelviewMatrix = GLKMatrix4Multiply(GLKMatrix4Multiply(transform, scale), rotation);
+    GLKMatrix4 transform = GLKMatrix4Multiply(GLKMatrix4Multiply(translate, scale), rotation);
+    
+    effect.transform.modelviewMatrix = transform;
+    // effect.transform.projectionMatrix = qcContext.projectionMatrix;
     
     if (self.inputImage && [self didValueForInputKeyChange:@"inputImage"]) {
         // only redraws image when image actually changed
@@ -94,11 +99,19 @@
         effect.texture2d0.name = _sourceTexture;
     }
     
-    effect.useConstantColor = YES;
-    effect.constantColor = GLKVector4Make(self.inputColor.red, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
+    //effect.useConstantColor = YES;
+    //effect.constantColor = GLKVector4Make(0.0, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
     
     [effect prepareToDraw];
     
+    UIColor *whiteColor = [UIColor whiteColor];
+    CGFloat r, g, b, a;
+    [whiteColor getRed:&r green:&g blue:&b alpha:&a];
+    
+    GLKVector4 color = GLKVector4Make(self.inputColor.red, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
+    GLKVector4 colors[4] = {
+        color, color, color, color
+    };
     
     GLfloat vertices[12] = {
         -self.inputWidth/2, -self.inputHeight/2, 0,
@@ -106,8 +119,6 @@
         -self.inputWidth/2, self.inputHeight/2, 0,
         self.inputWidth/2, self.inputHeight/2, 0
     };
-    
-    glClear(GL_COLOR_BUFFER_BIT);
     
     if (self.inputImage) {
         GLKVector2 textureCoords[4] = {
@@ -124,12 +135,19 @@
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     
+    glEnableVertexAttribArray(GLKVertexAttribColor);
+    glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, colors);
+    
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
     glDisable(GL_BLEND);
+    
+    if (self.inputImage) {
+        glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
+    }
     
     glDisableVertexAttribArray(GLKVertexAttribPosition);
     glDisableVertexAttribArray(GLKVertexAttribColor);
@@ -154,6 +172,7 @@
     }
     
     glGenBuffers(1, &_textureFramebuffer);
+    NSLog(@"Generated buffer: %d", _textureFramebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
     glViewport(0, 0, 512, 512);
     
@@ -165,6 +184,8 @@
     // create & attach texture
     
     glGenTextures(1, &_sourceTexture);
+    NSLog(@"Generated texture: %d", _sourceTexture);
+    
     glBindTexture(GL_TEXTURE_2D, _sourceTexture);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -185,8 +206,8 @@
     }
     
     // clear to pink (testing)
-    // glClearColor(1.0, 0.0, 1.0, 1.0);
-    // glClear(GL_COLOR_BUFFER_BIT);
+//    glClearColor(1.0, 0.0, 1.0, 1.0);
+//    glClear(GL_COLOR_BUFFER_BIT);
     
     // unbind the _sourceTexture
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -199,9 +220,9 @@
         NSLog(@"error = %d", error);
     }
     
-    // bind _sourceTexgture to texture 1
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, _sourceTexture);
+    // bind _sourceTexture to texture 1
+    //glActiveTexture(GL_TEXTURE1);
+    //glBindTexture(GL_TEXTURE_2D, _sourceTexture);
 }
 
 @end

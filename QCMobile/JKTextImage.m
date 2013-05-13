@@ -24,13 +24,13 @@
     CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(rgbColorSpace);
     
-    CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
     CGContextFillRect(ctx, CGRectMake(0, 0, size.width, size.height));
     
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     
-    NSLog(@"Font name: %@", self.inputFontName);
-    [@"hello world" drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:[UIFont fontWithName:self.inputFontName size:24.0] fontSize:24.0f lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
+    // NSLog(@"Font name: %@", self.inputFontName);
+    // [@"hello world" drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:[UIFont fontWithName:self.inputFontName size:24.0] fontSize:24.0f lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
     
     CGImageRef image = CGBitmapContextCreateImage(ctx);
     
