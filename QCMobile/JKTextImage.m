@@ -24,10 +24,15 @@
     CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(rgbColorSpace);
     
-    CGContextSetFillColorWithColor(ctx, [UIColor blueColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
     CGContextFillRect(ctx, CGRectMake(0, 0, size.width, size.height));
     
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    
+    CGContextFillRect(ctx, CGRectInset(CGRectMake(0, 0, size.width, size.height), 20.0f, 20.0f));
+    
+    
+    // TODO: core image text rendering
     
     // NSLog(@"Font name: %@", self.inputFontName);
     // [@"hello world" drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:[UIFont fontWithName:self.inputFontName size:24.0] fontSize:24.0f lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
