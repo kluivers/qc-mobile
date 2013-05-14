@@ -180,7 +180,7 @@
         
         return [CIColor colorWithRed:red green:green blue:blue alpha:alpha];
         
-    } else if (type == [NSNumber class]) {
+    } else if (type == [NSNumber class] || type == [NSString class]) {
         return value;
     } 
     

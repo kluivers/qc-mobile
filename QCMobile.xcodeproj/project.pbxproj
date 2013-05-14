@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A905E7061742DBED00BA8EC6 /* CoreText.framework */; };
 		A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD2173A3BF300EC54BE /* GLKit.framework */; };
 		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A905E7061742DBED00BA8EC6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A956ABD2173A3BF300EC54BE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A956ABD3173A3BF300EC54BE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A956ABD6173A409100EC54BE /* JKClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClear.h; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */,
 				A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */,
 				A9BD52DF173CEA0900F21C39 /* CoreImage.framework in Frameworks */,
+				A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,6 +178,7 @@
 				A956ABD2173A3BF300EC54BE /* GLKit.framework */,
 				A956ABD3173A3BF300EC54BE /* OpenGLES.framework */,
 				A9BD52DE173CEA0900F21C39 /* CoreImage.framework */,
+				A905E7061742DBED00BA8EC6 /* CoreText.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
