@@ -39,8 +39,8 @@ CGFloat JKUnitsToPixels(id<JKContext> ctx, CGFloat units)
 {
     CGSize maxSize = CGSizeMake(FLT_MAX, FLT_MAX);
     
-    CGFloat maxWidth = [self.inputWidth floatValue];
-    CGFloat maxHeight = [self.inputHeight floatValue];
+    CGFloat maxWidth = JKUnitsToPixels(ctx, [self.inputWidth floatValue]);
+    CGFloat maxHeight = JKUnitsToPixels(ctx, [self.inputHeight floatValue]);
     
     if (maxWidth > 0.0f) {
         maxSize.width = maxWidth;
