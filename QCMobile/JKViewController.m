@@ -30,8 +30,8 @@
 	
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"Test2" ofType:@"qtz"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"CameraTest" ofType:@"qtz"];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ImageDimensions" ofType:@"qtz"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"CameraTest" ofType:@"qtz"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"ImageDimensions" ofType:@"qtz"];
 
     
     JKComposition *composition = [[JKComposition alloc] initWithPath:path];

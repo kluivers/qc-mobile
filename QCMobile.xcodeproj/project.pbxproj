@@ -13,6 +13,10 @@
 		A94AF9641747AE1000366861 /* JKImageDimensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF9631747AE1000366861 /* JKImageDimensions.m */; };
 		A94AF9671747B81D00366861 /* JKContextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF9661747B81D00366861 /* JKContextUtil.m */; };
 		A94AF96A1747C31B00366861 /* NSString+LowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF9691747C31B00366861 /* NSString+LowercaseFirst.m */; };
+		A94AF96D1747EC5C00366861 /* JKVideoInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF96C1747EC5C00366861 /* JKVideoInput.m */; };
+		A94AF96F1747EDB700366861 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94AF96E1747EDB600366861 /* AVFoundation.framework */; };
+		A94AF9711747F0DC00366861 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94AF9701747F0DC00366861 /* CoreVideo.framework */; };
+		A94AF9731747F0F900366861 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94AF9721747F0F900366861 /* CoreMedia.framework */; };
 		A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD2173A3BF300EC54BE /* GLKit.framework */; };
 		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
@@ -56,6 +60,11 @@
 		A94AF9661747B81D00366861 /* JKContextUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKContextUtil.m; sourceTree = "<group>"; };
 		A94AF9681747C31B00366861 /* NSString+LowercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LowercaseFirst.h"; sourceTree = "<group>"; };
 		A94AF9691747C31B00366861 /* NSString+LowercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LowercaseFirst.m"; sourceTree = "<group>"; };
+		A94AF96B1747EC5B00366861 /* JKVideoInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVideoInput.h; sourceTree = "<group>"; };
+		A94AF96C1747EC5C00366861 /* JKVideoInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVideoInput.m; sourceTree = "<group>"; };
+		A94AF96E1747EDB600366861 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A94AF9701747F0DC00366861 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		A94AF9721747F0F900366861 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A956ABD2173A3BF300EC54BE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A956ABD3173A3BF300EC54BE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A956ABD6173A409100EC54BE /* JKClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClear.h; sourceTree = "<group>"; };
@@ -122,6 +131,9 @@
 				A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */,
 				A9BD52DF173CEA0900F21C39 /* CoreImage.framework in Frameworks */,
 				A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */,
+				A94AF96F1747EDB700366861 /* AVFoundation.framework in Frameworks */,
+				A94AF9711747F0DC00366861 /* CoreVideo.framework in Frameworks */,
+				A94AF9731747F0F900366861 /* CoreMedia.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +174,8 @@
 				A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */,
 				A94AF9621747AE1000366861 /* JKImageDimensions.h */,
 				A94AF9631747AE1000366861 /* JKImageDimensions.m */,
+				A94AF96B1747EC5B00366861 /* JKVideoInput.h */,
+				A94AF96C1747EC5C00366861 /* JKVideoInput.m */,
 			);
 			name = Patches;
 			sourceTree = "<group>";
@@ -205,6 +219,9 @@
 				A956ABD3173A3BF300EC54BE /* OpenGLES.framework */,
 				A9BD52DE173CEA0900F21C39 /* CoreImage.framework */,
 				A905E7061742DBED00BA8EC6 /* CoreText.framework */,
+				A94AF96E1747EDB600366861 /* AVFoundation.framework */,
+				A94AF9701747F0DC00366861 /* CoreVideo.framework */,
+				A94AF9721747F0F900366861 /* CoreMedia.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -349,6 +366,7 @@
 				A94AF9641747AE1000366861 /* JKImageDimensions.m in Sources */,
 				A94AF9671747B81D00366861 /* JKContextUtil.m in Sources */,
 				A94AF96A1747C31B00366861 /* NSString+LowercaseFirst.m in Sources */,
+				A94AF96D1747EC5C00366861 /* JKVideoInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

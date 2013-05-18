@@ -256,6 +256,7 @@
         [self resolveConnectionsForDestination:source time:time inContext:context];
         
         // TODO: check if source executed already
+        // [source resetChangedOutputKeys];
         [source execute:context atTime:time];
         [source resetChangedInputKeys];
         

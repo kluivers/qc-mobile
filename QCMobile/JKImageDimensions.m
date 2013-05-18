@@ -33,8 +33,6 @@
         return;
     }
     
-    NSLog(@"%s", __func__);
-    
     CGFloat imageWidth = CGRectGetWidth(self.inputImage.extent);
     CGFloat imageHeight = CGRectGetHeight(self.inputImage.extent);
     
@@ -45,9 +43,6 @@
     self.outputPixelsHigh = @(imageHeight);
     
     self.outputRatio = @(imageWidth / imageHeight);
-    
-//    [self setValue:@(imageWidth) forOutputKey:@"outputPixelsWide"];
-//    [self setValue:@(imageHeight) forOutputKey:@"outputPixelsHigh"];
 }
 
 @end
