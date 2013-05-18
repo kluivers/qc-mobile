@@ -87,6 +87,7 @@
         
         NSDictionary *customInputStates = state[@"customInputPortStates"];
         for (NSString *key in [customInputStates allKeys]) {
+            NSLog(@"Set custom value %@ for port %@", customInputStates[key][@"value"], key);
             [self setValue:customInputStates[key][@"value"] forInputKey:key];
         }
         _customInputPorts = customInputStates;
@@ -211,9 +212,9 @@
         [self setDefaultInputStates:_inputStates];
     }
     
-    if (_customInputPorts) {
+    /*if (_customInputPorts) {
         [self setDefaultInputStates:_customInputPorts];
-    }
+    }*/
     
     for (JKPatch *patch in self.nodes) {
         if ([patch respondsToSelector:@selector(startExecuting:)]) {

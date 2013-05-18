@@ -68,12 +68,22 @@
 
 #pragma mark - Video handling
 
+- (CGAffineTransform) transformForCurrentInterfaceOrientation:(UIInterfaceOrientation)orientation
+{
+    return CGAffineTransformMakeRotation(-M_PI_2);
+}
+
+
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    self.latestFrame = [CIImage imageWithCVPixelBuffer:imageBuffer];
+    CIImage *frame = [CIImage imageWithCVPixelBuffer:imageBuffer];
+    
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    self.latestFrame = [frame imageByApplyingTransform:[self transformForCurrentInterfaceOrientation:orientation]];
 }
 
 @end

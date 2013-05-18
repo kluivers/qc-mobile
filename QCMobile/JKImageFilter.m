@@ -10,9 +10,15 @@
 
 #import "JKImageFilter.h"
 
+@interface JKImageFilter ()
+@property(nonatomic, strong) CIImage *outputImage;
+@end
+
 @implementation JKImageFilter {
     CIFilter *_filter;
 }
+
+@dynamic inputImage, outputImage;
 
 - (id) initWithDictionary:(NSDictionary *)dict
 {
@@ -98,9 +104,7 @@
         [_filter setValue:[self valueForInputKey:key] forKey:key];
     }
     
-    NSLog(@"Filter: %@", _filter);
-    
-    _outputImage = [_filter valueForKey:@"outputImage"];
+    self.outputImage = [_filter valueForKey:@"outputImage"];
 }
 
 @end

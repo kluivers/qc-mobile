@@ -11,8 +11,6 @@
 @interface JKImageFilter : JKPatch
 
 @property(nonatomic, strong) CIImage *inputImage;
-@property(nonatomic, assign) CGFloat inputRadius;
-
 @property(nonatomic, readonly) CIImage *outputImage;
 
 @end
