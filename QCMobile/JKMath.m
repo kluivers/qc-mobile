@@ -8,7 +8,13 @@
 
 #import "JKMath.h"
 
+@interface JKMath ()
+@property(nonatomic, strong) NSNumber *outputValue;
+@end
+
 @implementation JKMath
+
+@dynamic inputValue, outputValue;
 
 - (id) initWithDictionary:(NSDictionary *)dict
 {
@@ -23,15 +29,20 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    CGFloat total = self.inputValue;
+    if (![self didValuesForInputKeysChange]) {
+        return;
+    }
+    
+    CGFloat total = [self.inputValue floatValue];
     
     for (int i=1; i<=self.numberOfOperations; i++) {
         NSString *operandPortName = [NSString stringWithFormat:@"operand_%d", i];
         NSString *operationPortName = [NSString stringWithFormat:@"operation_%d", i];
         
         // TODO: make handling of customInputPortStates nicer
-        NSInteger operation = [[self.customInputPorts objectForKey:operationPortName][@"value"] integerValue];
-        CGFloat operand = [[self.customInputPorts objectForKey:operandPortName][@"value"] floatValue];
+#pragma message "Handle customInputPortStates like regular input ports"
+        NSInteger operation = [[self valueForInputKey:operationPortName] integerValue];
+        CGFloat operand = [[self valueForInputKey:operandPortName] floatValue];
         
         switch (operation) {
             case 0:
@@ -61,7 +72,8 @@
         }
     }
     
-    _outputValue = total;
+    self.outputValue = @(total);
+    NSLog(@"new math output value: %@", self.outputValue);
 }
 
 @end

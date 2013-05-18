@@ -10,9 +10,10 @@
 
 @interface JKMath : JKPatch
 
-@property(nonatomic, assign) CGFloat inputValue;
+
 @property(nonatomic, assign) NSInteger numberOfOperations;
 
-@property(nonatomic, readonly) CGFloat outputValue;
+@property(nonatomic, strong) NSNumber *inputValue;
+@property(nonatomic, readonly) NSNumber *outputValue;
 
 @end

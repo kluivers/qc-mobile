@@ -10,6 +10,9 @@
 		A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A905E7061742DBED00BA8EC6 /* CoreText.framework */; };
 		A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF95D1747AA1A00366861 /* CameraTest.qtz */; };
 		A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF9601747AD8E00366861 /* ImageDimensions.qtz */; };
+		A94AF9641747AE1000366861 /* JKImageDimensions.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF9631747AE1000366861 /* JKImageDimensions.m */; };
+		A94AF9671747B81D00366861 /* JKContextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF9661747B81D00366861 /* JKContextUtil.m */; };
+		A94AF96A1747C31B00366861 /* NSString+LowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = A94AF9691747C31B00366861 /* NSString+LowercaseFirst.m */; };
 		A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD2173A3BF300EC54BE /* GLKit.framework */; };
 		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
@@ -47,6 +50,12 @@
 		A905E7061742DBED00BA8EC6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A94AF95D1747AA1A00366861 /* CameraTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = CameraTest.qtz; sourceTree = "<group>"; };
 		A94AF9601747AD8E00366861 /* ImageDimensions.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageDimensions.qtz; sourceTree = "<group>"; };
+		A94AF9621747AE1000366861 /* JKImageDimensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImageDimensions.h; sourceTree = "<group>"; };
+		A94AF9631747AE1000366861 /* JKImageDimensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImageDimensions.m; sourceTree = "<group>"; };
+		A94AF9651747B81D00366861 /* JKContextUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKContextUtil.h; sourceTree = "<group>"; };
+		A94AF9661747B81D00366861 /* JKContextUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKContextUtil.m; sourceTree = "<group>"; };
+		A94AF9681747C31B00366861 /* NSString+LowercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LowercaseFirst.h"; sourceTree = "<group>"; };
+		A94AF9691747C31B00366861 /* NSString+LowercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LowercaseFirst.m"; sourceTree = "<group>"; };
 		A956ABD2173A3BF300EC54BE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A956ABD3173A3BF300EC54BE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A956ABD6173A409100EC54BE /* JKClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClear.h; sourceTree = "<group>"; };
@@ -149,10 +158,10 @@
 				A9BD52E417400E2300F21C39 /* JKSplitter.m */,
 				A9BD52D8173C26F700F21C39 /* JKMath.h */,
 				A9BD52D9173C26F700F21C39 /* JKMath.m */,
-				A9BD52CB173AD55900F21C39 /* JKConnection.h */,
-				A9BD52CC173AD55900F21C39 /* JKConnection.m */,
 				A9BD52CE173BAA9800F21C39 /* JKInterpolation.h */,
 				A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */,
+				A94AF9621747AE1000366861 /* JKImageDimensions.h */,
+				A94AF9631747AE1000366861 /* JKImageDimensions.m */,
 			);
 			name = Patches;
 			sourceTree = "<group>";
@@ -162,6 +171,8 @@
 			children = (
 				A9BD52D4173C0F4000F21C39 /* JKInterpolationMath.h */,
 				A9BD52D5173C0F4000F21C39 /* JKInterpolationMath.m */,
+				A94AF9681747C31B00366861 /* NSString+LowercaseFirst.h */,
+				A94AF9691747C31B00366861 /* NSString+LowercaseFirst.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -232,11 +243,15 @@
 			children = (
 				A9BD52D3173C0F2300F21C39 /* Util */,
 				A956ABD9173A409500EC54BE /* Patches */,
+				A9BD52CB173AD55900F21C39 /* JKConnection.h */,
+				A9BD52CC173AD55900F21C39 /* JKConnection.m */,
 				A9DFC9F91736ECA300892B42 /* JKComposition.h */,
 				A9DFC9FA1736ECA300892B42 /* JKComposition.m */,
 				A9DFC9FC1736EFC200892B42 /* JKUnimplementedPatch.h */,
 				A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */,
 				A9BD52D7173C228C00F21C39 /* JKContext.h */,
+				A94AF9651747B81D00366861 /* JKContextUtil.h */,
+				A94AF9661747B81D00366861 /* JKContextUtil.m */,
 				A956ABDA173A697A00EC54BE /* JKQCView.h */,
 				A956ABDB173A697A00EC54BE /* JKQCView.m */,
 			);
@@ -331,6 +346,9 @@
 				A9BD52E2173E36C200F21C39 /* JKImageFilter.m in Sources */,
 				A9BD52E517400E2300F21C39 /* JKSplitter.m in Sources */,
 				A9BD52EA174122DD00F21C39 /* JKTextImage.m in Sources */,
+				A94AF9641747AE1000366861 /* JKImageDimensions.m in Sources */,
+				A94AF9671747B81D00366861 /* JKContextUtil.m in Sources */,
+				A94AF96A1747C31B00366861 /* NSString+LowercaseFirst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

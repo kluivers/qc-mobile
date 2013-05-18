@@ -8,9 +8,13 @@
 
 #import "JKImageLoader.h"
 
-@implementation JKImageLoader {
-    CIImage *_outputImage;
-}
+@interface JKImageLoader ()
+@property(nonatomic, strong) CIImage *outputImage;
+@end
+
+@implementation JKImageLoader
+
+@dynamic outputImage;
 
 - (id) initWithDictionary:(NSDictionary *)dict
 {
@@ -29,21 +33,16 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    // intentionally left blank
-}
-
-- (CIImage *) outputImage
-{
-    if (!_outputImage && _imageData) {
-        UIImage *image = [UIImage imageWithData:self.imageData];
-        if (!image) {
-            NSLog(@"Creating image failed");
-            return nil;
-        }
-        _outputImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
+    if (self.outputImage) {
+        return;
     }
     
-    return _outputImage;
+    UIImage *image = [UIImage imageWithData:self.imageData];
+    if (!image) {
+        NSLog(@"Creating image failed");
+    } else {
+        self.outputImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
+    }
 }
 
 @end

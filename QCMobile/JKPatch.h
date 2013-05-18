@@ -31,11 +31,18 @@
 - (void) addInputPortType:(NSString *)type key:(NSString *)key;
 
 - (void) setValue:(id)value forInputKey:(NSString *)key;
-- (id) valueForOutputKey:(NSString *)key;
+
 - (id) valueForInputKey:(NSString *)key;
 
 - (BOOL) didValueForInputKeyChange:(NSString *)inputKey;
 - (BOOL) didValuesForInputKeysChange;
 - (void) markInputKeyAsChanged:(NSString *)inputKey;
+
+/*!
+ * @name Output keys
+ */
+- (BOOL) didValueForOutputKeyChanged:(NSString *)key;
+- (void) setValue:(id)value forOutputKey:(NSString *)key;
+- (id) valueForOutputKey:(NSString *)key;
 
 @end

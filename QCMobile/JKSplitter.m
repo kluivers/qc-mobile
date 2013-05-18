@@ -8,7 +8,13 @@
 
 #import "JKSplitter.h"
 
+@interface JKSplitter ()
+@property(nonatomic, strong) id output;
+@end
+
 @implementation JKSplitter
+
+@dynamic input, output;
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
@@ -16,7 +22,7 @@
         return;
     }
     
-    _output = self.input;
+    self.output = self.input;
 }
 
 @end

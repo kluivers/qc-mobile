@@ -10,6 +10,8 @@
 
 @implementation JKClear
 
+@dynamic inputColor;
+
 - (BOOL) isRenderer
 {
     return YES;

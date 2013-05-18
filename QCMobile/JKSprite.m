@@ -19,6 +19,12 @@
     NSUInteger _antialiasing;
 }
 
+@dynamic inputColor, inputHeight, inputWidth;
+@dynamic inputY, inputX, inputZ;
+@dynamic inputRX, inputRY, inputRZ;
+@dynamic inputCulling, inputBlending, inputZBuffer;
+@dynamic inputImage;
+
 - (id) initWithDictionary:(NSDictionary *)dict
 {
     self = [super initWithDictionary:dict];
@@ -55,16 +61,16 @@
     if (![self._enable boolValue]) {
         return;
     }
-    
+
 //    GLKBaseEffect *effect = qcContext.effect;
     // TODO: reusing the same effect messes up the color on vertices
     GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
     
-    GLKMatrix4 translate = GLKMatrix4MakeTranslation(self.inputX, self.inputY, self.inputZ);
+    GLKMatrix4 translate = GLKMatrix4MakeTranslation([self.inputX floatValue], [self.inputY floatValue], [self.inputZ floatValue]);
     
-    GLKMatrix4 rotateX = GLKMatrix4MakeXRotation(GLKMathDegreesToRadians(self.inputRX));
-    GLKMatrix4 rotateY = GLKMatrix4MakeYRotation(GLKMathDegreesToRadians(self.inputRY));
-    GLKMatrix4 rotateZ = GLKMatrix4MakeZRotation(GLKMathDegreesToRadians(self.inputRZ));
+    GLKMatrix4 rotateX = GLKMatrix4MakeXRotation(GLKMathDegreesToRadians([self.inputRX floatValue]));
+    GLKMatrix4 rotateY = GLKMatrix4MakeYRotation(GLKMathDegreesToRadians([self.inputRY floatValue]));
+    GLKMatrix4 rotateZ = GLKMatrix4MakeZRotation(GLKMathDegreesToRadians([self.inputRZ floatValue]));
     
     GLKMatrix4 rotation = GLKMatrix4Multiply(GLKMatrix4Multiply(rotateX, rotateY), rotateZ);
     
@@ -104,20 +110,16 @@
     
     [effect prepareToDraw];
     
-    UIColor *whiteColor = [UIColor whiteColor];
-    CGFloat r, g, b, a;
-    [whiteColor getRed:&r green:&g blue:&b alpha:&a];
-    
     GLKVector4 color = GLKVector4Make(self.inputColor.red, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
     GLKVector4 colors[4] = {
         color, color, color, color
     };
     
     GLfloat vertices[12] = {
-        -self.inputWidth/2, -self.inputHeight/2, 0,
-        self.inputWidth/2, -self.inputHeight/2, 0,
-        -self.inputWidth/2, self.inputHeight/2, 0,
-        self.inputWidth/2, self.inputHeight/2, 0
+        -[self.inputWidth floatValue]/2, -[self.inputHeight floatValue]/2, 0,
+        [self.inputWidth floatValue]/2, -[self.inputHeight floatValue]/2, 0,
+        -[self.inputWidth floatValue]/2, [self.inputHeight floatValue]/2, 0,
+        [self.inputWidth floatValue]/2, [self.inputHeight floatValue]/2, 0
     };
     
     if (self.inputImage) {
