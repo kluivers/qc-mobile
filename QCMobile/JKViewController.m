@@ -28,8 +28,11 @@
     EAGLContext *context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     self.qcView.context = context;
 	
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"Test2" ofType:@"qtz"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Test2" ofType:@"qtz"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"CameraTest" ofType:@"qtz"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ImageDimensions" ofType:@"qtz"];
+
     
     JKComposition *composition = [[JKComposition alloc] initWithPath:path];
     

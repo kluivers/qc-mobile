@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A905E7061742DBED00BA8EC6 /* CoreText.framework */; };
 		A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF95D1747AA1A00366861 /* CameraTest.qtz */; };
+		A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF9601747AD8E00366861 /* ImageDimensions.qtz */; };
 		A956ABD4173A3BF300EC54BE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD2173A3BF300EC54BE /* GLKit.framework */; };
 		A956ABD5173A3BF300EC54BE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A956ABD3173A3BF300EC54BE /* OpenGLES.framework */; };
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		A905E7061742DBED00BA8EC6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A94AF95D1747AA1A00366861 /* CameraTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = CameraTest.qtz; sourceTree = "<group>"; };
+		A94AF9601747AD8E00366861 /* ImageDimensions.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageDimensions.qtz; sourceTree = "<group>"; };
 		A956ABD2173A3BF300EC54BE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A956ABD3173A3BF300EC54BE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A956ABD6173A409100EC54BE /* JKClear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClear.h; sourceTree = "<group>"; };
@@ -117,6 +119,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A94AF95F1747AD7600366861 /* Compositions */ = {
+			isa = PBXGroup;
+			children = (
+				A94AF9601747AD8E00366861 /* ImageDimensions.qtz */,
+				A94AF95D1747AA1A00366861 /* CameraTest.qtz */,
+				A9BD52E617411F8E00F21C39 /* Test2.qtz */,
+				A9DFC9F31736E70F00892B42 /* EmptyTest.qtz */,
+			);
+			name = Compositions;
+			sourceTree = "<group>";
+		};
 		A956ABD9173A409500EC54BE /* Patches */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,9 +215,7 @@
 		A9DFC9D71736E6FB00892B42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A94AF95D1747AA1A00366861 /* CameraTest.qtz */,
-				A9BD52E617411F8E00F21C39 /* Test2.qtz */,
-				A9DFC9F31736E70F00892B42 /* EmptyTest.qtz */,
+				A94AF95F1747AD7600366861 /* Compositions */,
 				A9DFC9D81736E6FB00892B42 /* QCMobile-Info.plist */,
 				A9DFC9D91736E6FB00892B42 /* InfoPlist.strings */,
 				A9DFC9DC1736E6FB00892B42 /* main.m */,
@@ -292,6 +303,7 @@
 				A9DFC9F41736E70F00892B42 /* EmptyTest.qtz in Resources */,
 				A9BD52E717411F8E00F21C39 /* Test2.qtz in Resources */,
 				A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */,
+				A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
