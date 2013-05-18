@@ -283,8 +283,6 @@
         return;
     }
     
-    NSLog(@"Set %@ with %@", key, value);
-    
     if (!value) {
         [_inputPortValues removeObjectForKey:key];
     } else {
@@ -400,11 +398,9 @@
     free(dynamic);
     
     if ([method hasPrefix:@"set"]) {
-        NSLog(@"Create dynamic setter for: %@", propertyName);
         class_addMethod([self class], sel, (IMP)dynamicPortPropertySetter, "v@:@");
         return YES;
     } else {
-        NSLog(@"Create dynamic getter for: %@", propertyName);
         class_addMethod([self class], sel, (IMP)dynamicPortPropertyGetter, "@@:");
         return YES;
     }
@@ -435,112 +431,5 @@ id dynamicPortPropertyGetter(JKPatch *self, SEL _cmd)
         return [self valueForOutputKey:propertyName];
     }
 }
-
-/*
-- (NSMethodSignature *) methodSignatureForSelector:(SEL)aSelector
-{
-#pragma message "Clean up memory management"
-    
-    NSString *selectorName = NSStringFromSelector(aSelector);
-    NSString *propertyName = [self propertyNameFromSelector:aSelector];
-    
-    NSLog(@"%s - %@", __func__, propertyName);
-
-    
-    if (![propertyName hasPrefix:@"output"] && ![propertyName hasPrefix:@"input"]) {
-        return [super methodSignatureForSelector:aSelector];
-    }
-    
-    id classType = [self class];
-    
-    objc_property_t property = class_getProperty(classType, [propertyName UTF8String]);
-    if (property == NULL) {
-        NSLog(@"Property %@ not implemented", propertyName);
-        return [super methodSignatureForSelector:aSelector];
-    }
-    
-    char *dynamic = property_copyAttributeValue(property, "D");
-    if (!dynamic) {
-        free(dynamic);
-        return [super methodSignatureForSelector:aSelector];
-    }
-    free(dynamic);
-    
-    char *type = property_copyAttributeValue(property, "T");
-    
-    if ([selectorName hasPrefix:@"set"]) {
-        char *readonly = property_copyAttributeValue(property, "R");
-        if (!readonly) {
-            free(readonly);
-            
-            NSString *signatureString = [NSString stringWithFormat:@"%s@:", type];
-            return [NSMethodSignature signatureWithObjCTypes:[signatureString UTF8String]];
-        }
-        free(readonly);
-    } else {
-        NSString *signatureString = [NSString stringWithFormat:@"v@:%s", type];
-        return [NSMethodSignature signatureWithObjCTypes:[signatureString UTF8String]];
-    }
-    
-    free(type);
-    
-    return [super methodSignatureForSelector:aSelector];
-}
-
-- (void) forwardInvocation:(NSInvocation *)anInvocation
-{
-    NSString *selectorAsString = NSStringFromSelector([anInvocation selector]);
-    NSString *propertyName = [self propertyNameFromSelector:[anInvocation selector]];
-    
-    if (![propertyName hasPrefix:@"output"] && ![propertyName hasPrefix:@"input"]) {
-        [super forwardInvocation:anInvocation];
-        return;
-    }
-    
-    id classType = [self class];
-    
-    objc_property_t property = class_getProperty(classType, [propertyName UTF8String]);
-    char *dynamic = property_copyAttributeValue(property, "D");
-    if (!dynamic) {
-        [super forwardInvocation:anInvocation];
-        free(dynamic);
-        return;
-    }
-    
-    free(dynamic);
-    
-    BOOL isInput = [propertyName hasPrefix:@"input"];
-    
-    if ([selectorAsString hasPrefix:@"set"]) {
-        NSLog(@"Set a value...");
-        
-        __unsafe_unretained id tmpValue = nil;
-        [anInvocation getArgument:&tmpValue atIndex:2];
-        
-        __strong id value = tmpValue;
-        
-        NSLog(@"Got value...: %@", value);
-        
-        if (isInput) {
-            NSLog(@"Set input value: %@", value);
-            [self setValue:value forInputKey:propertyName];
-        } else {
-            NSLog(@"Set output value: %@", value);
-            [self setValue:value forOutputKey:propertyName];
-        }
-        return;
-    } else {
-        __unsafe_unretained id value = (isInput) ? [self valueForInputKey:propertyName] : [self valueForOutputKey:propertyName];
-        id nilPtr = nil;
-        
-        NSLog(@"Invocation: %@", anInvocation);
-        [anInvocation setReturnValue:&nilPtr];
-        
-        return;
-    }
-    
-    [super forwardInvocation:anInvocation];
-}
-*/
 
 @end

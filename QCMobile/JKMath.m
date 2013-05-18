@@ -73,7 +73,6 @@
     }
     
     self.outputValue = @(total);
-    NSLog(@"new math output value: %@", self.outputValue);
 }
 
 @end
