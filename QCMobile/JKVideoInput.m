@@ -70,7 +70,16 @@
 
 - (CGAffineTransform) transformForCurrentInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    return CGAffineTransformMakeRotation(-M_PI_2);
+    switch (orientation) {
+        case UIInterfaceOrientationPortrait:
+            return CGAffineTransformMakeRotation(-M_PI_2);
+        case UIInterfaceOrientationLandscapeLeft:
+            return CGAffineTransformMakeRotation(M_PI);
+        case UIInterfaceOrientationLandscapeRight:
+            return CGAffineTransformIdentity;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            return CGAffineTransformMakeRotation(M_PI_2);;
+    }
 }
 
 

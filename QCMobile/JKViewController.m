@@ -49,6 +49,11 @@
     [self.qcView startAnimation];
 }
 
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskAll;
+}
+
 - (IBAction) toggle:(id)sender
 {
     if ([self.qcView isAnimating]) {
