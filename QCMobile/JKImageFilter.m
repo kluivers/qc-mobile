@@ -81,10 +81,18 @@
         
         return [CIVector vectorWithValues:values count:count];
     } else {
+        // fallback to default super implementation for values of types
+        // other than CIVector
         return [super valueForInputKey:key];
     }
 }
 
+/*
+ * Some 'complex' properties on filters are split up in individual components
+ * on patches. By overwriting the super implementation we intercept requests
+ * for keys to complex properties and return the compound structure using
+ * `valueForFilterInputKey:`
+ */
 - (id) valueForInputKey:(NSString *)key
 {
     if ([[_filter inputKeys] containsObject:key]) {
