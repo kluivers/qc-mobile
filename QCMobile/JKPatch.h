@@ -25,7 +25,7 @@
 
 - (BOOL) isRenderer;
 
-- (void) startExecuting:(id<JKContext>)context;
+- (void) startExecuting:(id<JKContext>)context __attribute((objc_requires_super));
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time;
 
 - (void) addInputPortType:(NSString *)type key:(NSString *)key;

@@ -10,6 +10,12 @@
 
 #import "JKVideoInput.h"
 
+/*!
+ * Sample code related to video playback:
+ * - Display link based
+ *   http://developer.apple.com/library/ios/#samplecode/AVBasicVideoOutput/Listings/AVBasicVideoOutput_APLViewController_m.html#//apple_ref/doc/uid/DTS40013109-AVBasicVideoOutput_APLViewController_m-DontLinkElementID_8
+ */
+
 @interface JKVideoInput () <AVCaptureVideoDataOutputSampleBufferDelegate>
 @property(nonatomic, strong) CIImage *outputImage;
 
@@ -54,6 +60,8 @@
 
 - (void) startExecuting:(id<JKContext>)context
 {
+    //[super startExecuting:context];
+    
     [session startRunning];
 }
 
