@@ -10,12 +10,12 @@
 
 @interface JKInterpolation : JKPatch
 
-@property(nonatomic, assign) CGFloat inputDuration;
-@property(nonatomic, assign) NSInteger inputRepeat;
-@property(nonatomic, assign) CGFloat inputValue1;
-@property(nonatomic, assign) CGFloat inputValue2;
-@property(nonatomic, assign) NSInteger inputInterpolation;
+@property(nonatomic, assign) NSNumber *inputDuration;
+@property(nonatomic, assign) NSNumber *inputRepeat;
+@property(nonatomic, assign) NSNumber *inputValue1;
+@property(nonatomic, assign) NSNumber *inputValue2;
+@property(nonatomic, assign) NSNumber *inputInterpolation;
 
-@property(nonatomic, readonly) CGFloat outputValue;
+@property(nonatomic, readonly) NSNumber *outputValue;
 
 @end

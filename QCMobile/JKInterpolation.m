@@ -43,52 +43,50 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
 
 #define JK_INTERPOLATION_COUNT 4
 
-@implementation JKInterpolation {
-}
+@interface JKInterpolation ()
+@property(nonatomic, strong) NSNumber *outputValue;
+@end
+
+@implementation JKInterpolation
+
+@dynamic inputDuration, inputRepeat, inputInterpolation, inputValue1, inputValue2;
+@dynamic outputValue;
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    CGFloat start = self.inputValue1;
-    CGFloat end = self.inputValue2;
+    CGFloat start = [self.inputValue1 floatValue];
+    CGFloat end = [self.inputValue2 floatValue];
     
-    if (self.inputRepeat == JKRepeatNone && time > self.inputDuration) {
-        _outputValue = end;
+    if ([self.inputRepeat integerValue] == JKRepeatNone && time > [self.inputDuration floatValue]) {
+        self.outputValue = @(end);
         return;
     }
     
-    if (self.inputRepeat == JKRepeatMirroredLoopOnce && time > self.inputDuration * 2) {
-        _outputValue = start;
+    if ([self.inputRepeat integerValue] == JKRepeatMirroredLoopOnce && time > [self.inputDuration floatValue] * 2.0f) {
+        self.outputValue = @(start);
         return;
     }
     
-    CGFloat duration = self.inputDuration;
+    CGFloat duration = [self.inputDuration floatValue];
     CGFloat progress = fmodf(time, duration);
     
     CGFloat normalizedTime = progress / duration;
     
-    if (self.inputRepeat == JKRepeatMirorredLoop || self.inputRepeat == JKRepeatMirroredLoopOnce) {
+    if ([self.inputRepeat integerValue] == JKRepeatMirorredLoop || [self.inputRepeat integerValue] == JKRepeatMirroredLoopOnce) {
         CGFloat mirrorProgress = fmodf(time, duration * 2);
         if (mirrorProgress > duration) {
             normalizedTime = 1 - normalizedTime;
         }
     }
     
-    int selectedFunction = self.inputInterpolation;
-    if (self.inputInterpolation >= JK_INTERPOLATION_COUNT) {
+    int selectedFunction = [self.inputInterpolation intValue];
+    if (selectedFunction >= JK_INTERPOLATION_COUNT) {
         // fallback to default
         NSLog(@"Selected interpolation function out of bounds");
         selectedFunction = 0;
     }
-    _outputValue = interpolation[selectedFunction](normalizedTime, start, end);
-
-//    if (self.inputRepeat == JKRepeatMirorredLoop || self.inputRepeat == JKRepeatMirroredLoopOnce) {
-//        duration = duration * 2;
-//    }
-//    
-//    CGFloat progress = fmodf(time, duration);
-//    progress = self.inputDuration - fabsf(self.inputDuration - progress);
-//    
-//    _outputValue = start + (end - start) * progress;
+    
+    self.outputValue = @(interpolation[selectedFunction](normalizedTime, start, end));
 }
 
 @end
