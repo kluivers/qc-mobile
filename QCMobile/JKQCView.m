@@ -15,6 +15,8 @@
 @interface JKQCView ()
 
 @property(nonatomic, readwrite, assign) CGFloat frameRate;
+@property(nonatomic, strong) NSSet *touches;
+@property(nonatomic, strong) UIEvent *event;
 
 - (void) render:(CADisplayLink *)link;
 @end
@@ -28,6 +30,8 @@
     
     CIContext *_ciContext;
 }
+
+@synthesize touches, event;
 
 - (id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -146,6 +150,26 @@
 - (void) setValue:(id)value forInputKey:(NSString *)key
 {
     [self.composition.rootPatch setValue:value forInputKey:key];
+}
+
+- (void) touchesBegan:(NSSet *)touchSet withEvent:(UIEvent *)viewEvent
+{
+    NSLog(@"%s", __func__);
+    
+    self.touches = touchSet;
+    self.event = viewEvent;
+}
+
+- (void) touchesMoved:(NSSet *)touchSet withEvent:(UIEvent *)viewEvent
+{
+    self.touches = touchSet;
+    self.event = viewEvent;
+}
+
+- (void) touchesEnded:(NSSet *)touchSet withEvent:(UIEvent *)viewEvent
+{
+    self.touches = nil;
+    self.event = nil;
 }
 
 @end

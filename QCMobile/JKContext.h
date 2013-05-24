@@ -19,4 +19,7 @@
 @property(nonatomic, readonly) CIContext *ciContext;
 @property(nonatomic, readonly) GLKMatrix4 projectionMatrix;
 
+@property(nonatomic, readonly) NSSet *touches;
+@property(nonatomic, readonly) UIEvent *event;
+
 @end
