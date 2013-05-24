@@ -48,9 +48,6 @@
     NSString *sourceKey = [NSString stringWithFormat:@"source_%d", index];
     
     id selectedValue = [self valueForInputKey:sourceKey];
-    NSLog(@"Selected value: %@", selectedValue);
-    NSLog(@"Port class: %@", self.portClass);
-    
     if (self.portClass) {
         selectedValue = [self convertValue:selectedValue toType:self.portClass];
     }
