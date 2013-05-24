@@ -15,6 +15,9 @@
 
 #import "NSString+LowercaseFirst.h"
 
+NSString * const JKPortAttributeTypeKey = @"JKPortAttributeTypeKey";
+NSString * const JKPortTypeColor = @"JKPortTypeColor";
+
 @interface NSUnarchiver : NSCoder
 +(id)unarchiveObjectWithData:(id)data;
 @end
@@ -79,11 +82,20 @@
         
         NSMutableArray *nodes = [NSMutableArray array];
         for (NSDictionary *node in state[@"nodes"]) {
-            [nodes addObject:[JKPatch patchWithDictionary:node]];
+            NSString *className = node[@"class"];
+            if ([className hasPrefix:@"/"]) {
+                NSLog(@"'Instantiate' virtual patch for: %@", className);
+            } else {
+                [nodes addObject:[JKPatch patchWithDictionary:node]];
+            }
         }
         _nodes = [NSArray arrayWithArray:nodes];
         
         _inputStates = state[@"ivarInputPortStates"];
+        for (NSString *key in [_inputStates allKeys]) {
+            NSLog(@"Set custom value %@ for port %@", _inputStates[key][@"value"], key);
+            [self setValue:_inputStates[key][@"value"] forInputKey:key];
+        }
         
         NSDictionary *customInputStates = state[@"customInputPortStates"];
         for (NSString *key in [customInputStates allKeys]) {
@@ -110,7 +122,12 @@
 
 + (instancetype) patchWithDictionary:(NSDictionary *)dict
 {
-    NSString *patchClassName = [dict[@"class"] stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@"JK"];
+    NSString *className = dict[@"class"];
+    if ([className hasPrefix:@"/"]) {
+        return [[JKUnimplementedPatch alloc] initWithName:[className stringByAppendingString:@" (virtual)"]];
+    }
+    
+    NSString *patchClassName = [className stringByReplacingCharactersInRange:NSMakeRange(0, 2) withString:@"JK"];
     
     Class patchClass = NSClassFromString(patchClassName);
     if (!patchClass) {
@@ -121,6 +138,11 @@
 }
 
 #pragma mark -
+
++ (NSDictionary *) attributesForPropertyPortWithKey:(NSString *)key
+{
+    return nil;
+}
 
 - (void) addInputPortType:(NSString *)type key:(NSString *)key
 {
@@ -184,7 +206,7 @@
 {
 //    NSLog(@"From: %@ (%@) to %@", value, NSStringFromClass([value class]), NSStringFromClass(type));
     
-    if (type == [CIColor class]) {
+    if (type == [CIColor class] && [value isKindOfClass:[NSDictionary class]]) {
         CGFloat red = [[value objectForKey:@"red"] floatValue];
         CGFloat green = [[value objectForKey:@"green"] floatValue];
         CGFloat blue = [[value objectForKey:@"blue"] floatValue];
@@ -196,7 +218,16 @@
         return value;
     } 
     
-    return nil;
+    return value;
+}
+
+- (id) convertValue:(id)value toType:(NSString *)type
+{
+    if ([JKPortTypeColor isEqualToString:type]) {
+        return [self convertValue:value toClass:[CIColor class]];
+    }
+    
+    return value;
 }
 
 #pragma mark -
@@ -281,6 +312,11 @@
 
 - (void) setValue:(id)value forInputKey:(NSString *)key
 {
+    NSDictionary *attributes = [[self class] attributesForPropertyPortWithKey:key];
+    if (attributes && attributes[JKPortAttributeTypeKey]) {
+        value = [self convertValue:value toType:attributes[JKPortAttributeTypeKey]];
+    }
+    
     if ([[self valueForInputKey:key] isEqual:value]) {
         return;
     }

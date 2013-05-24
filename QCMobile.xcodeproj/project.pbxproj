@@ -22,6 +22,8 @@
 		A956ABD8173A409100EC54BE /* JKClear.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABD7173A409100EC54BE /* JKClear.m */; };
 		A956ABDC173A697A00EC54BE /* JKQCView.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABDB173A697A00EC54BE /* JKQCView.m */; };
 		A956ABDF173A90CB00EC54BE /* JKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABDE173A90CB00EC54BE /* JKSprite.m */; };
+		A960AADD174F6E1600A95AEC /* ToggleSmooth.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */; };
+		A960AAE0174F924200A95AEC /* JKGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = A960AADF174F924200A95AEC /* JKGradient.m */; };
 		A9BD52CD173AD55900F21C39 /* JKConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CC173AD55900F21C39 /* JKConnection.m */; };
 		A9BD52D0173BAA9800F21C39 /* JKInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */; };
 		A9BD52D2173BD61300F21C39 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BD52D1173BD61300F21C39 /* QuartzCore.framework */; };
@@ -73,6 +75,9 @@
 		A956ABDB173A697A00EC54BE /* JKQCView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKQCView.m; sourceTree = "<group>"; };
 		A956ABDD173A90CB00EC54BE /* JKSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSprite.h; sourceTree = "<group>"; };
 		A956ABDE173A90CB00EC54BE /* JKSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSprite.m; sourceTree = "<group>"; };
+		A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ToggleSmooth.qtz; sourceTree = "<group>"; };
+		A960AADE174F924200A95AEC /* JKGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKGradient.h; sourceTree = "<group>"; };
+		A960AADF174F924200A95AEC /* JKGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKGradient.m; sourceTree = "<group>"; };
 		A9BD52CB173AD55900F21C39 /* JKConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKConnection.h; sourceTree = "<group>"; };
 		A9BD52CC173AD55900F21C39 /* JKConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKConnection.m; sourceTree = "<group>"; };
 		A9BD52CE173BAA9800F21C39 /* JKInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolation.h; sourceTree = "<group>"; };
@@ -143,6 +148,7 @@
 		A94AF95F1747AD7600366861 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */,
 				A94AF9601747AD8E00366861 /* ImageDimensions.qtz */,
 				A94AF95D1747AA1A00366861 /* CameraTest.qtz */,
 				A9BD52E617411F8E00F21C39 /* Test2.qtz */,
@@ -158,6 +164,8 @@
 				A9DFC9F71736EC7B00892B42 /* JKPatch.m */,
 				A956ABD6173A409100EC54BE /* JKClear.h */,
 				A956ABD7173A409100EC54BE /* JKClear.m */,
+				A960AADE174F924200A95AEC /* JKGradient.h */,
+				A960AADF174F924200A95AEC /* JKGradient.m */,
 				A956ABDD173A90CB00EC54BE /* JKSprite.h */,
 				A956ABDE173A90CB00EC54BE /* JKSprite.m */,
 				A9BD52DB173CE71300F21C39 /* JKImageLoader.h */,
@@ -336,6 +344,7 @@
 				A9BD52E717411F8E00F21C39 /* Test2.qtz in Resources */,
 				A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */,
 				A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */,
+				A960AADD174F6E1600A95AEC /* ToggleSmooth.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +376,7 @@
 				A94AF9671747B81D00366861 /* JKContextUtil.m in Sources */,
 				A94AF96A1747C31B00366861 /* NSString+LowercaseFirst.m in Sources */,
 				A94AF96D1747EC5C00366861 /* JKVideoInput.m in Sources */,
+				A960AAE0174F924200A95AEC /* JKGradient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

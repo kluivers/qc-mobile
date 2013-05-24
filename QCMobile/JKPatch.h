@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const JKPortAttributeTypeKey;
+
+/*!
+ * JKPortAttributeTypeKey values
+ */
+extern NSString * const JKPortTypeColor;
+
+
 @protocol JKContext;
 
 @interface JKPatch : NSObject
@@ -22,6 +30,8 @@
 - (id) initWithDictionary:(NSDictionary *)dict;
 
 + (id) patchWithDictionary:(NSDictionary *)dict;
+
++ (NSDictionary *) attributesForPropertyPortWithKey:(NSString *)key;
 
 - (BOOL) isRenderer;
 
