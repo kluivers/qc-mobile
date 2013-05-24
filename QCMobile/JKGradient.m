@@ -52,6 +52,10 @@ BOOL JKGradientVertical(JKGradientDirection direction) {
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
+    if (!self._enable) {
+        return;
+    }
+    
     // draws a sprite of 2 x numberOfPoints
     
     NSInteger direction = [self.inputDirection integerValue];
