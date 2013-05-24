@@ -16,7 +16,7 @@
 #import "NSString+LowercaseFirst.h"
 
 NSString * const JKPortAttributeTypeKey = @"JKPortAttributeTypeKey";
-NSString * const JKPortTypeColor = @"JKPortTypeColor";
+NSString * const JKPortTypeColor = @"JKColorPort";
 
 @interface NSUnarchiver : NSCoder
 +(id)unarchiveObjectWithData:(id)data;
