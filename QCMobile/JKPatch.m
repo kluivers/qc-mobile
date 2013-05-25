@@ -50,12 +50,13 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     NSMutableArray *_changedOutputKeys;
 }
 
+@dynamic _enable;
+
 - (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
     self = [super init];
     
     if (self) {
-        __enable = @YES;
         _key = dict[@"key"];
         _identifier = dict[@"identifier"];
         
@@ -66,6 +67,10 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         _outputPortValues = [NSMutableDictionary dictionary];
         _changedOutputKeys = [NSMutableArray array];
+        
+        // TODO: modify generated methods to take into account underscores
+        self._enable = @YES;
+//        [self setValue:@YES forInputKey:@"_enable"];
     
         NSDictionary *state = dict[@"state"];
         
@@ -276,7 +281,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (!self._enable) {
+    if (![self._enable boolValue]) {
         return;
     }
     
@@ -418,6 +423,11 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 #pragma mark - Dynamic property implementation for input/output keys
 
++ (NSArray *) systemInputPorts
+{
+    return @[@"_enable"];
+}
+
 + (NSString *) propertyNameFromSelector:(SEL)aSelector
 {
     NSString *selectorAsString = NSStringFromSelector(aSelector);
@@ -440,7 +450,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     NSString *method = NSStringFromSelector(sel);
     NSString *propertyName = [self propertyNameFromSelector:sel];
     
-    if (![propertyName hasPrefix:@"output"] && ![propertyName hasPrefix:@"input"]) {
+    if (![propertyName hasPrefix:@"output"] && ![propertyName hasPrefix:@"input"] && ![[[self class] systemInputPorts] containsObject:propertyName]) {
         return [super resolveInstanceMethod:sel];
     }
     
@@ -469,7 +479,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 void dynamicPortPropertySetter(JKPatch *self, SEL _cmd, id newValue)
 {
     NSString *propertyName = [[self class] propertyNameFromSelector:_cmd];
-    BOOL isInput = [propertyName hasPrefix:@"input"];
+    BOOL isInput = [propertyName hasPrefix:@"input"] || [[[self class] systemInputPorts] containsObject:propertyName];
     
     if (isInput) {
         [self setValue:newValue forInputKey:propertyName];
@@ -481,7 +491,7 @@ void dynamicPortPropertySetter(JKPatch *self, SEL _cmd, id newValue)
 id dynamicPortPropertyGetter(JKPatch *self, SEL _cmd)
 {
     NSString *propertyName = [[self class] propertyNameFromSelector:_cmd];
-    BOOL isInput = [propertyName hasPrefix:@"input"];
+    BOOL isInput = [propertyName hasPrefix:@"input"] || [[[self class] systemInputPorts] containsObject:propertyName];
     
     if (isInput) {
         return [self valueForInputKey:propertyName];

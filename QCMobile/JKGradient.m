@@ -52,7 +52,7 @@ BOOL JKGradientVertical(JKGradientDirection direction) {
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (!self._enable) {
+    if (![self._enable boolValue]) {
         return;
     }
     

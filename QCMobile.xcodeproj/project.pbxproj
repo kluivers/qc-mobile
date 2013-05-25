@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A905C9B21751303C00ADA045 /* JKCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = A905C9B11751303C00ADA045 /* JKCounter.m */; };
+		A905C9B51751345300ADA045 /* JKSmooth.m in Sources */ = {isa = PBXBuildFile; fileRef = A905C9B41751345200ADA045 /* JKSmooth.m */; };
 		A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A905E7061742DBED00BA8EC6 /* CoreText.framework */; };
 		A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF95D1747AA1A00366861 /* CameraTest.qtz */; };
 		A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF9601747AD8E00366861 /* ImageDimensions.qtz */; };
@@ -60,6 +61,8 @@
 		A905C9AF17512CE300ADA045 /* JKCompositionPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKCompositionPrivate.h; sourceTree = "<group>"; };
 		A905C9B01751303C00ADA045 /* JKCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCounter.h; sourceTree = "<group>"; };
 		A905C9B11751303C00ADA045 /* JKCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCounter.m; sourceTree = "<group>"; };
+		A905C9B31751345200ADA045 /* JKSmooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKSmooth.h; sourceTree = "<group>"; };
+		A905C9B41751345200ADA045 /* JKSmooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKSmooth.m; sourceTree = "<group>"; };
 		A905E7061742DBED00BA8EC6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A94AF95D1747AA1A00366861 /* CameraTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = CameraTest.qtz; sourceTree = "<group>"; };
 		A94AF9601747AD8E00366861 /* ImageDimensions.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageDimensions.qtz; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				A960AAE717501EB400A95AEC /* JKMouseInteraction.m */,
 				A905C9B01751303C00ADA045 /* JKCounter.h */,
 				A905C9B11751303C00ADA045 /* JKCounter.m */,
+				A905C9B31751345200ADA045 /* JKSmooth.h */,
+				A905C9B41751345200ADA045 /* JKSmooth.m */,
 			);
 			name = Patches;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				A960AAE51750197B00A95AEC /* JKMultiplexer.m in Sources */,
 				A960AAE817501EB400A95AEC /* JKMouseInteraction.m in Sources */,
 				A905C9B21751303C00ADA045 /* JKCounter.m in Sources */,
+				A905C9B51751345300ADA045 /* JKSmooth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
