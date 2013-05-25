@@ -32,7 +32,10 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 @property(nonatomic, strong) NSString *key;
 @property(nonatomic, strong) NSString *identifier;
 @property(nonatomic, readonly) NSMutableArray *changedInputKeys;
+
 @property(nonatomic, readonly) NSDictionary *publishedInputPorts;
+@property(nonatomic, readonly) NSDictionary *publishedOutputPorts;
+
 @property(nonatomic, readonly) NSDictionary *inputStates;
 
 @property(nonatomic, strong) NSDictionary *virtualPatches;
@@ -105,6 +108,13 @@ NSString * const JKPortTypeColor = @"JKColorPort";
                     
                     JKPatch *patch = [JKPatch patchWithDictionary:rootPatchDict composition:composition];
                     patch.key = [node objectForKey:@"key"];
+                    
+                    NSDictionary *inputParameters = virtualPatchDict[@"inputParameters"];
+                    for (NSString *key in [inputParameters allKeys]) {
+                        NSLog(@"Set input key value for virtual patch: %@", key);
+                        [patch setValue:inputParameters[key] forInputKey:key];
+                    }
+                    
                     // TODO: set customInputPortStates etc
                     // TODO: make sure we have a patch now
                     [nodes addObject:patch];
@@ -135,6 +145,13 @@ NSString * const JKPortTypeColor = @"JKColorPort";
             [publishedInputPorts setObject:inputPort forKey:inputPort[@"key"]];
         }
         _publishedInputPorts = publishedInputPorts;
+        
+        NSMutableDictionary *publishedOutputPorts = [NSMutableDictionary dictionary];
+        NSArray *publishedOutputPortsState = state[@"publishedOutputPorts"];
+        for (NSDictionary *outputPort in publishedOutputPortsState) {
+            [publishedOutputPorts setObject:outputPort forKey:outputPort[@"key"]];
+        }
+        _publishedOutputPorts = publishedOutputPorts;
         
         for (NSString *key in state[@"systemInputPortStates"]) {
             id value = state[@"systemInputPortStates"][key][@"value"];
@@ -288,14 +305,10 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     if ([self.nodes count] < 1) {
         return;
     }
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRenderer = %@", @YES];
-
-    // start executing each endpoint
-    // for now endpoints are just renderers
     
-    NSArray *renderers = [self.nodes filteredArrayUsingPredicate:predicate];
-    for (JKPatch *patch in renderers) {
+    NSArray *outputPatches = [self outputPatches];
+
+    for (JKPatch *patch in outputPatches) {
         [self resolveConnectionsForDestination:patch time:time inContext:context];
         [patch execute:context atTime:time];
         [patch resetChangedInputKeys];
@@ -324,6 +337,8 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     }
 }
 
+#pragma mark - Finding patches
+
 - (JKPatch *) patchWithKey:(NSString *)key
 {
     for (JKPatch *patch in self.nodes) {
@@ -335,8 +350,34 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     return nil;
 }
 
+/*!
+ * A patch is an output patch if it is a renderer, or when one of it's outputs has
+ * been published.
+ */
+- (NSArray *) outputPatches {
+    NSArray *publishedNodeKeys = [[self.publishedOutputPorts allValues] valueForKeyPath:@"node"];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRenderer = %@ OR key in %@", @YES, publishedNodeKeys];
+    
+    return [self.nodes filteredArrayUsingPredicate:predicate];
+}
+
+
+
+#pragma mark - Input Ports
+
 - (void) setValue:(id)value forInputKey:(NSString *)key
 {
+    NSDictionary *publishedInput = [self.publishedInputPorts objectForKey:key];
+    if (publishedInput) {
+        // forward to node / port
+        
+        JKPatch *patch = [self patchWithKey:publishedInput[@"node"]];
+        [patch setValue:value forInputKey:publishedInput[@"port"]];
+        
+        return;
+    }
+    
     NSDictionary *attributes = [[self class] attributesForPropertyPortWithKey:key];
     if (attributes && attributes[JKPortAttributeTypeKey]) {
         value = [self convertValue:value toType:attributes[JKPortAttributeTypeKey]];
@@ -364,6 +405,14 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (id) valueForInputKey:(NSString *)key
 {
+    NSDictionary *publishedInput = [self.publishedInputPorts objectForKey:key];
+    if (publishedInput) {
+        // forward to node / port
+        
+        JKPatch *patch = [self patchWithKey:publishedInput[@"node"]];
+        return [patch valueForInputKey:publishedInput[@"port"]];
+    }
+    
     return [_inputPortValues objectForKey:key];
 }
 
@@ -418,6 +467,14 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (id) valueForOutputKey:(NSString *)key
 {
+    NSDictionary *outputPort = [self.publishedOutputPorts objectForKey:key];
+    if (outputPort) {
+        // forward request to port
+        
+        JKPatch *patch = [self patchWithKey:outputPort[@"node"]];
+        return [patch valueForOutputKey:outputPort[@"port"]];
+    }
+    
     return [_outputPortValues objectForKey:key];
 }
 
