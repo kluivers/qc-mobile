@@ -154,8 +154,6 @@
 
 - (void) touchesBegan:(NSSet *)touchSet withEvent:(UIEvent *)viewEvent
 {
-    NSLog(@"%s", __func__);
-    
     self.touches = touchSet;
     self.event = viewEvent;
 }
