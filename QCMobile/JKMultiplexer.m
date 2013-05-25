@@ -21,9 +21,9 @@
 @dynamic inputIndex;
 @dynamic output;
 
-- (id) initWithDictionary:(NSDictionary *)dict
+- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
-    self = [super initWithDictionary:dict];
+    self = [super initWithDictionary:dict composition:composition];
     
     if (self) {
         NSDictionary *state = dict[@"state"];

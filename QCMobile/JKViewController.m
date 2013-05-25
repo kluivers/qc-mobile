@@ -32,9 +32,12 @@
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"EmptyTest" ofType:@"qtz"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"CameraTest" ofType:@"qtz"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"ImageDimensions" ofType:@"qtz"];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ToggleSmooth" ofType:@"qtz"];
-
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"ToggleSmooth" ofType:@"qtz"];
     
+//    NSString *compositionName = @"TapTest";
+    NSString *compositionName = @"ToggleSmooth";
+
+    NSString *path = [[NSBundle mainBundle] pathForResource:compositionName ofType:@"qtz"];
     JKComposition *composition = [[JKComposition alloc] initWithPath:path];
     
     self.qcView.composition = composition;

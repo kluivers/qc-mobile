@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A905C9B21751303C00ADA045 /* JKCounter.m in Sources */ = {isa = PBXBuildFile; fileRef = A905C9B11751303C00ADA045 /* JKCounter.m */; };
 		A905E7071742DBED00BA8EC6 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A905E7061742DBED00BA8EC6 /* CoreText.framework */; };
 		A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF95D1747AA1A00366861 /* CameraTest.qtz */; };
 		A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94AF9601747AD8E00366861 /* ImageDimensions.qtz */; };
@@ -24,6 +25,9 @@
 		A956ABDF173A90CB00EC54BE /* JKSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = A956ABDE173A90CB00EC54BE /* JKSprite.m */; };
 		A960AADD174F6E1600A95AEC /* ToggleSmooth.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */; };
 		A960AAE0174F924200A95AEC /* JKGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = A960AADF174F924200A95AEC /* JKGradient.m */; };
+		A960AAE21750192400A95AEC /* TapTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A960AAE11750192400A95AEC /* TapTest.qtz */; };
+		A960AAE51750197B00A95AEC /* JKMultiplexer.m in Sources */ = {isa = PBXBuildFile; fileRef = A960AAE41750197B00A95AEC /* JKMultiplexer.m */; };
+		A960AAE817501EB400A95AEC /* JKMouseInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = A960AAE717501EB400A95AEC /* JKMouseInteraction.m */; };
 		A9BD52CD173AD55900F21C39 /* JKConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CC173AD55900F21C39 /* JKConnection.m */; };
 		A9BD52D0173BAA9800F21C39 /* JKInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BD52CF173BAA9800F21C39 /* JKInterpolation.m */; };
 		A9BD52D2173BD61300F21C39 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9BD52D1173BD61300F21C39 /* QuartzCore.framework */; };
@@ -53,6 +57,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A905C9AF17512CE300ADA045 /* JKCompositionPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKCompositionPrivate.h; sourceTree = "<group>"; };
+		A905C9B01751303C00ADA045 /* JKCounter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKCounter.h; sourceTree = "<group>"; };
+		A905C9B11751303C00ADA045 /* JKCounter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKCounter.m; sourceTree = "<group>"; };
 		A905E7061742DBED00BA8EC6 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		A94AF95D1747AA1A00366861 /* CameraTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = CameraTest.qtz; sourceTree = "<group>"; };
 		A94AF9601747AD8E00366861 /* ImageDimensions.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageDimensions.qtz; sourceTree = "<group>"; };
@@ -78,6 +85,11 @@
 		A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ToggleSmooth.qtz; sourceTree = "<group>"; };
 		A960AADE174F924200A95AEC /* JKGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKGradient.h; sourceTree = "<group>"; };
 		A960AADF174F924200A95AEC /* JKGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKGradient.m; sourceTree = "<group>"; };
+		A960AAE11750192400A95AEC /* TapTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = TapTest.qtz; sourceTree = "<group>"; };
+		A960AAE31750197B00A95AEC /* JKMultiplexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKMultiplexer.h; sourceTree = "<group>"; };
+		A960AAE41750197B00A95AEC /* JKMultiplexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKMultiplexer.m; sourceTree = "<group>"; };
+		A960AAE617501EB400A95AEC /* JKMouseInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKMouseInteraction.h; sourceTree = "<group>"; };
+		A960AAE717501EB400A95AEC /* JKMouseInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKMouseInteraction.m; sourceTree = "<group>"; };
 		A9BD52CB173AD55900F21C39 /* JKConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKConnection.h; sourceTree = "<group>"; };
 		A9BD52CC173AD55900F21C39 /* JKConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKConnection.m; sourceTree = "<group>"; };
 		A9BD52CE173BAA9800F21C39 /* JKInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolation.h; sourceTree = "<group>"; };
@@ -148,6 +160,7 @@
 		A94AF95F1747AD7600366861 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A960AAE11750192400A95AEC /* TapTest.qtz */,
 				A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */,
 				A94AF9601747AD8E00366861 /* ImageDimensions.qtz */,
 				A94AF95D1747AA1A00366861 /* CameraTest.qtz */,
@@ -184,6 +197,12 @@
 				A94AF9631747AE1000366861 /* JKImageDimensions.m */,
 				A94AF96B1747EC5B00366861 /* JKVideoInput.h */,
 				A94AF96C1747EC5C00366861 /* JKVideoInput.m */,
+				A960AAE31750197B00A95AEC /* JKMultiplexer.h */,
+				A960AAE41750197B00A95AEC /* JKMultiplexer.m */,
+				A960AAE617501EB400A95AEC /* JKMouseInteraction.h */,
+				A960AAE717501EB400A95AEC /* JKMouseInteraction.m */,
+				A905C9B01751303C00ADA045 /* JKCounter.h */,
+				A905C9B11751303C00ADA045 /* JKCounter.m */,
 			);
 			name = Patches;
 			sourceTree = "<group>";
@@ -271,6 +290,7 @@
 				A9BD52CB173AD55900F21C39 /* JKConnection.h */,
 				A9BD52CC173AD55900F21C39 /* JKConnection.m */,
 				A9DFC9F91736ECA300892B42 /* JKComposition.h */,
+				A905C9AF17512CE300ADA045 /* JKCompositionPrivate.h */,
 				A9DFC9FA1736ECA300892B42 /* JKComposition.m */,
 				A9DFC9FC1736EFC200892B42 /* JKUnimplementedPatch.h */,
 				A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */,
@@ -345,6 +365,7 @@
 				A94AF95E1747AA1A00366861 /* CameraTest.qtz in Resources */,
 				A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */,
 				A960AADD174F6E1600A95AEC /* ToggleSmooth.qtz in Resources */,
+				A960AAE21750192400A95AEC /* TapTest.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +398,9 @@
 				A94AF96A1747C31B00366861 /* NSString+LowercaseFirst.m in Sources */,
 				A94AF96D1747EC5C00366861 /* JKVideoInput.m in Sources */,
 				A960AAE0174F924200A95AEC /* JKGradient.m in Sources */,
+				A960AAE51750197B00A95AEC /* JKMultiplexer.m in Sources */,
+				A960AAE817501EB400A95AEC /* JKMouseInteraction.m in Sources */,
+				A905C9B21751303C00ADA045 /* JKCounter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

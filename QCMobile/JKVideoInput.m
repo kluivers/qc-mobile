@@ -30,9 +30,9 @@
 
 @dynamic inputCapture, outputImage;
 
-- (id) initWithDictionary:(NSDictionary *)dict
+- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
-    self = [super initWithDictionary:dict];
+    self = [super initWithDictionary:dict composition:composition];
     if (self) {
         videoQueue = dispatch_queue_create("nl.kluivers.joris.VideoQueue", 0);
         
@@ -60,7 +60,7 @@
 
 - (void) startExecuting:(id<JKContext>)context
 {
-    //[super startExecuting:context];
+    [super startExecuting:context];
     
     [session startRunning];
 }

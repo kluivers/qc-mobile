@@ -17,6 +17,7 @@ extern NSString * const JKPortTypeColor;
 
 
 @protocol JKContext;
+@class JKComposition;
 
 @interface JKPatch : NSObject
 
@@ -27,9 +28,9 @@ extern NSString * const JKPortTypeColor;
 
 @property(nonatomic, readonly) NSDictionary *customInputPorts;
 
-- (id) initWithDictionary:(NSDictionary *)dict;
+- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition;
 
-+ (id) patchWithDictionary:(NSDictionary *)dict;
++ (id) patchWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition;
 
 + (NSDictionary *) attributesForPropertyPortWithKey:(NSString *)key;
 

@@ -8,6 +8,9 @@
 
 #import <objc/runtime.h>
 
+#import "JKComposition.h"
+#import "JKCompositionPrivate.h"
+
 #import "JKContext.h"
 #import "JKPatch.h"
 #import "JKUnimplementedPatch.h"
@@ -32,6 +35,8 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 @property(nonatomic, readonly) NSDictionary *publishedInputPorts;
 @property(nonatomic, readonly) NSDictionary *inputStates;
 
+@property(nonatomic, strong) NSDictionary *virtualPatches;
+
 - (void) resetChangedInputKeys;
 
 @end
@@ -45,7 +50,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     NSMutableArray *_changedOutputKeys;
 }
 
-- (id) initWithDictionary:(NSDictionary *)dict
+- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
     self = [super init];
     
@@ -61,16 +66,16 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         _outputPortValues = [NSMutableDictionary dictionary];
         _changedOutputKeys = [NSMutableArray array];
-        
-//        NSLog(@"Patch: %@", state);
-        
+    
         NSDictionary *state = dict[@"state"];
+        
+        self.virtualPatches = state[@"virtualPatches"];
         
         NSData *userInfoData = state[@"userInfo"];
         if (userInfoData) {
             // TODO: Stop using private API
-#pragma message "This uses undocumented private API on iOS"
-            _userInfo = [NSUnarchiver unarchiveObjectWithData:userInfoData];
+//#pragma message "This uses undocumented private API on iOS"
+//            _userInfo = [NSUnarchiver unarchiveObjectWithData:userInfoData];
 //            NSLog(@"Unarchived userInfo: %@", _userInfo);
         }
         
@@ -85,8 +90,23 @@ NSString * const JKPortTypeColor = @"JKColorPort";
             NSString *className = node[@"class"];
             if ([className hasPrefix:@"/"]) {
                 NSLog(@"'Instantiate' virtual patch for: %@", className);
+                
+                NSDictionary *virtualPatchDict = [composition.virtualPatches objectForKey:className];
+                
+                if (!virtualPatchDict) {
+                    NSLog(@"No virtual patch information found for: %@", className);
+                } else {
+                    NSDictionary *rootPatchDict = virtualPatchDict[@"rootPatch"];
+                    
+                    JKPatch *patch = [JKPatch patchWithDictionary:rootPatchDict composition:composition];
+                    patch.key = [node objectForKey:@"key"];
+                    // TODO: set customInputPortStates etc
+                    // TODO: make sure we have a patch now
+                    [nodes addObject:patch];
+                }
+                
             } else {
-                [nodes addObject:[JKPatch patchWithDictionary:node]];
+                [nodes addObject:[JKPatch patchWithDictionary:node composition:composition]];
             }
         }
         _nodes = [NSArray arrayWithArray:nodes];
@@ -120,7 +140,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     return self;
 }
 
-+ (instancetype) patchWithDictionary:(NSDictionary *)dict
++ (instancetype) patchWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
     NSString *className = dict[@"class"];
     if ([className hasPrefix:@"/"]) {
@@ -134,7 +154,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         return [[JKUnimplementedPatch alloc] initWithName:patchClassName];
     }
     
-    return [[patchClass alloc] initWithDictionary:dict];
+    return [[patchClass alloc] initWithDictionary:dict composition:composition];
 }
 
 #pragma mark -

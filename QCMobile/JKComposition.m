@@ -7,6 +7,7 @@
 //
 
 #import "JKComposition.h"
+#import "JKCompositionPrivate.h"
 
 #import "JKContext.h"
 #import "JKPatch.h"
@@ -43,7 +44,9 @@
         _frameworkVersion = composition[@"frameworkVersion"];
         _compositionDescription = composition[@"description"];
         
-        _rootPatch = [JKPatch patchWithDictionary:composition[@"rootPatch"]];
+        _virtualPatches = composition[@"virtualPatches"];
+        
+        _rootPatch = [JKPatch patchWithDictionary:composition[@"rootPatch"] composition:self];
     }
     
     return self;

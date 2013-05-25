@@ -20,9 +20,9 @@
 
 @dynamic inputImage, outputImage;
 
-- (id) initWithDictionary:(NSDictionary *)dict
+- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
-    self = [super initWithDictionary:dict];
+    self = [super initWithDictionary:dict composition:composition];
     if (self) {
         _filter = [CIFilter filterWithName:self.identifier];
         NSLog(@"Filter: %@", _filter);
