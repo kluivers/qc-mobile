@@ -36,9 +36,34 @@ CGFloat JKQuadraticInOutInterpolation(CGFloat t, CGFloat start, CGFloat end)
     
     t -= 1;
     
-    return JKLinearInterpolation(t * t, middle, end);
+    return JKLinearInterpolation(2*t - t * t, middle, end);
 }
 
 #pragma mark - Cubic
+
+CGFloat JKCubicInInterpolation(CGFloat t, CGFloat start, CGFloat end)
+{
+    return JKLinearInterpolation(t*t*t, start, end);
+}
+
+CGFloat JKCubicOutInterpolation(CGFloat t, CGFloat start, CGFloat end) {
+    t -= 1;
+    return JKLinearInterpolation(t*t*t + 1, start, end);
+}
+
+CGFloat JKCubicInOutInterpolation(CGFloat t, CGFloat start, CGFloat end) {
+    CGFloat middle = (start + end) / 2;
+    
+    t = 2 * t;
+    
+    if (t <= 1) {
+        return JKLinearInterpolation(t*t*t, start, middle);
+    }
+    
+    t -= 2;
+
+    return JKLinearInterpolation(t*t*t + 1, middle, end);
+}
+
 
 

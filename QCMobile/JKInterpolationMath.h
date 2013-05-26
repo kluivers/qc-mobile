@@ -7,8 +7,13 @@
 //
 
 CGFloat JKLinearInterpolation(CGFloat t, CGFloat start, CGFloat end);
+
 CGFloat JKQuadraticInInterpolation(CGFloat t, CGFloat start, CGFloat end);
 CGFloat JKQuadraticOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
 CGFloat JKQuadraticInOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
+
+CGFloat JKCubicInInterpolation(CGFloat t, CGFloat start, CGFloat end);
+CGFloat JKCubicOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
+CGFloat JKCubicInOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
 
 

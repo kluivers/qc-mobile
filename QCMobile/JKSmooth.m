@@ -13,10 +13,13 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
     &JKLinearInterpolation,
     &JKQuadraticInInterpolation,
     &JKQuadraticOutInterpolation,
-    &JKQuadraticInOutInterpolation
+    &JKQuadraticInOutInterpolation,
+    &JKCubicInInterpolation,
+    &JKCubicOutInterpolation,
+    &JKCubicInOutInterpolation
 };
 
-#define JK_INTERPOLATION_COUNT 4
+#define JK_INTERPOLATION_COUNT 7
 
 @interface JKSmooth ()
 @property(nonatomic, strong) NSNumber *outputValue;
