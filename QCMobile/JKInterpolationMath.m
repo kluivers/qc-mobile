@@ -65,5 +65,17 @@ CGFloat JKCubicInOutInterpolation(CGFloat t, CGFloat start, CGFloat end) {
     return JKLinearInterpolation(t*t*t + 1, middle, end);
 }
 
+#pragma mark - Exponential
+
+CGFloat JKExponentialInInterpolation(CGFloat t, CGFloat start, CGFloat end)
+{
+    return JKLinearInterpolation(powf(2, 10 * (t-1)), start, end);
+}
+
+CGFloat JKExponentialOutInterpolation(CGFloat t, CGFloat start, CGFloat end)
+{
+    return JKLinearInterpolation(- powf(2, -10 * t) + 1, start, end);
+}
+
 
 
