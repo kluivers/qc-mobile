@@ -18,5 +18,10 @@ CGFloat JKCubicInOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
 
 CGFloat JKExponentialInInterpolation(CGFloat t, CGFloat start, CGFloat end);
 CGFloat JKExponentialOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
+CGFloat JKExponentialInOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
+
+CGFloat JKSinusoidalInInterpolation(CGFloat t, CGFloat start, CGFloat end);
+CGFloat JKSinusoidalOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
+CGFloat JKSinusoidalInOutInterpolation(CGFloat t, CGFloat start, CGFloat end);
 
 

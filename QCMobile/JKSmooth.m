@@ -9,6 +9,8 @@
 #import "JKSmooth.h"
 #import "JKInterpolationMath.h"
 
+// TODO: make reusable, is replicated in Interpolator patch
+
 static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
     &JKLinearInterpolation,
     &JKQuadraticInInterpolation,
@@ -16,10 +18,16 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
     &JKQuadraticInOutInterpolation,
     &JKCubicInInterpolation,
     &JKCubicOutInterpolation,
-    &JKCubicInOutInterpolation
+    &JKCubicInOutInterpolation,
+    &JKExponentialInInterpolation,
+    &JKExponentialOutInterpolation,
+    &JKExponentialInOutInterpolation,
+    &JKSinusoidalInInterpolation,
+    &JKSinusoidalOutInterpolation,
+    &JKSinusoidalInOutInterpolation
 };
 
-#define JK_INTERPOLATION_COUNT 7
+#define JK_INTERPOLATION_COUNT 13
 
 @interface JKSmooth ()
 @property(nonatomic, strong) NSNumber *outputValue;
