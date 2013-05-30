@@ -26,6 +26,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 @end
 
 @interface JKPatch ()
+@property(nonatomic, strong) JKPatch *parent;
 @property(nonatomic, strong) NSArray *nodes;
 @property(nonatomic, strong) NSArray *connections;
 @property(nonatomic, strong) NSDictionary *userInfo;
@@ -108,6 +109,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
                     
                     JKPatch *patch = [JKPatch patchWithDictionary:rootPatchDict composition:composition];
                     patch.key = [node objectForKey:@"key"];
+                    patch.parent = self;
                     
                     NSDictionary *inputParameters = virtualPatchDict[@"inputParameters"];
                     for (NSString *key in [inputParameters allKeys]) {
@@ -121,7 +123,9 @@ NSString * const JKPortTypeColor = @"JKColorPort";
                 }
                 
             } else {
-                [nodes addObject:[JKPatch patchWithDictionary:node composition:composition]];
+                JKPatch *patch = [JKPatch patchWithDictionary:node composition:composition];
+                patch.parent = self;
+                [nodes addObject:patch];
             }
         }
         _nodes = [NSArray arrayWithArray:nodes];

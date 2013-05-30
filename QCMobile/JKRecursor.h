@@ -10,4 +10,6 @@
 
 @interface JKRecursor : JKPatch
 
+@property(nonatomic, strong) NSNumber *inputInitialize; // BOOL
+
 @end

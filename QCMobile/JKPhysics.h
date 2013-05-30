@@ -10,4 +10,8 @@
 
 @interface JKPhysics : JKPatch
 
+@property(nonatomic, readonly) NSNumber *numberOfInputs;
+@property(nonatomic, strong) NSNumber *inputSampling; // BOOL
+@property(nonatomic, strong) NSNumber *inputFriction;
+
 @end

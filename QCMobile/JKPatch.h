@@ -21,6 +21,8 @@ extern NSString * const JKPortTypeColor;
 
 @interface JKPatch : NSObject
 
+@property(nonatomic, readonly) JKPatch *parent;
+
 @property(nonatomic, strong) NSNumber *_enable;
 
 @property(nonatomic, readonly) NSDictionary *userInfo;

@@ -55,6 +55,9 @@
 		A9DFC9F81736EC7B00892B42 /* JKPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9F71736EC7B00892B42 /* JKPatch.m */; };
 		A9DFC9FB1736ECA300892B42 /* JKComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9FA1736ECA300892B42 /* JKComposition.m */; };
 		A9DFC9FE1736EFC200892B42 /* JKUnimplementedPatch.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */; };
+		A9EA0DED1756AC2F00E0E1B8 /* RotateScroll.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0DEC1756AC2F00E0E1B8 /* RotateScroll.qtz */; };
+		A9EA0DF01756B11100E0E1B8 /* JKRecursor.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0DEF1756B11100E0E1B8 /* JKRecursor.m */; };
+		A9EA0DF31756B43400E0E1B8 /* JKPhysics.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0DF21756B43400E0E1B8 /* JKPhysics.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,6 +139,11 @@
 		A9DFC9FA1736ECA300892B42 /* JKComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKComposition.m; sourceTree = "<group>"; };
 		A9DFC9FC1736EFC200892B42 /* JKUnimplementedPatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKUnimplementedPatch.h; sourceTree = "<group>"; };
 		A9DFC9FD1736EFC200892B42 /* JKUnimplementedPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKUnimplementedPatch.m; sourceTree = "<group>"; };
+		A9EA0DEC1756AC2F00E0E1B8 /* RotateScroll.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = RotateScroll.qtz; sourceTree = "<group>"; };
+		A9EA0DEE1756B11100E0E1B8 /* JKRecursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKRecursor.h; sourceTree = "<group>"; };
+		A9EA0DEF1756B11100E0E1B8 /* JKRecursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKRecursor.m; sourceTree = "<group>"; };
+		A9EA0DF11756B43400E0E1B8 /* JKPhysics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKPhysics.h; sourceTree = "<group>"; };
+		A9EA0DF21756B43400E0E1B8 /* JKPhysics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKPhysics.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +171,7 @@
 		A94AF95F1747AD7600366861 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A9EA0DEC1756AC2F00E0E1B8 /* RotateScroll.qtz */,
 				A960AAE11750192400A95AEC /* TapTest.qtz */,
 				A960AADC174F6E1600A95AEC /* ToggleSmooth.qtz */,
 				A94AF9601747AD8E00366861 /* ImageDimensions.qtz */,
@@ -208,6 +217,10 @@
 				A905C9B11751303C00ADA045 /* JKCounter.m */,
 				A905C9B31751345200ADA045 /* JKSmooth.h */,
 				A905C9B41751345200ADA045 /* JKSmooth.m */,
+				A9EA0DEE1756B11100E0E1B8 /* JKRecursor.h */,
+				A9EA0DEF1756B11100E0E1B8 /* JKRecursor.m */,
+				A9EA0DF11756B43400E0E1B8 /* JKPhysics.h */,
+				A9EA0DF21756B43400E0E1B8 /* JKPhysics.m */,
 			);
 			name = Patches;
 			sourceTree = "<group>";
@@ -371,6 +384,7 @@
 				A94AF9611747AD8E00366861 /* ImageDimensions.qtz in Resources */,
 				A960AADD174F6E1600A95AEC /* ToggleSmooth.qtz in Resources */,
 				A960AAE21750192400A95AEC /* TapTest.qtz in Resources */,
+				A9EA0DED1756AC2F00E0E1B8 /* RotateScroll.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +421,8 @@
 				A960AAE817501EB400A95AEC /* JKMouseInteraction.m in Sources */,
 				A905C9B21751303C00ADA045 /* JKCounter.m in Sources */,
 				A905C9B51751345300ADA045 /* JKSmooth.m in Sources */,
+				A9EA0DF01756B11100E0E1B8 /* JKRecursor.m in Sources */,
+				A9EA0DF31756B43400E0E1B8 /* JKPhysics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
