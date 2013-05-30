@@ -35,8 +35,10 @@
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"ToggleSmooth" ofType:@"qtz"];
     
 //    NSString *compositionName = @"TapTest";
-    NSString *compositionName = @"ToggleSmooth";
-
+//    NSString *compositionName = @"ToggleSmooth";
+//    NSString *compositionName = @"EmptyTest";
+    NSString *compositionName = @"RotateScroll";
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:compositionName ofType:@"qtz"];
     JKComposition *composition = [[JKComposition alloc] initWithPath:path];
     
