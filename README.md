@@ -7,4 +7,16 @@ By **Joris Kluivers**
 - See the [introductionary blog post](http://joris.kluivers.nl)
 - Follow [@kluivers on Twitter][twitter]
 
+## Required frameworks
+
+- AVFoundation
+- CoreMedia
+- CoreText
+- GLKit
+- QuartzCore
+- CoreImage
+- OpenGLES
+- CoreVideo
+
+
 [twitter]: http://twitter.com/kluivers

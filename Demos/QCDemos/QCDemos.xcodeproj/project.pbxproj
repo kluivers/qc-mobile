@@ -45,6 +45,14 @@
 		A9EA0EBE1759546100E0E1B8 /* JKVideoInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0EA21759546100E0E1B8 /* JKVideoInput.m */; };
 		A9EA0EBF1759546100E0E1B8 /* JKInterpolationMath.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0EA51759546100E0E1B8 /* JKInterpolationMath.m */; };
 		A9EA0EC01759546100E0E1B8 /* NSString+LowercaseFirst.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0EA71759546100E0E1B8 /* NSString+LowercaseFirst.m */; };
+		A9EA0EC21759561800E0E1B8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0EC11759561800E0E1B8 /* AVFoundation.framework */; };
+		A9EA0EC41759563500E0E1B8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0EC31759563500E0E1B8 /* CoreMedia.framework */; };
+		A9EA0EC61759565300E0E1B8 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0EC51759565300E0E1B8 /* CoreText.framework */; };
+		A9EA0EC81759566300E0E1B8 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0EC71759566300E0E1B8 /* GLKit.framework */; };
+		A9EA0ECA1759568000E0E1B8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0EC91759568000E0E1B8 /* QuartzCore.framework */; };
+		A9EA0ECC1759569300E0E1B8 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0ECB1759569300E0E1B8 /* CoreImage.framework */; };
+		A9EA0ECE175956AD00E0E1B8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0ECD175956AD00E0E1B8 /* OpenGLES.framework */; };
+		A9EA0ED2175956F900E0E1B8 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0ED1175956F900E0E1B8 /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +127,15 @@
 		A9EA0EA51759546100E0E1B8 /* JKInterpolationMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInterpolationMath.m; sourceTree = "<group>"; };
 		A9EA0EA61759546100E0E1B8 /* NSString+LowercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LowercaseFirst.h"; sourceTree = "<group>"; };
 		A9EA0EA71759546100E0E1B8 /* NSString+LowercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LowercaseFirst.m"; sourceTree = "<group>"; };
+		A9EA0EC11759561800E0E1B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A9EA0EC31759563500E0E1B8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A9EA0EC51759565300E0E1B8 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		A9EA0EC71759566300E0E1B8 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A9EA0EC91759568000E0E1B8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A9EA0ECB1759569300E0E1B8 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		A9EA0ECD175956AD00E0E1B8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		A9EA0ECF175956D700E0E1B8 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
+		A9EA0ED1175956F900E0E1B8 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +146,14 @@
 				A9EA0E491759543200E0E1B8 /* UIKit.framework in Frameworks */,
 				A9EA0E4B1759543200E0E1B8 /* Foundation.framework in Frameworks */,
 				A9EA0E4D1759543200E0E1B8 /* CoreGraphics.framework in Frameworks */,
+				A9EA0EC21759561800E0E1B8 /* AVFoundation.framework in Frameworks */,
+				A9EA0ED2175956F900E0E1B8 /* CoreVideo.framework in Frameworks */,
+				A9EA0EC41759563500E0E1B8 /* CoreMedia.framework in Frameworks */,
+				A9EA0EC61759565300E0E1B8 /* CoreText.framework in Frameworks */,
+				A9EA0ECC1759569300E0E1B8 /* CoreImage.framework in Frameworks */,
+				A9EA0EC81759566300E0E1B8 /* GLKit.framework in Frameworks */,
+				A9EA0ECA1759568000E0E1B8 /* QuartzCore.framework in Frameworks */,
+				A9EA0ECE175956AD00E0E1B8 /* OpenGLES.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +183,15 @@
 				A9EA0E481759543200E0E1B8 /* UIKit.framework */,
 				A9EA0E4A1759543200E0E1B8 /* Foundation.framework */,
 				A9EA0E4C1759543200E0E1B8 /* CoreGraphics.framework */,
+				A9EA0ED1175956F900E0E1B8 /* CoreVideo.framework */,
+				A9EA0ECF175956D700E0E1B8 /* MediaToolbox.framework */,
+				A9EA0ECD175956AD00E0E1B8 /* OpenGLES.framework */,
+				A9EA0ECB1759569300E0E1B8 /* CoreImage.framework */,
+				A9EA0EC91759568000E0E1B8 /* QuartzCore.framework */,
+				A9EA0EC71759566300E0E1B8 /* GLKit.framework */,
+				A9EA0EC51759565300E0E1B8 /* CoreText.framework */,
+				A9EA0EC31759563500E0E1B8 /* CoreMedia.framework */,
+				A9EA0EC11759561800E0E1B8 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -182,6 +216,7 @@
 		A9EA0E4F1759543200E0E1B8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A9EA0ED31759578200E0E1B8 /* Compositions */,
 				A9EA0E501759543200E0E1B8 /* QCDemos-Info.plist */,
 				A9EA0E511759543200E0E1B8 /* InfoPlist.strings */,
 				A9EA0E541759543200E0E1B8 /* main.m */,
@@ -268,6 +303,13 @@
 			);
 			name = Util;
 			path = ../../../Source/Util;
+			sourceTree = "<group>";
+		};
+		A9EA0ED31759578200E0E1B8 /* Compositions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Compositions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
