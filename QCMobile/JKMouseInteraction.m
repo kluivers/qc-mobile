@@ -33,8 +33,6 @@
         touching = NO;
     }
     
-    // TODO: only update if needed
-    
     if (touching) {
         // TODO: proper 'API' access to view, or location in view
         

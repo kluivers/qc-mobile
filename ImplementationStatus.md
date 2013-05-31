@@ -16,8 +16,11 @@
 
 - TextImage
 - Recursor
-- Physics
+- Physics 
+	- incorrect use of friction (hard coded for now)
+	- doesn't take into account time between frames
 - MouseInteraction
+	- Detect correct target, like sprites
 
 # Todo
 
