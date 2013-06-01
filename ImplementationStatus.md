@@ -1,5 +1,5 @@
 
-# Complete
+## Complete
 
 - Clear
 - Gradient
@@ -13,8 +13,16 @@
 - Smooth
 - ImageFilter - only those CIFilters available on iOS
 - ColorFromComponents (HSL Color / RGB Color)
+- Clock (Stop Watch)
 
-# Partial / In progress
+### Virtual patches
+
+Built-in patches that are actually implemented as composition.
+
+- Toggle
+
+
+## Partial / In progress
 
 - Expression
 - TextImage
@@ -26,10 +34,10 @@
 	- TODO: Detect correct targets using interaction connections
 - ScreenInfo
 
-# Not implemented
+## Not implemented
 
-- RoundedRectangle: On hold, requires custom CoreImage kernel
-- Instructions: On hold, depends on rounded rectangle
+- RoundedRectangle (virtual): On hold, requires custom CoreImage kernel
+- Instructions (virtual): On hold, depends on rounded rectangle
 
 And all others...
 
