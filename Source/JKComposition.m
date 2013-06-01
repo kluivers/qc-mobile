@@ -28,7 +28,9 @@
         _path = path;
         
         NSData *pData = [NSData dataWithContentsOfFile:path];
-        
+        if (!pData) {
+            return nil;
+        }
         
         NSError *readError = nil;
         NSPropertyListFormat format = 0;
@@ -38,8 +40,6 @@
             NSLog(@"Error reading composition");
             NSLog(@"%@", readError);
         }
-        
-        NSLog(@"Compostion: %@", composition);
         
         _frameworkVersion = composition[@"frameworkVersion"];
         _compositionDescription = composition[@"description"];

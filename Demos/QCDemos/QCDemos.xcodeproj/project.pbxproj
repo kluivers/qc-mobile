@@ -19,7 +19,7 @@
 		A9EA0E621759543200E0E1B8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0E601759543200E0E1B8 /* MainStoryboard_iPhone.storyboard */; };
 		A9EA0E651759543200E0E1B8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0E631759543200E0E1B8 /* MainStoryboard_iPad.storyboard */; };
 		A9EA0E681759543200E0E1B8 /* JKMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0E671759543200E0E1B8 /* JKMasterViewController.m */; };
-		A9EA0E6B1759543200E0E1B8 /* JKDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0E6A1759543200E0E1B8 /* JKDetailViewController.m */; };
+		A9EA0E6B1759543200E0E1B8 /* JKCompositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0E6A1759543200E0E1B8 /* JKCompositionViewController.m */; };
 		A9EA0EA81759546100E0E1B8 /* JKComposition.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0E731759546100E0E1B8 /* JKComposition.m */; };
 		A9EA0EA91759546100E0E1B8 /* JKConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0E761759546100E0E1B8 /* JKConnection.m */; };
 		A9EA0EAA1759546100E0E1B8 /* JKContextUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A9EA0E791759546100E0E1B8 /* JKContextUtil.m */; };
@@ -81,8 +81,8 @@
 		A9EA0E641759543200E0E1B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		A9EA0E661759543200E0E1B8 /* JKMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKMasterViewController.h; sourceTree = "<group>"; };
 		A9EA0E671759543200E0E1B8 /* JKMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKMasterViewController.m; sourceTree = "<group>"; };
-		A9EA0E691759543200E0E1B8 /* JKDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKDetailViewController.h; sourceTree = "<group>"; };
-		A9EA0E6A1759543200E0E1B8 /* JKDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKDetailViewController.m; sourceTree = "<group>"; };
+		A9EA0E691759543200E0E1B8 /* JKCompositionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKCompositionViewController.h; sourceTree = "<group>"; };
+		A9EA0E6A1759543200E0E1B8 /* JKCompositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKCompositionViewController.m; sourceTree = "<group>"; };
 		A9EA0E721759546100E0E1B8 /* JKComposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKComposition.h; path = ../../../Source/JKComposition.h; sourceTree = "<group>"; };
 		A9EA0E731759546100E0E1B8 /* JKComposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKComposition.m; path = ../../../Source/JKComposition.m; sourceTree = "<group>"; };
 		A9EA0E741759546100E0E1B8 /* JKCompositionPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKCompositionPrivate.h; path = ../../../Source/JKCompositionPrivate.h; sourceTree = "<group>"; };
@@ -222,8 +222,8 @@
 				A9EA0E631759543200E0E1B8 /* MainStoryboard_iPad.storyboard */,
 				A9EA0E661759543200E0E1B8 /* JKMasterViewController.h */,
 				A9EA0E671759543200E0E1B8 /* JKMasterViewController.m */,
-				A9EA0E691759543200E0E1B8 /* JKDetailViewController.h */,
-				A9EA0E6A1759543200E0E1B8 /* JKDetailViewController.m */,
+				A9EA0E691759543200E0E1B8 /* JKCompositionViewController.h */,
+				A9EA0E6A1759543200E0E1B8 /* JKCompositionViewController.m */,
 				A9EA0E4F1759543200E0E1B8 /* Supporting Files */,
 			);
 			path = QCDemos;
@@ -415,7 +415,7 @@
 				A9EA0E551759543200E0E1B8 /* main.m in Sources */,
 				A9EA0E591759543200E0E1B8 /* JKAppDelegate.m in Sources */,
 				A9EA0E681759543200E0E1B8 /* JKMasterViewController.m in Sources */,
-				A9EA0E6B1759543200E0E1B8 /* JKDetailViewController.m in Sources */,
+				A9EA0E6B1759543200E0E1B8 /* JKCompositionViewController.m in Sources */,
 				A9EA0EA81759546100E0E1B8 /* JKComposition.m in Sources */,
 				A9EA0EA91759546100E0E1B8 /* JKConnection.m in Sources */,
 				A9EA0EAA1759546100E0E1B8 /* JKContextUtil.m in Sources */,

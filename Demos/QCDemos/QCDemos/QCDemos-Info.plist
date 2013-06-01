@@ -36,6 +36,15 @@
 	<dict>
 		<key>UINavigationBar</key>
 		<dict>
+			<key>TintColor</key>
+			<dict>
+				<key>Red</key>
+				<integer>0</integer>
+				<key>Green</key>
+				<integer>0</integer>
+				<key>Blue</key>
+				<integer>0</integer>
+			</dict>
 			<key>Style</key>
 			<string>UIBarStyleDefault</string>
 			<key>Translucent</key>

@@ -8,7 +8,9 @@
 
 #import "JKMasterViewController.h"
 
-#import "JKDetailViewController.h"
+#import "JKCompositionViewController.h"
+
+#import "JKComposition.h"
 
 @interface JKMasterViewController ()
 @property(nonatomic, strong) NSArray *compositions;
@@ -30,23 +32,26 @@
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"Demos", nil);
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (JKDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (JKCompositionViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     NSMutableArray *compositions = [NSMutableArray array];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *resourceEnum = [fileManager enumeratorAtPath:[[NSBundle mainBundle] resourcePath]];
+    
+    NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSDirectoryEnumerator *resourceEnum = [fileManager enumeratorAtPath:resourcePath];
     
     NSString *file;
     while ((file = [resourceEnum nextObject])) {
         if ([[file pathExtension] isEqualToString:@"qtz"]) {
-            [compositions addObject:file];
+            [compositions addObject:[resourcePath stringByAppendingPathComponent:file]];
         }
     }
     
@@ -101,18 +106,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSDate *object = _objects[indexPath.row];
-//        self.detailViewController.detailItem = object;
+        NSString *compositionPath = self.compositions[indexPath.row];
+        JKComposition *composition = [[JKComposition alloc] initWithPath:compositionPath];
+        
+        self.detailViewController.composition = composition;
     }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = _objects[indexPath.row];
-//        [[segue destinationViewController] setDetailItem:object];
-//    }
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        NSString *compositionPath = self.compositions[indexPath.row];
+        JKComposition *composition = [[JKComposition alloc] initWithPath:compositionPath];
+        
+        ((JKCompositionViewController *)[segue destinationViewController]).composition = composition;
+    }
 }
 
 @end

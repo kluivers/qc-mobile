@@ -132,13 +132,11 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         _inputStates = state[@"ivarInputPortStates"];
         for (NSString *key in [_inputStates allKeys]) {
-            NSLog(@"Set custom value %@ for port %@", _inputStates[key][@"value"], key);
             [self setValue:_inputStates[key][@"value"] forInputKey:key];
         }
         
         NSDictionary *customInputStates = state[@"customInputPortStates"];
         for (NSString *key in [customInputStates allKeys]) {
-            NSLog(@"Set custom value %@ for port %@", customInputStates[key][@"value"], key);
             [self setValue:customInputStates[key][@"value"] forInputKey:key];
         }
         _customInputPorts = customInputStates;

@@ -12,6 +12,15 @@
 
 @dynamic inputColor;
 
++ (NSDictionary *) attributesForPropertyPortWithKey:(NSString *)key
+{
+    if ([key hasPrefix:@"inputColor"]) {
+        return @{ JKPortAttributeTypeKey: JKPortTypeColor };
+    }
+    
+    return nil;
+}
+
 - (BOOL) isRenderer
 {
     return YES;

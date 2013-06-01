@@ -25,6 +25,15 @@
 @dynamic inputCulling, inputBlending, inputZBuffer;
 @dynamic inputImage;
 
++ (NSDictionary *) attributesForPropertyPortWithKey:(NSString *)key
+{
+    if ([key hasPrefix:@"inputColor"]) {
+        return @{ JKPortAttributeTypeKey: JKPortTypeColor };
+    }
+    
+    return nil;
+}
+
 - (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
 {
     self = [super initWithDictionary:dict composition:composition];

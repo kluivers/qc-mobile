@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class JKDetailViewController;
+@class JKCompositionViewController;
 
 @interface JKMasterViewController : UITableViewController
 
-@property (strong, nonatomic) JKDetailViewController *detailViewController;
+@property (strong, nonatomic) JKCompositionViewController *detailViewController;
 
 @end
