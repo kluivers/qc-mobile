@@ -12,6 +12,7 @@
 - Counter
 - Smooth
 - ImageFilter - only those CIFilters available on iOS
+- ColorFromComponents (HSL Color / RGB Color)
 
 # Partial / In progress
 

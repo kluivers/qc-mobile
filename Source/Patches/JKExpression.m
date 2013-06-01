@@ -91,9 +91,9 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-//    if (![self didValuesForInputKeysChange]) {
-//        return;
-//    }
+    if (![self didValuesForInputKeysChange]) {
+        return;
+    }
     
     NSMutableDictionary *substitutions = [NSMutableDictionary dictionary];
     
