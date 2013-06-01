@@ -74,6 +74,7 @@
 //    GLKBaseEffect *effect = qcContext.effect;
     // TODO: reusing the same effect messes up the color on vertices
     GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+    effect.transform.projectionMatrix = qcContext.projectionMatrix;
     
     GLKMatrix4 translate = GLKMatrix4MakeTranslation([self.inputX floatValue], [self.inputY floatValue], [self.inputZ floatValue]);
     
@@ -83,13 +84,13 @@
     
     GLKMatrix4 rotation = GLKMatrix4Multiply(GLKMatrix4Multiply(rotateX, rotateY), rotateZ);
     
-    CGFloat ratio = qcContext.size.width / qcContext.size.height;
-    GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, ratio, 1.0);
+    //CGFloat ratio = qcContext.size.width / qcContext.size.height;
+    //GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, ratio, 1.0);
+    GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, 1.0f, 1.0);
     
     GLKMatrix4 transform = GLKMatrix4Multiply(GLKMatrix4Multiply(translate, scale), rotation);
     
     effect.transform.modelviewMatrix = transform;
-    // effect.transform.projectionMatrix = qcContext.projectionMatrix;
     
     if (self.inputImage && [self didValueForInputKeyChange:@"inputImage"]) {
         // only redraws image when image actually changed

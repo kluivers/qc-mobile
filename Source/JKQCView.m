@@ -82,7 +82,13 @@
 
 - (GLKMatrix4) projectionMatrix
 {
-    return GLKMatrix4MakeOrtho(-1, 1, -1, 1, 1, -1);
+    CGFloat height = 2.0 * (self.size.height / self.size.width);
+    return GLKMatrix4MakeOrtho(-1, 1, -height/2.0f, height/2.0f, 1, -1);
+//    
+//    CGFloat aspect = fabsf(self.size.width / self.size.height);
+//    
+//    GLKMatrix4 projection = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.f, 2.0f);
+//    return projection;
 }
 
 - (void) drawRect:(CGRect)rect
