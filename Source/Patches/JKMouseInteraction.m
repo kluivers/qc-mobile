@@ -11,6 +11,13 @@
 #import "JKContext.h"
 #import "JKContextUtil.h"
 
+#import "JKConnection.h"
+
+@interface JKPatch (JKMouseInteractionPrivate)
+@property(nonatomic, readonly) NSArray *connections;
+- (JKPatch *) patchWithKey:(NSString *)key;
+@end
+
 @interface JKMouseInteraction ()
 @property(nonatomic, strong) NSNumber *outputMouseDown;
 @property(nonatomic, strong) NSNumber *outputClickCount;
@@ -27,6 +34,20 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
+    JKPatch *interactionPatch = nil;
+    NSArray *connections = [self.parent connections];
+    for (JKConnection *conn in connections) {
+        if ([conn.sourceNode isEqualToString:self.key] && [conn.sourcePort isEqualToString:@"outputInteraction"]) {
+            interactionPatch = [self.parent patchWithKey:conn.destinationNode];
+            break;
+        }
+    }
+    
+    if (!interactionPatch) {
+        // no tap target
+        return;
+    }
+    
     UITouch *touch = [context.touches anyObject];
     
     if (!touch) {
