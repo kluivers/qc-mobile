@@ -11,18 +11,24 @@
 - Multiplexer
 - Counter
 - Smooth
+- ImageFilter - only those CIFilters available on iOS
 
-# Partial
+# Partial / In progress
 
+- Expression
 - TextImage
 - Recursor
 - Physics 
-	- incorrect use of friction (hard coded for now)
+	- incorrect use of friction
 	- doesn't take into account time between frames
 - MouseInteraction
-	- Detect correct target, like sprites
+	- TODO: Detect correct targets using interaction connections
+- ScreenInfo
 
-# Todo
+# Not implemented
 
-all others
+- RoundedRectangle: On hold, requires custom CoreImage kernel
+- Instructions: On hold, depends on rounded rectangle
+
+And all others...
 

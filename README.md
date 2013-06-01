@@ -21,6 +21,7 @@ By **Joris Kluivers**
 ## Other dependencies
 
 - [jk-interpolation][interpolation] - A set of interpolation functions written by me.
+- [DDMathParser][math-parser]
 
 ## License
 
@@ -52,3 +53,4 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 [interpolation]: http://bitbucket.org/kluivers/jk-interpolation
 [twitter]: http://twitter.com/kluivers
+[math-parser]: http://funwithobjc.tumblr.com/post/6196535272/parsing-mathematical-expressions

@@ -1,3 +1,6 @@
 [submodule "Lib/jk-interpolation"]
 	path = Lib/jk-interpolation
 	url = git@bitbucket.org:kluivers/jk-interpolation.git
+[submodule "Lib/DDMathParser"]
+	path = Lib/DDMathParser
+	url = git@github.com:kluivers/DDMathParser.git
