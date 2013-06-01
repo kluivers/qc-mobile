@@ -53,6 +53,14 @@
 		A9EA0ECC1759569300E0E1B8 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0ECB1759569300E0E1B8 /* CoreImage.framework */; };
 		A9EA0ECE175956AD00E0E1B8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0ECD175956AD00E0E1B8 /* OpenGLES.framework */; };
 		A9EA0ED2175956F900E0E1B8 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0ED1175956F900E0E1B8 /* CoreVideo.framework */; };
+		A9EA0EDC1759581D00E0E1B8 /* CameraTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0ED41759581D00E0E1B8 /* CameraTest.qtz */; };
+		A9EA0EDD1759581D00E0E1B8 /* EmptyTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0ED51759581D00E0E1B8 /* EmptyTest.qtz */; };
+		A9EA0EDE1759581D00E0E1B8 /* FaceDetection.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0ED61759581D00E0E1B8 /* FaceDetection.qtz */; };
+		A9EA0EDF1759581D00E0E1B8 /* ImageDimensions.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0ED71759581D00E0E1B8 /* ImageDimensions.qtz */; };
+		A9EA0EE01759581D00E0E1B8 /* RotateScroll.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0ED81759581D00E0E1B8 /* RotateScroll.qtz */; };
+		A9EA0EE11759581D00E0E1B8 /* TapTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0ED91759581D00E0E1B8 /* TapTest.qtz */; };
+		A9EA0EE21759581D00E0E1B8 /* Test2.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0EDA1759581D00E0E1B8 /* Test2.qtz */; };
+		A9EA0EE31759581D00E0E1B8 /* ToggleSmooth.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9EA0EDB1759581D00E0E1B8 /* ToggleSmooth.qtz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,8 +131,8 @@
 		A9EA0EA01759546100E0E1B8 /* JKUnimplementedPatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKUnimplementedPatch.m; sourceTree = "<group>"; };
 		A9EA0EA11759546100E0E1B8 /* JKVideoInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKVideoInput.h; sourceTree = "<group>"; };
 		A9EA0EA21759546100E0E1B8 /* JKVideoInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKVideoInput.m; sourceTree = "<group>"; };
-		A9EA0EA41759546100E0E1B8 /* JKInterpolationMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKInterpolationMath.h; sourceTree = "<group>"; };
-		A9EA0EA51759546100E0E1B8 /* JKInterpolationMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKInterpolationMath.m; sourceTree = "<group>"; };
+		A9EA0EA41759546100E0E1B8 /* JKInterpolationMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKInterpolationMath.h; path = "../../Lib/jk-interpolation/JKInterpolationMath.h"; sourceTree = "<group>"; };
+		A9EA0EA51759546100E0E1B8 /* JKInterpolationMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKInterpolationMath.m; path = "../../Lib/jk-interpolation/JKInterpolationMath.m"; sourceTree = "<group>"; };
 		A9EA0EA61759546100E0E1B8 /* NSString+LowercaseFirst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LowercaseFirst.h"; sourceTree = "<group>"; };
 		A9EA0EA71759546100E0E1B8 /* NSString+LowercaseFirst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LowercaseFirst.m"; sourceTree = "<group>"; };
 		A9EA0EC11759561800E0E1B8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -136,6 +144,14 @@
 		A9EA0ECD175956AD00E0E1B8 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		A9EA0ECF175956D700E0E1B8 /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		A9EA0ED1175956F900E0E1B8 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		A9EA0ED41759581D00E0E1B8 /* CameraTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = CameraTest.qtz; sourceTree = "<group>"; };
+		A9EA0ED51759581D00E0E1B8 /* EmptyTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = EmptyTest.qtz; sourceTree = "<group>"; };
+		A9EA0ED61759581D00E0E1B8 /* FaceDetection.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = FaceDetection.qtz; sourceTree = "<group>"; };
+		A9EA0ED71759581D00E0E1B8 /* ImageDimensions.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageDimensions.qtz; sourceTree = "<group>"; };
+		A9EA0ED81759581D00E0E1B8 /* RotateScroll.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = RotateScroll.qtz; sourceTree = "<group>"; };
+		A9EA0ED91759581D00E0E1B8 /* TapTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = TapTest.qtz; sourceTree = "<group>"; };
+		A9EA0EDA1759581D00E0E1B8 /* Test2.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = Test2.qtz; sourceTree = "<group>"; };
+		A9EA0EDB1759581D00E0E1B8 /* ToggleSmooth.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ToggleSmooth.qtz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,8 +324,16 @@
 		A9EA0ED31759578200E0E1B8 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A9EA0ED41759581D00E0E1B8 /* CameraTest.qtz */,
+				A9EA0ED51759581D00E0E1B8 /* EmptyTest.qtz */,
+				A9EA0ED61759581D00E0E1B8 /* FaceDetection.qtz */,
+				A9EA0ED71759581D00E0E1B8 /* ImageDimensions.qtz */,
+				A9EA0ED81759581D00E0E1B8 /* RotateScroll.qtz */,
+				A9EA0ED91759581D00E0E1B8 /* TapTest.qtz */,
+				A9EA0EDA1759581D00E0E1B8 /* Test2.qtz */,
+				A9EA0EDB1759581D00E0E1B8 /* ToggleSmooth.qtz */,
 			);
-			name = Compositions;
+			path = Compositions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +394,14 @@
 				A9EA0E5F1759543200E0E1B8 /* Default-568h@2x.png in Resources */,
 				A9EA0E621759543200E0E1B8 /* MainStoryboard_iPhone.storyboard in Resources */,
 				A9EA0E651759543200E0E1B8 /* MainStoryboard_iPad.storyboard in Resources */,
+				A9EA0EDC1759581D00E0E1B8 /* CameraTest.qtz in Resources */,
+				A9EA0EDD1759581D00E0E1B8 /* EmptyTest.qtz in Resources */,
+				A9EA0EDE1759581D00E0E1B8 /* FaceDetection.qtz in Resources */,
+				A9EA0EDF1759581D00E0E1B8 /* ImageDimensions.qtz in Resources */,
+				A9EA0EE01759581D00E0E1B8 /* RotateScroll.qtz in Resources */,
+				A9EA0EE11759581D00E0E1B8 /* TapTest.qtz in Resources */,
+				A9EA0EE21759581D00E0E1B8 /* Test2.qtz in Resources */,
+				A9EA0EE31759581D00E0E1B8 /* ToggleSmooth.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,14 +9,20 @@ By **Joris Kluivers**
 
 ## Required frameworks
 
+- QuartzCore
 - AVFoundation
+- CoreImage
+- CoreVideo
 - CoreMedia
 - CoreText
-- GLKit
-- QuartzCore
-- CoreImage
 - OpenGLES
-- CoreVideo
+- GLKit
+
+## Other dependencies
+
+- [jk-interpolation][interpolation] - A set of interpolation functions written by me.
 
 
+
+[interpolation]: http://bitbucket.org/kluivers/jk-interpolation
 [twitter]: http://twitter.com/kluivers

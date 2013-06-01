@@ -1,0 +1,3 @@
+[submodule "Lib/jk-interpolation"]
+	path = Lib/jk-interpolation
+	url = git@bitbucket.org:kluivers/jk-interpolation.git
