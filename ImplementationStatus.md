@@ -16,6 +16,7 @@
 - ImageFilter - only those CIFilters available on iOS
 - ColorFromComponents (HSL Color / RGB Color)
 - Clock (Stop Watch)
+- ScreenInfo (Rendering Destination Dimensions)
 
 ### Virtual patches
 
@@ -35,7 +36,6 @@ Built-in patches that are actually implemented as composition and work because t
 	- doesn't take into account time between frames
 - MouseInteraction
 	- TODO: Detect correct targets using interaction connections
-- ScreenInfo
 
 ## Not implemented
 

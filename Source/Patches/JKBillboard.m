@@ -48,7 +48,7 @@
         width = height / imageRatio;
     } else if ([self.sizeMode isEqualToString:@"real"]) {
         width = JKPixelsToUnits(context, self.inputImage.extent.size.width);
-        height = JKPixelsToUnits(context, self.inputImage.extent.size.height);
+        height = JKPixelsToUnits(context, self.inputImage.extent.size.height); 
     } else /*([self.sizeMode isEqualToString:@"custom"]) */ {
         // input width / height unchanged for custom mode
         width = [self.inputWidth floatValue];
