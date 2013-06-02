@@ -10,6 +10,7 @@
 		A9988249175BA0D700E0A3AA /* IteratorTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9988248175BA0D700E0A3AA /* IteratorTest.qtz */; };
 		A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824B175BA17F00E0A3AA /* JKIterator.m */; };
 		A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824E175BA72D00E0A3AA /* JKIteratorVariables.m */; };
+		A9988252175BC86200E0A3AA /* JKConditional.m in Sources */ = {isa = PBXBuildFile; fileRef = A9988251175BC86100E0A3AA /* JKConditional.m */; };
 		A99E2452175A5064003E1D6E /* iMessenger Concept.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */; };
 		A99E2455175A5127003E1D6E /* JKColorFromComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2454175A5127003E1D6E /* JKColorFromComponents.m */; };
 		A99E2458175A5853003E1D6E /* JKClock.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2457175A5853003E1D6E /* JKClock.m */; };
@@ -102,6 +103,8 @@
 		A998824B175BA17F00E0A3AA /* JKIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIterator.m; sourceTree = "<group>"; };
 		A998824D175BA72C00E0A3AA /* JKIteratorVariables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKIteratorVariables.h; sourceTree = "<group>"; };
 		A998824E175BA72D00E0A3AA /* JKIteratorVariables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIteratorVariables.m; sourceTree = "<group>"; };
+		A9988250175BC86100E0A3AA /* JKConditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKConditional.h; sourceTree = "<group>"; };
+		A9988251175BC86100E0A3AA /* JKConditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKConditional.m; sourceTree = "<group>"; };
 		A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = "iMessenger Concept.qtz"; sourceTree = "<group>"; };
 		A99E2453175A5127003E1D6E /* JKColorFromComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKColorFromComponents.h; sourceTree = "<group>"; };
 		A99E2454175A5127003E1D6E /* JKColorFromComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKColorFromComponents.m; sourceTree = "<group>"; };
@@ -418,6 +421,8 @@
 				A998824B175BA17F00E0A3AA /* JKIterator.m */,
 				A998824D175BA72C00E0A3AA /* JKIteratorVariables.h */,
 				A998824E175BA72D00E0A3AA /* JKIteratorVariables.m */,
+				A9988250175BC86100E0A3AA /* JKConditional.h */,
+				A9988251175BC86100E0A3AA /* JKConditional.m */,
 			);
 			name = Patches;
 			path = ../../../Source/Patches;
@@ -645,6 +650,7 @@
 				A99E2460175A73EA003E1D6E /* JKBillboard.m in Sources */,
 				A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */,
 				A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */,
+				A9988252175BC86200E0A3AA /* JKConditional.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
