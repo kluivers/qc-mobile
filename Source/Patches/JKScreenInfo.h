@@ -12,5 +12,9 @@
 
 @property(nonatomic, readonly) NSNumber *outputHeight;
 @property(nonatomic, readonly) NSNumber *outputWidth;
+@property(nonatomic, readonly) NSNumber *outputPixelsWide;
+@property(nonatomic, readonly) NSNumber *outputPixelsHigh;
+@property(nonatomic, readonly) NSNumber *outputRatio;
+@property(nonatomic, readonly) NSNumber *outputResolution;
 
 @end
