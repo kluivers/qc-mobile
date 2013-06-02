@@ -84,13 +84,13 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         self.virtualPatches = state[@"virtualPatches"];
         
-        NSData *userInfoData = state[@"userInfo"];
-        if (userInfoData) {
-            // TODO: Stop using private API
+//        NSData *userInfoData = state[@"userInfo"];
+//        if (userInfoData) {
+//            // TODO: Stop using private API
 //#pragma message "This uses undocumented private API on iOS"
 //            _userInfo = [NSUnarchiver unarchiveObjectWithData:userInfoData];
 //            NSLog(@"Unarchived userInfo: %@", _userInfo);
-        }
+//        }
         
         NSMutableArray *connections = [NSMutableArray array];
         for (NSString *key in [state[@"connections"] allKeys]) {
@@ -117,12 +117,19 @@ NSString * const JKPortTypeColor = @"JKColorPort";
                     
                     NSDictionary *inputParameters = virtualPatchDict[@"inputParameters"];
                     for (NSString *key in [inputParameters allKeys]) {
-                        NSLog(@"Set input key value for virtual patch: %@", key);
                         [patch setValue:inputParameters[key] forInputKey:key];
                     }
                     
-                    // TODO: set customInputPortStates etc
+                    // TODO: generalize setting custom input states
+                    // - this also happens few lines below on self
+                    NSDictionary *customInputStates = node[@"state"][@"customInputPortStates"];
+                    for (NSString *key in [customInputStates allKeys]) {
+                        [patch setValue:customInputStates[key][@"value"] forInputKey:key];
+                    }
+                    
+                    // TODO: set other values from node dictionary to overwrite virtual values
                     // TODO: make sure we have a patch now
+                    
                     [nodes addObject:patch];
                 }
                 
@@ -141,6 +148,9 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         NSDictionary *customInputStates = state[@"customInputPortStates"];
         for (NSString *key in [customInputStates allKeys]) {
+            if ([key isEqualToString:@"Pixels"]) {
+                NSLog(@"Set pixels input: %@", customInputStates[key][@"value"]);
+            }
             [self setValue:customInputStates[key][@"value"] forInputKey:key];
         }
         _customInputPorts = customInputStates;
@@ -334,6 +344,13 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         // TODO: check if source executed already
         // [source resetChangedOutputKeys];
         [source execute:context atTime:time];
+        
+//        if ([source.key isEqualToString:@"Patch_1"] || [source.key isEqualToString:@"Patch_9"]) {
+//            NSLog(@"Pixels to Units: %@", source.key);
+//            NSLog(@"Input pixels: %@", [source valueForInputKey:@"Pixels"]);
+//            NSLog(@"Output units: %@", [source valueForOutputKey:@"Units"]);
+//        }
+        
         [source resetChangedInputKeys];
         
         id sourceValue = [source valueForOutputKey:connection.sourcePort];
