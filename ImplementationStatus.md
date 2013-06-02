@@ -17,6 +17,8 @@
 - ColorFromComponents (HSL Color / RGB Color)
 - Clock (Stop Watch)
 - ScreenInfo (Rendering Destination Dimensions)
+- Iterator
+- IteratorVariables
 
 ### Virtual patches
 
