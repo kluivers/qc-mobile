@@ -29,7 +29,6 @@
     if (self) {
         NSDictionary *state = dict[@"state"];
         _expression = state[@"expression"];
-        NSLog(@"Original expression: %@", _expression);
         
         // TODO: support variables that start with numbers
         [self parseExpression];
@@ -80,8 +79,6 @@
     
     NSError *parseError = nil;
     _mathExpression = [DDExpression expressionFromString:internalExpression error:&parseError];
-    
-    NSLog(@"Math expression %@", _mathExpression);
     
     if (!_mathExpression) {
         NSLog(@"Error parsing expression: %@ (as %@)", _expression, internalExpression);

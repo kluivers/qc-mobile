@@ -7,6 +7,7 @@
 - Billboard
 - Splitter
 - Math
+- Expressions (Math)
 - Interpolation
 - Image Dimensions
 - Video Input
@@ -30,7 +31,6 @@ Built-in patches that are actually implemented as composition and work because t
 
 ## Partial / In progress
 
-- Expression
 - TextImage
 - Recursor
 - Physics 
