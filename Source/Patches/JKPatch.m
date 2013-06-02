@@ -52,6 +52,8 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     
     NSMutableDictionary *_outputPortValues;
     NSMutableArray *_changedOutputKeys;
+    
+    BOOL _isRenderer;
 }
 
 @dynamic _enable;
@@ -72,7 +74,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         _outputPortValues = [NSMutableDictionary dictionary];
         _changedOutputKeys = [NSMutableArray array];
         
-        
+        // TODO: check nodes to see if we are a renderer, based on subpatches
         
         // TODO: modify generated methods to take into account underscores
         self._enable = @YES;
@@ -81,6 +83,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         NSDictionary *state = dict[@"state"];
         
         _version = [state[@"version"] unsignedIntegerValue];
+        _timebase = state[@"timebase"];
         
         self.virtualPatches = state[@"virtualPatches"];
         
@@ -140,6 +143,14 @@ NSString * const JKPortTypeColor = @"JKColorPort";
             }
         }
         _nodes = [NSArray arrayWithArray:nodes];
+        
+        _isRenderer = NO;
+        for (JKPatch *patch in _nodes) {
+            if ([patch isRenderer]) {
+                _isRenderer = YES;
+                break;
+            }
+        }
         
         _inputStates = state[@"ivarInputPortStates"];
         for (NSString *key in [_inputStates allKeys]) {
@@ -292,7 +303,16 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (BOOL) isRenderer
 {
-    return NO;
+    return _isRenderer;
+}
+
+- (GLKMatrix4) transform
+{
+    if (self.parent) {
+        return [self.parent transform];
+    }
+    
+    return GLKMatrix4Identity;
 }
 
 - (void) startExecuting:(id<JKContext>)context
@@ -493,6 +513,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     NSDictionary *outputPort = [self.publishedOutputPorts objectForKey:key];
     if (outputPort) {
         // forward request to port
+        
         
         JKPatch *patch = [self patchWithKey:outputPort[@"node"]];
         return [patch valueForOutputKey:outputPort[@"port"]];

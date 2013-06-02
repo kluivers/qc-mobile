@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
 extern NSString * const JKPortAttributeTypeKey;
 
@@ -29,6 +30,7 @@ extern NSString * const JKPortTypeColor;
 @property(nonatomic, readonly) NSString *key;
 @property(nonatomic, readonly) NSString *identifier;
 @property(nonatomic, readonly) NSUInteger version;
+@property(nonatomic, readonly) NSString *timebase;
 
 @property(nonatomic, readonly) NSDictionary *customInputPorts;
 
@@ -39,6 +41,8 @@ extern NSString * const JKPortTypeColor;
 + (NSDictionary *) attributesForPropertyPortWithKey:(NSString *)key;
 
 - (BOOL) isRenderer;
+
+- (GLKMatrix4) transform;
 
 - (void) startExecuting:(id<JKContext>)context __attribute((objc_requires_super));
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time;

@@ -93,8 +93,6 @@
 
 - (void) drawRect:(CGRect)rect
 {
-    //[_baseEffect prepareToDraw];
-
     NSDate *current = [NSDate date];
     
     CGFloat rate = 1.0 / [current timeIntervalSinceDate:_prevFrameDate];

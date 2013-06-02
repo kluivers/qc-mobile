@@ -118,6 +118,8 @@ BOOL JKGradientVertical(JKGradientDirection direction) {
     }
     
     GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+    //effect.transform.projectionMatrix = context.projectionMatrix;
+//    effect.transform.modelviewMatrix = [self.parent transform];
     [effect prepareToDraw];
     
     glEnableVertexAttribArray(GLKVertexAttribPosition);

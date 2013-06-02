@@ -20,6 +20,7 @@
 - ScreenInfo (Rendering Destination Dimensions)
 - Iterator
 - IteratorVariables
+- Conditional
 
 ### Virtual patches
 
