@@ -406,7 +406,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 }
 
 
-
 #pragma mark - Input Ports
 
 - (void) setValue:(id)value forInputKey:(NSString *)key

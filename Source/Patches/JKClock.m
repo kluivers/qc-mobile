@@ -27,6 +27,7 @@
     
     if (self) {
         running = NO;
+        self.outputTime = @0;
     }
     
     return self;
