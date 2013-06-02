@@ -28,6 +28,7 @@ extern NSString * const JKPortTypeColor;
 @property(nonatomic, readonly) NSDictionary *userInfo;
 @property(nonatomic, readonly) NSString *key;
 @property(nonatomic, readonly) NSString *identifier;
+@property(nonatomic, readonly) NSUInteger version;
 
 @property(nonatomic, readonly) NSDictionary *customInputPorts;
 

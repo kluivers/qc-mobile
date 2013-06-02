@@ -72,11 +72,15 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         _outputPortValues = [NSMutableDictionary dictionary];
         _changedOutputKeys = [NSMutableArray array];
         
+        
+        
         // TODO: modify generated methods to take into account underscores
         self._enable = @YES;
 //        [self setValue:@YES forInputKey:@"_enable"];
     
         NSDictionary *state = dict[@"state"];
+        
+        _version = [state[@"version"] unsignedIntegerValue];
         
         self.virtualPatches = state[@"virtualPatches"];
         

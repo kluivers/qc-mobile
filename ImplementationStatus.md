@@ -3,6 +3,8 @@
 
 - Clear
 - Gradient
+- Sprite
+- Billboard
 - Splitter
 - Math
 - Interpolation
@@ -17,9 +19,10 @@
 
 ### Virtual patches
 
-Built-in patches that are actually implemented as composition.
+Built-in patches that are actually implemented as composition and work because the subpatches have been implemented:
 
 - Toggle
+- Pixels to Units
 
 
 ## Partial / In progress

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		A99E2452175A5064003E1D6E /* iMessenger Concept.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */; };
 		A99E2455175A5127003E1D6E /* JKColorFromComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2454175A5127003E1D6E /* JKColorFromComponents.m */; };
+		A99E2458175A5853003E1D6E /* JKClock.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2457175A5853003E1D6E /* JKClock.m */; };
+		A99E245B175A5F92003E1D6E /* JKLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E245A175A5F92003E1D6E /* JKLogic.m */; };
+		A99E245D175A7367003E1D6E /* BillboardTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A99E245C175A7367003E1D6E /* BillboardTest.qtz */; };
+		A99E2460175A73EA003E1D6E /* JKBillboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E245F175A73EA003E1D6E /* JKBillboard.m */; };
 		A9EA0E491759543200E0E1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0E481759543200E0E1B8 /* UIKit.framework */; };
 		A9EA0E4B1759543200E0E1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0E4A1759543200E0E1B8 /* Foundation.framework */; };
 		A9EA0E4D1759543200E0E1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0E4C1759543200E0E1B8 /* CoreGraphics.framework */; };
@@ -92,6 +96,13 @@
 		A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = "iMessenger Concept.qtz"; sourceTree = "<group>"; };
 		A99E2453175A5127003E1D6E /* JKColorFromComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKColorFromComponents.h; sourceTree = "<group>"; };
 		A99E2454175A5127003E1D6E /* JKColorFromComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKColorFromComponents.m; sourceTree = "<group>"; };
+		A99E2456175A5853003E1D6E /* JKClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKClock.h; sourceTree = "<group>"; };
+		A99E2457175A5853003E1D6E /* JKClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKClock.m; sourceTree = "<group>"; };
+		A99E2459175A5F92003E1D6E /* JKLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKLogic.h; sourceTree = "<group>"; };
+		A99E245A175A5F92003E1D6E /* JKLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKLogic.m; sourceTree = "<group>"; };
+		A99E245C175A7367003E1D6E /* BillboardTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = BillboardTest.qtz; sourceTree = "<group>"; };
+		A99E245E175A73EA003E1D6E /* JKBillboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKBillboard.h; sourceTree = "<group>"; };
+		A99E245F175A73EA003E1D6E /* JKBillboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKBillboard.m; sourceTree = "<group>"; };
 		A9EA0E451759543200E0E1B8 /* QCDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EA0E481759543200E0E1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9EA0E4A1759543200E0E1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -375,6 +386,8 @@
 				A9EA0E9A1759546100E0E1B8 /* JKSplitter.m */,
 				A9EA0E9B1759546100E0E1B8 /* JKSprite.h */,
 				A9EA0E9C1759546100E0E1B8 /* JKSprite.m */,
+				A99E245E175A73EA003E1D6E /* JKBillboard.h */,
+				A99E245F175A73EA003E1D6E /* JKBillboard.m */,
 				A9EA0E9D1759546100E0E1B8 /* JKTextImage.h */,
 				A9EA0E9E1759546100E0E1B8 /* JKTextImage.m */,
 				A9EA0E9F1759546100E0E1B8 /* JKUnimplementedPatch.h */,
@@ -387,6 +400,10 @@
 				A9EA0F2B175A18B500E0E1B8 /* JKScreenInfo.m */,
 				A99E2453175A5127003E1D6E /* JKColorFromComponents.h */,
 				A99E2454175A5127003E1D6E /* JKColorFromComponents.m */,
+				A99E2456175A5853003E1D6E /* JKClock.h */,
+				A99E2457175A5853003E1D6E /* JKClock.m */,
+				A99E2459175A5F92003E1D6E /* JKLogic.h */,
+				A99E245A175A5F92003E1D6E /* JKLogic.m */,
 			);
 			name = Patches;
 			path = ../../../Source/Patches;
@@ -408,6 +425,7 @@
 		A9EA0ED31759578200E0E1B8 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A99E245C175A7367003E1D6E /* BillboardTest.qtz */,
 				A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */,
 				A9EA0ED41759581D00E0E1B8 /* CameraTest.qtz */,
 				A9EA0ED51759581D00E0E1B8 /* Bouncing.qtz */,
@@ -540,6 +558,7 @@
 				A9EA0EE21759581D00E0E1B8 /* Test2.qtz in Resources */,
 				A9EA0EE31759581D00E0E1B8 /* ToggleSmooth.qtz in Resources */,
 				A99E2452175A5064003E1D6E /* iMessenger Concept.qtz in Resources */,
+				A99E245D175A7367003E1D6E /* BillboardTest.qtz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +622,9 @@
 				A9EA0F29175A0FC100E0E1B8 /* NSString+DDMathParsing.m in Sources */,
 				A9EA0F2C175A18B600E0E1B8 /* JKScreenInfo.m in Sources */,
 				A99E2455175A5127003E1D6E /* JKColorFromComponents.m in Sources */,
+				A99E2458175A5853003E1D6E /* JKClock.m in Sources */,
+				A99E245B175A5F92003E1D6E /* JKLogic.m in Sources */,
+				A99E2460175A73EA003E1D6E /* JKBillboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
