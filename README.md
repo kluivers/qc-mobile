@@ -23,6 +23,11 @@ By **Joris Kluivers**
 - [jk-interpolation][interpolation] - A set of interpolation functions written by me.
 - [DDMathParser][math-parser]
 
+### 3rd party demos
+
+- iMessenger composition by [Jay Thrash](http://twitter.com/jaythrash), concept by [Florian Peninon](http://dribbble.com/shots/1048781-iMessage-Concept)
+
+
 ## License
 
 Copyright (c) 2012, Joris Kluivers
