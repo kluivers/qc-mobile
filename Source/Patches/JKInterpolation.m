@@ -66,18 +66,27 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
     CGFloat start = [self.inputValue1 floatValue];
     CGFloat end = [self.inputValue2 floatValue];
     
-    if ([self.inputRepeat integerValue] == JKRepeatNone && time > [self.inputDuration floatValue]) {
+    CGFloat _time = 0.0f;
+    if ([self.timebase isEqualToString:@"parent"]) {
+        _time = time;
+    } else if ([self.timebase isEqualToString:@"external"]) {
+        _time = [[self valueForInputKey:@"_time"] floatValue];
+    }
+    // TODO: internal timebase
+    
+    if ([self.inputRepeat integerValue] == JKRepeatNone && _time > [self.inputDuration floatValue]) {
         self.outputValue = @(end);
         return;
     }
     
-    if ([self.inputRepeat integerValue] == JKRepeatMirroredLoopOnce && time > [self.inputDuration floatValue] * 2.0f) {
+    if ([self.inputRepeat integerValue] == JKRepeatMirroredLoopOnce && _time > [self.inputDuration floatValue] * 2.0f) {
         self.outputValue = @(start);
         return;
     }
     
     CGFloat duration = [self.inputDuration floatValue];
-    CGFloat progress = fmodf(time, duration);
+    
+    CGFloat progress = fmodf(_time, duration);
     
     CGFloat normalizedTime = progress / duration;
     
