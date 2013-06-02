@@ -9,7 +9,7 @@
 #import "JKConditional.h"
 
 typedef NS_ENUM(NSUInteger, JKConditionalTest) {
-    JKTestIsEqual,
+    JKTestIsEqual=0,
     JKTestIsNotEqual,
     JKTestIsGreater,
     JKTestIsLower,
@@ -22,6 +22,8 @@ typedef NS_ENUM(NSUInteger, JKConditionalTest) {
 @end
 
 @implementation JKConditional
+
+@dynamic inputValue1, inputTest, inputValue2, inputTolerance, outputResult;
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
