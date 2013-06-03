@@ -36,9 +36,18 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 @property(nonatomic, readonly) NSDictionary *publishedInputPorts;
 @property(nonatomic, readonly) NSDictionary *publishedOutputPorts;
-
 @property(nonatomic, readonly) NSDictionary *inputStates;
+@property(nonatomic, readonly) NSDictionary *systemInputStates;
 
+@property(nonatomic, strong) NSMutableDictionary *states;
+@property(nonatomic, strong) NSMutableDictionary *publishedInputPortStates;
+
+/*
+ * @{ @"stateName": {
+ *      @"inputValues": {}
+ *      @"stateValues": {}
+ * }
+ */
 @property(nonatomic, strong) NSDictionary *virtualPatches;
 
 - (void) resetChangedInputKeys;
@@ -48,11 +57,12 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 @implementation JKPatch {
     NSMutableArray *_inputPorts;
     NSMutableDictionary *_inputPortClass;
-    NSMutableDictionary *_inputPortValues;
     
+    NSMutableDictionary *_inputPortValues;
     NSMutableDictionary *_outputPortValues;
     NSMutableArray *_changedOutputKeys;
     
+    NSString *_state;
     BOOL _isRenderer;
 }
 
@@ -68,17 +78,21 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         _inputPorts = [NSMutableArray array];
         _inputPortClass = [NSMutableDictionary dictionary];
-        _inputPortValues = [NSMutableDictionary dictionary];
         _changedInputKeys = [NSMutableArray array];
         
+        _inputPortValues = [NSMutableDictionary dictionary];
         _outputPortValues = [NSMutableDictionary dictionary];
         _changedOutputKeys = [NSMutableArray array];
+        _publishedInputPortStates = [NSMutableDictionary dictionary];
+        
+        self.states = [NSMutableDictionary dictionary];
         
         // TODO: check nodes to see if we are a renderer, based on subpatches
         
         // TODO: modify generated methods to take into account underscores
         self._enable = @YES;
 //        [self setValue:@YES forInputKey:@"_enable"];
+        
     
         NSDictionary *state = dict[@"state"];
         
@@ -105,8 +119,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         for (NSDictionary *node in state[@"nodes"]) {
             NSString *className = node[@"class"];
             if ([className hasPrefix:@"/"]) {
-                NSLog(@"'Instantiate' virtual patch for: %@", className);
-                
                 NSDictionary *virtualPatchDict = [composition.virtualPatches objectForKey:className];
                 
                 if (!virtualPatchDict) {
@@ -159,9 +171,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         NSDictionary *customInputStates = state[@"customInputPortStates"];
         for (NSString *key in [customInputStates allKeys]) {
-            if ([key isEqualToString:@"Pixels"]) {
-                NSLog(@"Set pixels input: %@", customInputStates[key][@"value"]);
-            }
             [self setValue:customInputStates[key][@"value"] forInputKey:key];
         }
         _customInputPorts = customInputStates;
@@ -180,8 +189,9 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         }
         _publishedOutputPorts = publishedOutputPorts;
         
-        for (NSString *key in state[@"systemInputPortStates"]) {
-            id value = state[@"systemInputPortStates"][key][@"value"];
+        _systemInputStates = state[@"systemInputPortStates"];
+        for (NSString *key in _systemInputStates) {
+            id value = _systemInputStates[key][@"value"];
             [self safeSetValue:value forKey:key];
         }
     }
@@ -215,8 +225,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (void) addInputPortType:(NSString *)type key:(NSString *)key
 {
-    NSLog(@"%s - %@", __func__, key);
-    
     if (![_inputPorts containsObject:key]) {
         [_inputPorts addObject:key];
         _inputPortClass[key] = type;
@@ -245,7 +253,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     
     objc_property_t property = class_getProperty(classType, [key UTF8String]);
     if (property == NULL) {
-        NSLog(@"Property %@ not implemented", key);
         return;
     }
     
@@ -334,9 +341,11 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
+    /* TODO: enabled is only for renderers
     if (![self._enable boolValue]) {
         return;
     }
+     */
     
     if ([self.nodes count] < 1) {
         return;
@@ -405,6 +414,107 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     return [self.nodes filteredArrayUsingPredicate:predicate];
 }
 
+#pragma mark - State values
+
+- (NSString *) state
+{
+    if (_state) {
+        return _state;
+    }
+    
+    if (self.parent) {
+        return [self.parent state];
+    }
+    
+    return @"Default";
+}
+
+- (void) setState:(NSString *)state
+{
+    _state = state;
+    
+    [self markInputKeyAsChanged:@"_state"];
+}
+
+- (NSDictionary *) stateForKey:(NSString *)key {
+    NSDictionary *state = [self.states objectForKey:key];
+    
+    if (!state) {
+        state = @{
+            @"inputValues": [NSMutableDictionary dictionary],
+            @"stateValues": [NSMutableDictionary dictionary]
+        };
+        
+        // initialize new state with input values
+        
+        for (NSString *key in [_inputStates allKeys]) {
+            id value = _inputStates[key][@"value"];
+            
+            NSDictionary *attributes = [[self class] attributesForPropertyPortWithKey:key];
+            if (attributes && attributes[JKPortAttributeTypeKey]) {
+                value = [self convertValue:value toType:attributes[JKPortAttributeTypeKey]];
+            }
+            
+            [state[@"inputValues"] setObject:value forKey:key];
+        }
+        
+        for (NSString *key in [_customInputPorts allKeys]) {
+            id value = _customInputPorts[key][@"value"];
+            
+            NSDictionary *attributes = [[self class] attributesForPropertyPortWithKey:key];
+            if (attributes && attributes[JKPortAttributeTypeKey]) {
+                value = [self convertValue:value toType:attributes[JKPortAttributeTypeKey]];
+            }
+            
+            [state[@"inputValues"] setValue:value forKey:key];
+        }
+        
+        for (NSString *key in _systemInputStates) {
+            id value = _systemInputStates[key][@"value"];
+            
+            NSDictionary *attributes = [[self class] attributesForPropertyPortWithKey:key];
+            if (attributes && attributes[JKPortAttributeTypeKey]) {
+                value = [self convertValue:value toType:attributes[JKPortAttributeTypeKey]];
+            }
+            
+            [state[@"inputValues"] setValue:value forKey:key];
+        }
+        
+        [self.states setObject:state forKey:key];
+    }
+    
+    return state;
+}
+
+- (NSMutableDictionary *) mutableInputValuesForState:(NSString *)key {
+    return [self stateForKey:key][@"inputValues"];
+}
+
+- (NSMutableDictionary *) mutableStateValuesDictionaryForState:(NSString *)key {
+    return [self stateForKey:key][@"stateValues"];
+}
+
+- (void) setValue:(id)value forStateKey:(NSString *)key
+{
+    NSMutableDictionary *currentState = [self mutableStateValuesDictionaryForState:key];
+    [currentState setObject:value forKey:key];
+}
+
+- (id) valueForStateKey:(NSString *)key
+{
+    NSMutableDictionary *currentState = [self mutableStateValuesDictionaryForState:key];
+    return [currentState objectForKey:key];
+}
+
+- (CGFloat) floatForStateKey:(NSString *)key
+{
+    return [[self valueForStateKey:key] floatValue];
+}
+
+- (void) setFloat:(CGFloat)value forStateKey:(NSString *)key
+{
+    [self setValue:@(value) forStateKey:key];
+}
 
 #pragma mark - Input Ports
 
@@ -416,6 +526,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         JKPatch *patch = [self patchWithKey:publishedInput[@"node"]];
         [patch setValue:value forInputKey:publishedInput[@"port"]];
+//        [patch setValue:value forPublishedInputKey:publishedInput[@"port"]];
         
         return;
     }
@@ -429,10 +540,28 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         return;
     }
     
+    [self _setValue:value forInputKey:key];
+}
+
+- (void) _setValue:(id)value forInputKey:(NSString *)key
+{
+//    NSMutableDictionary *inputPortValues = [self mutableInputValuesForState:self.state];
+    NSMutableDictionary *inputPortValues = _inputPortValues;
     if (!value) {
-        [_inputPortValues removeObjectForKey:key];
+        [inputPortValues removeObjectForKey:key];
     } else {
-        [_inputPortValues setObject:value forKey:key];
+        [inputPortValues setObject:value forKey:key];
+    }
+    
+    [self markInputKeyAsChanged:key];
+}
+
+- (void) setValue:(id)value forPublishedInputKey:(NSString *)key
+{
+    if (!value) {
+        [self.publishedInputPortStates removeObjectForKey:key];
+    } else {
+        [self.publishedInputPortStates setObject:value forKey:key];
     }
     
     [self markInputKeyAsChanged:key];
@@ -447,6 +576,11 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (id) valueForInputKey:(NSString *)key
 {
+    /*id publishedPortValue = [self.publishedInputPortStates objectForKey:key];
+    if (publishedPortValue) {
+        return publishedPortValue;
+    }*/
+    
     NSDictionary *publishedInput = [self.publishedInputPorts objectForKey:key];
     if (publishedInput) {
         // forward to node / port
@@ -455,7 +589,9 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         return [patch valueForInputKey:publishedInput[@"port"]];
     }
     
-    return [_inputPortValues objectForKey:key];
+//    NSDictionary *inputPortValues = [self mutableInputValuesForState:self.state];
+    NSDictionary *inputPortValues = _inputPortValues;
+    return [inputPortValues objectForKey:key];
 }
 
 - (BOOL) didValueForInputKeyChange:(NSString *)inputKey
@@ -512,7 +648,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     NSDictionary *outputPort = [self.publishedOutputPorts objectForKey:key];
     if (outputPort) {
         // forward request to port
-        
         
         JKPatch *patch = [self patchWithKey:outputPort[@"node"]];
         return [patch valueForOutputKey:outputPort[@"port"]];

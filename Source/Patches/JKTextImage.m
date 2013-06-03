@@ -59,8 +59,6 @@
     
     CGSize size = [self imageSizeForCurrentInputInContext:context];
     
-    NSLog(@"Suggested size: %@", NSStringFromCGSize(size));
-    
     _outputWidth = @(JKPixelsToUnits(context, size.width));
     _outputHeight = @(JKPixelsToUnits(context, size.height));
     

@@ -22,14 +22,16 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (![self.parent.parent isKindOfClass:[JKIterator class]]) {
+    if (![self.parent isKindOfClass:[JKIterator class]]) {
         // set default values
         self.outputIndex = @0;
+        
+        return;
         
         // TODO: only do this once, parent is not going to change
     }
     
-    JKIterator *parent = (JKIterator *) self.parent.parent;
+    JKIterator *parent = (JKIterator *) self.parent;
     
     self.outputIndex = parent.currentIndex;
     self.outputCount = parent.inputCount;

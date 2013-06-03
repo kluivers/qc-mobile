@@ -34,6 +34,8 @@ extern NSString * const JKPortTypeColor;
 
 @property(nonatomic, readonly) NSDictionary *customInputPorts;
 
+@property(nonatomic, strong) NSString *state;
+
 - (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition;
 
 + (id) patchWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition;
@@ -56,6 +58,22 @@ extern NSString * const JKPortTypeColor;
 - (BOOL) didValueForInputKeyChange:(NSString *)inputKey;
 - (BOOL) didValuesForInputKeysChange;
 - (void) markInputKeyAsChanged:(NSString *)inputKey;
+
+/*!
+ * @name States
+ */
+- (void) setValue:(id)value forStateKey:(NSString *)key;
+- (id) valueForStateKey:(NSString *)key;
+
+- (CGFloat) floatForStateKey:(NSString *)key;
+- (void) setFloat:(CGFloat)value forStateKey:(NSString *)key;
+
+/*! 
+ * @name Input keys
+ */
+
+// resiliant to state
+- (void) setValue:(id)value forPublishedInputKey:(NSString *)key;
 
 /*!
  * @name Output keys

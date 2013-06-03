@@ -73,8 +73,8 @@
 
 //    GLKBaseEffect *effect = qcContext.effect;
     // TODO: reusing the same effect messes up the color on vertices
-    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
-//    GLKBaseEffect *effect = qcContext.effect;
+//    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+    GLKBaseEffect *effect = qcContext.effect;
     effect.transform.projectionMatrix = qcContext.projectionMatrix;
     
     GLKMatrix4 translate = GLKMatrix4MakeTranslation([self.inputX floatValue], [self.inputY floatValue], [self.inputZ floatValue]);
@@ -99,6 +99,9 @@
         GLint oldFramebuffer = 0;
         glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFramebuffer);
         glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
+        
+        glClearColor(0, 0, 0, 0);
+        glClear(GL_COLOR_BUFFER_BIT);
         
         [qcContext.ciContext drawImage:self.inputImage inRect:CGRectMake(0, 0, 256, 256) fromRect:self.inputImage.extent];
         
@@ -174,8 +177,6 @@
         from: https://github.com/bdudney/Experiments/blob/200d71a5c903fe20eac8a56d338cd409ccd83aab/AVCoreImageIntegration/AVCoreImageIntegration/GFSViewController.m
     */
     
-    NSLog(@"%s", __func__);
-    
     GLenum error = GL_NO_ERROR;
     GLint oldFramebuffer = 0;
     
@@ -186,7 +187,6 @@
     }
     
     glGenBuffers(1, &_textureFramebuffer);
-    NSLog(@"Generated buffer: %d", _textureFramebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
     glViewport(0, 0, 512, 512);
     
@@ -198,7 +198,6 @@
     // create & attach texture
     
     glGenTextures(1, &_sourceTexture);
-    NSLog(@"Generated texture: %d", _sourceTexture);
     
     glBindTexture(GL_TEXTURE_2D, _sourceTexture);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

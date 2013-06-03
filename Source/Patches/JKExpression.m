@@ -88,17 +88,15 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (![self didValuesForInputKeysChange]) {
-        return;
-    }
-    
     NSMutableDictionary *substitutions = [NSMutableDictionary dictionary];
     
     for (NSString *variable in self.variables) {
         NSNumber *value = [self valueForInputKey:variable];
+        
         if (!value) {
             value = @0;
         }
+        
         [substitutions setObject:value forKey:variable];
     }
     

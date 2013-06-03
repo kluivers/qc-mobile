@@ -40,7 +40,6 @@
         NSString *operationPortName = [NSString stringWithFormat:@"operation_%d", i];
         
         // TODO: make handling of customInputPortStates nicer
-#pragma message "Handle customInputPortStates like regular input ports"
         NSInteger operation = [[self valueForInputKey:operationPortName] integerValue];
         CGFloat operand = [[self valueForInputKey:operandPortName] floatValue];
         

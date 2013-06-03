@@ -25,7 +25,6 @@
     self = [super initWithDictionary:dict composition:composition];
     if (self) {
         _filter = [CIFilter filterWithName:self.identifier];
-        NSLog(@"Filter: %@", _filter);
         
         for (NSString *key in [_filter inputKeys]) {
             
