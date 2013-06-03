@@ -43,20 +43,32 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if ([self didValueForInputKeyChange:@"inputValue"]) {
-        [self setFloat:time forStateKey:@"startTime"];
+    // didValueForInputKeyChange doesn't work in iterators
+    
+    CGFloat currentInput = [self.inputValue floatValue];
+    CGFloat lastInput = [self floatForStateKey:@"lastInput"];
+    
+    if (fabsf(currentInput - lastInput) > 0.001) {
+        [self setValue:self.inputValue forStateKey:@"lastInput"];
+        [self setValue:@(time) forStateKey:@"startTime"];
+        
+        if ([self valueForStateKey:@"lastOutput"]) {
+            [self setValue:[self valueForStateKey:@"lastOutput"] forStateKey:@"start"];
+        } else {
+            [self setValue:self.inputValue forStateKey:@"start"];
+        }
     }
     
     CGFloat startTime = [self floatForStateKey:@"startTime"];
     
     CGFloat lastOutput = [self floatForStateKey:@"lastOutput"];
-    CGFloat inputValue = [self.inputValue floatValue];
-    CGFloat start, end;
+    CGFloat start = [self floatForStateKey:@"start"];
+    CGFloat end = [self.inputValue floatValue];
     
     CGFloat duration;
     NSInteger functionIndex = 0;
     
-    if (inputValue < lastOutput) {
+    if (end < lastOutput) {
         // decreasing
         duration = [self.inputDecreasingDuration floatValue];
         functionIndex = [self.inputDecreasingInterpolation integerValue];
@@ -64,13 +76,6 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
         // increasing
         duration = [self.inputIncreasingDuration floatValue];
         functionIndex = [self.inputIncreasingInterpolation integerValue];
-    }
-    
-    end = [self.inputValue floatValue];
-    if ([self valueForStateKey:@"lastOutput"]) {
-        start = [self floatForStateKey:@"lastOutput"];
-    } else {
-        start = end;
     }
     
     CGFloat progress = (time - startTime) / duration;
@@ -83,6 +88,7 @@ static CGFloat (*interpolation[])(CGFloat, CGFloat, CGFloat) = {
     }
     
     self.outputValue = @(interpolation[selectedFunction](fminf(1.0f, progress), start, end));
+
     [self setValue:self.outputValue forStateKey:@"lastOutput"];
 }
 

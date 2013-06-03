@@ -32,6 +32,7 @@ Built-in patches that are actually implemented as composition and work because t
 
 ## Partial / In progress
 
+- Iterator
 - TextImage
 - Recursor
 - Physics 

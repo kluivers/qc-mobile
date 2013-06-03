@@ -374,14 +374,7 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         // TODO: check if source executed already
         // [source resetChangedOutputKeys];
-        [source execute:context atTime:time];
-        
-//        if ([source.key isEqualToString:@"Patch_1"] || [source.key isEqualToString:@"Patch_9"]) {
-//            NSLog(@"Pixels to Units: %@", source.key);
-//            NSLog(@"Input pixels: %@", [source valueForInputKey:@"Pixels"]);
-//            NSLog(@"Output units: %@", [source valueForOutputKey:@"Units"]);
-//        }
-        
+        [source execute:context atTime:time];        
         [source resetChangedInputKeys];
         
         id sourceValue = [source valueForOutputKey:connection.sourcePort];
@@ -498,13 +491,13 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (void) setValue:(id)value forStateKey:(NSString *)key
 {
-    NSMutableDictionary *currentState = [self mutableStateValuesDictionaryForState:key];
+    NSMutableDictionary *currentState = [self mutableStateValuesDictionaryForState:self.state];
     [currentState setObject:value forKey:key];
 }
 
 - (id) valueForStateKey:(NSString *)key
 {
-    NSMutableDictionary *currentState = [self mutableStateValuesDictionaryForState:key];
+    NSMutableDictionary *currentState = [self mutableStateValuesDictionaryForState:self.state];
     return [currentState objectForKey:key];
 }
 

@@ -39,10 +39,6 @@
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    if (![self didValuesForInputKeysChange]) {
-        return;
-    }
-    
     NSInteger index = [self.inputIndex integerValue];
     
     NSString *sourceKey = [NSString stringWithFormat:@"source_%d", index];
