@@ -17,6 +17,7 @@
 #import "JKConnection.h"
 
 #import "NSString+LowercaseFirst.h"
+#import "NSArray+JKFiltering.h"
 
 NSString * const JKPortAttributeTypeKey = @"JKPortAttributeTypeKey";
 NSString * const JKPortTypeColor = @"JKColorPort";
@@ -362,8 +363,9 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (void) resolveConnectionsForDestination:(JKPatch *)destination time:(NSTimeInterval)time inContext:(id<JKContext>)context
 {
-    NSPredicate *destinationPort = [NSPredicate predicateWithFormat:@"destinationNode == %@", destination.key];
-    NSArray *connections = [self.connections filteredArrayUsingPredicate:destinationPort];
+    NSArray *connections = [self.connections jk_filter:^BOOL(JKConnection *connection) {
+        return [connection.destinationNode isEqualToString:destination.key];
+    }];
     
     for (JKConnection *connection in connections) {
         JKPatch *source = [self patchWithKey:connection.sourceNode];
@@ -526,7 +528,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
         
         JKPatch *patch = [self patchWithKey:publishedInput[@"node"]];
         [patch setValue:value forInputKey:publishedInput[@"port"]];
-//        [patch setValue:value forPublishedInputKey:publishedInput[@"port"]];
         
         return;
     }
@@ -563,8 +564,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
     } else {
         [self.publishedInputPortStates setObject:value forKey:key];
     }
-    
-    [self markInputKeyAsChanged:key];
 }
 
 - (void) markInputKeyAsChanged:(NSString *)inputKey
@@ -576,11 +575,6 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (id) valueForInputKey:(NSString *)key
 {
-    /*id publishedPortValue = [self.publishedInputPortStates objectForKey:key];
-    if (publishedPortValue) {
-        return publishedPortValue;
-    }*/
-    
     NSDictionary *publishedInput = [self.publishedInputPorts objectForKey:key];
     if (publishedInput) {
         // forward to node / port
