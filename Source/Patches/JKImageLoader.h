@@ -9,6 +9,7 @@
 #import <CoreImage/CoreImage.h>
 
 #import "JKPatch.h"
+#import "JKImage.h"
 
 @interface JKImageLoader : JKPatch
 
@@ -17,7 +18,7 @@
 @property(nonatomic, readonly) NSInteger fillBackground;
 @property(nonatomic, readonly) NSData *imageData;
 
-@property(nonatomic, readonly) CIImage *outputImage;
+@property(nonatomic, readonly) JKImage *outputImage;
 
 
 @end

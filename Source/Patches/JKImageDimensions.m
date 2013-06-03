@@ -9,6 +9,7 @@
 #import "JKImageDimensions.h"
 #import "JKContext.h"
 #import "JKContextUtil.h"
+#import "JKImage.h"
 
 @interface JKImageDimensions ()
 
@@ -33,8 +34,8 @@
         return;
     }
     
-    CGFloat imageWidth = CGRectGetWidth(self.inputImage.extent);
-    CGFloat imageHeight = CGRectGetHeight(self.inputImage.extent);
+    CGFloat imageWidth = CGRectGetWidth(self.inputImage.CIImage.extent);
+    CGFloat imageHeight = CGRectGetHeight(self.inputImage.CIImage.extent);
     
     self.outputWidth = @(JKPixelsToUnits(context, imageWidth));
     self.outputHeight = @(JKPixelsToUnits(context, imageHeight));
