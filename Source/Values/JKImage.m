@@ -27,11 +27,13 @@
     return self;
 }
 
-- (GLuint) textureFromImageContext:(CIContext *)context
+- (GLuint) textureWithContext:(id<JKContext>)context
 {
     if (!_textureName) {
         NSLog(@"Setup image texture");
-        [self setupCoreImageFramebufferWithImageContext:context];
+        [EAGLContext setCurrentContext:context.glContext];
+        
+        [self setupCoreImageFramebufferWithImageContext:context.ciContext];
     }
     
     return _textureName;

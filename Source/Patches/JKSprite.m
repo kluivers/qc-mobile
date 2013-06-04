@@ -117,7 +117,7 @@
     if (self.inputImage) {
         effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         effect.texture2d0.target = GLKTextureTarget2D;
-        effect.texture2d0.name = [self.inputImage textureFromImageContext:qcContext.ciContext];
+        effect.texture2d0.name = [self.inputImage textureWithContext:qcContext];
     }
     
     //effect.useConstantColor = YES;

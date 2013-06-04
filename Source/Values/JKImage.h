@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "JKContext.h"
+
 @class CIImage;
 
 @interface JKImage : NSObject
@@ -16,6 +18,6 @@
 
 - (id) initWithCIImage:(CIImage *)image;
 
-- (GLuint) textureFromImageContext:(CIContext *)context;
+- (GLuint) textureWithContext:(id<JKContext>)context;
 
 @end
