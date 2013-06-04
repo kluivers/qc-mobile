@@ -10,11 +10,12 @@
 
 @interface JKImage ()
 @property(nonatomic, strong) CIImage *CIImage;
-@property(nonatomic, assign) GLuint textureName;
-@property(nonatomic, assign) GLuint textureFramebuffer;
 @end
 
-@implementation JKImage
+@implementation JKImage {
+    GLuint _textureName;
+    GLuint _textureFramebuffer;
+}
 
 - (id) initWithCIImage:(CIImage *)image
 {
@@ -31,11 +32,15 @@
 {
     if (!_textureName) {
         NSLog(@"Setup image texture");
-        [EAGLContext setCurrentContext:context.glContext];
         
+        if ([[EAGLContext currentContext] isEqual:context.glContext]) {
+            NSLog(@"Is current context already!");
+        }
+
         [self setupCoreImageFramebufferWithImageContext:context.ciContext];
     }
     
+    NSLog(@"Return texture: %d", _textureName);
     return _textureName;
 }
 
@@ -94,8 +99,6 @@
     glClearColor(1, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    NSLog(@"Draw image in context: %@", context);
-    NSLog(@"image: %@", self.CIImage);
     [context drawImage:self.CIImage inRect:CGRectMake(0, 0, 256, 256) fromRect:self.CIImage.extent];
     
     // unbind the _sourceTexture
