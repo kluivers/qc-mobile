@@ -4,7 +4,7 @@ A Quartz Composer runtime implementation for iOS. This project makes it possible
 
 By **Joris Kluivers**
 
-- See the [introductionary blog post](http://joris.kluivers.nl)
+- See the [introductionary blog post](http://joris.kluivers.nl/blog/2013/06/04/quartz-composer-for-ios/)
 - Follow [@kluivers on Twitter][twitter]
 
 ## Required frameworks
