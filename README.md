@@ -7,6 +7,8 @@ By **Joris Kluivers**
 - See the [introductionary blog post](http://joris.kluivers.nl/blog/2013/06/04/quartz-composer-for-ios/)
 - Follow [@kluivers on Twitter][twitter]
 
+![Screenshot](Screenshot.png)
+
 ## Required frameworks
 
 - QuartzCore
