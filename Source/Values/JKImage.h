@@ -14,7 +14,9 @@
 
 @interface JKImage : NSObject
 
-@property(nonatomic, readonly) CIImage *CIImage;
+@property(nonatomic, readonly) CGSize size;
+
+- (id) initWithData:(NSData *)data;
 
 - (id) initWithCIImage:(CIImage *)image;
 

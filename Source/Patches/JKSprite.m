@@ -72,9 +72,6 @@
         return;
     }
 
-//    GLKBaseEffect *effect = qcContext.effect;
-    // TODO: reusing the same effect messes up the color on vertices
-//    GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
     GLKBaseEffect *effect = qcContext.effect;
     effect.transform.projectionMatrix = qcContext.projectionMatrix;
     
@@ -86,43 +83,18 @@
     
     GLKMatrix4 rotation = GLKMatrix4Multiply(GLKMatrix4Multiply(rotateX, rotateY), rotateZ);
     
-    //CGFloat ratio = qcContext.size.width / qcContext.size.height;
-    //GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, ratio, 1.0);
     GLKMatrix4 scale = GLKMatrix4MakeScale(1.0, 1.0f, 1.0);
     
     GLKMatrix4 transform = GLKMatrix4Multiply(GLKMatrix4Multiply(translate, scale), rotation);
     
     effect.transform.modelviewMatrix = GLKMatrix4Multiply([self.parent transform], transform);
     
-    if (self.inputImage && [self didValueForInputKeyChange:@"inputImage"]) {
-        // only redraws image when image actually changed
-        
-//        GLint oldFramebuffer = 0;
-//        glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFramebuffer);
-//        glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
-//        
-//        glClearColor(0, 0, 0, 0);
-//        glClear(GL_COLOR_BUFFER_BIT);
-//        
-//        [qcContext.ciContext drawImage:self.inputImage inRect:CGRectMake(0, 0, 256, 256) fromRect:self.inputImage.extent];
-//        
-//        glBindFramebuffer(GL_FRAMEBUFFER, oldFramebuffer);
-//        
-//        GLenum error = glGetError();
-//        if (error != GL_NO_ERROR) {
-//            NSLog(@"error = %d", error);
-//        }
-    }
-    
     if (self.inputImage) {
         effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         effect.texture2d0.target = GLKTextureTarget2D;
         effect.texture2d0.name = [self.inputImage textureWithContext:qcContext];
     }
-    
-    //effect.useConstantColor = YES;
-    //effect.constantColor = GLKVector4Make(0.0, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
-    
+
     [effect prepareToDraw];
     
     GLKVector4 color = GLKVector4Make(self.inputColor.red, self.inputColor.green, self.inputColor.blue, self.inputColor.alpha);
@@ -139,10 +111,16 @@
     
     if (self.inputImage) {
         GLKVector2 textureCoords[4] = {
+            // reversed for UIImage data
+            GLKVector2Make(0, 1),
+            GLKVector2Make(1, 1),
             GLKVector2Make(0, 0),
-            GLKVector2Make(1.0, 0),
-            GLKVector2Make(0, 1.0),
-            GLKVector2Make(1.0, 1.0)
+            GLKVector2Make(1, 0)
+            
+//            GLKVector2Make(0, 0),
+//            GLKVector2Make(1.0, 0),
+//            GLKVector2Make(0, 1.0),
+//            GLKVector2Make(1.0, 1.0)
         };
         
         glEnableVertexAttribArray(GLKVertexAttribTexCoord0);
@@ -155,8 +133,9 @@
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, colors);
     
-    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+    //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     
@@ -165,6 +144,8 @@
     if (self.inputImage) {
         glDisableVertexAttribArray(GLKVertexAttribTexCoord0);
     }
+    
+    glBindTexture(GL_TEXTURE_2D, 0);
     
     glDisableVertexAttribArray(GLKVertexAttribPosition);
     glDisableVertexAttribArray(GLKVertexAttribColor);

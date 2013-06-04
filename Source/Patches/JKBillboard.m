@@ -34,11 +34,12 @@
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if (!self.inputImage) {
+        NSLog(@"No input image for billboard");
         // does not render when no image present
         return;
     }
     
-    CGSize imageSize = self.inputImage.CIImage.extent.size;
+    CGSize imageSize = self.inputImage.size;
     CGFloat width, height;
     CGFloat imageRatio =  imageSize.height / imageSize.width;
     

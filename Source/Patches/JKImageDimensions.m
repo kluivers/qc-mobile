@@ -34,8 +34,8 @@
         return;
     }
     
-    CGFloat imageWidth = CGRectGetWidth(self.inputImage.CIImage.extent);
-    CGFloat imageHeight = CGRectGetHeight(self.inputImage.CIImage.extent);
+    CGFloat imageWidth = self.inputImage.size.width;
+    CGFloat imageHeight = self.inputImage.size.height;
     
     self.outputWidth = @(JKPixelsToUnits(context, imageWidth));
     self.outputHeight = @(JKPixelsToUnits(context, imageHeight));

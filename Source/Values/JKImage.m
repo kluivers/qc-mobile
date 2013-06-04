@@ -15,6 +15,29 @@
 @implementation JKImage {
     GLuint _textureName;
     GLuint _textureFramebuffer;
+    
+    GLKTextureInfo *texture;
+    
+    CGSize _imageSize;
+}
+
+- (id) initWithData:(NSData *)data
+{
+    self = [super init];
+    
+    if (self) {
+        UIImage *image = [UIImage imageWithData:data];
+        _imageSize = image.size;
+        
+        NSError *error = nil;
+        
+        texture = [GLKTextureLoader textureWithCGImage:image.CGImage options:nil error:&error];
+        if (!texture) {
+            NSLog(@"Error creating texture from data");
+        }
+    }
+    
+    return self;
 }
 
 - (id) initWithCIImage:(CIImage *)image
@@ -30,18 +53,16 @@
 
 - (GLuint) textureWithContext:(id<JKContext>)context
 {
-    if (!_textureName) {
-        NSLog(@"Setup image texture");
-        
-        if ([[EAGLContext currentContext] isEqual:context.glContext]) {
-            NSLog(@"Is current context already!");
-        }
-
-        [self setupCoreImageFramebufferWithImageContext:context.ciContext];
+    if (texture) {
+        return texture.name;
     }
     
-    NSLog(@"Return texture: %d", _textureName);
-    return _textureName;
+    return 0;
+}
+
+- (CGSize) size
+{
+    return _imageSize;
 }
 
 #pragma mark - GL texture
@@ -52,8 +73,6 @@
      OpenGL framebuffer for CIImage drawing
      from: https://github.com/bdudney/Experiments/blob/200d71a5c903fe20eac8a56d338cd409ccd83aab/AVCoreImageIntegration/AVCoreImageIntegration/GFSViewController.m
      */
-    
-    NSLog(@"Image frame: %@", NSStringFromCGRect(self.CIImage.extent));
     
     GLenum error = GL_NO_ERROR;
     GLint oldFramebuffer = 0;

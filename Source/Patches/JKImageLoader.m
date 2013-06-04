@@ -37,13 +37,15 @@
         return;
     }
     
-    UIImage *image = [UIImage imageWithData:self.imageData];
-    if (!image) {
-        NSLog(@"Creating image failed");
-    } else {
-        CIImage *ciImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
-        self.outputImage = [[JKImage alloc] initWithCIImage:ciImage];
-    }
+    self.outputImage = [[JKImage alloc] initWithData:self.imageData];
+    
+//    UIImage *image = [UIImage imageWithData:self.imageData];
+//    if (!image) {
+//        NSLog(@"Creating image failed");
+//    } else {
+//        CIImage *ciImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
+//        self.outputImage = [[JKImage alloc] initWithCIImage:ciImage];
+//    }
 }
 
 @end
