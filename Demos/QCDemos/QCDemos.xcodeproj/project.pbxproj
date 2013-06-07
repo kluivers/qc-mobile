@@ -14,6 +14,7 @@
 		A9988255175BCFA600E0A3AA /* JKCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = A9988254175BCFA600E0A3AA /* JKCamera.m */; };
 		A9988257175BDC9700E0A3AA /* TransformTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9988256175BDC9700E0A3AA /* TransformTest.qtz */; };
 		A998825A175D08CC00E0A3AA /* NSArray+JKFiltering.m in Sources */ = {isa = PBXBuildFile; fileRef = A9988259175D08CC00E0A3AA /* NSArray+JKFiltering.m */; };
+		A998825E175D2D0100E0A3AA /* JKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A998825D175D2D0100E0A3AA /* JKImage.m */; };
 		A99E2452175A5064003E1D6E /* iMessenger Concept.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */; };
 		A99E2455175A5127003E1D6E /* JKColorFromComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2454175A5127003E1D6E /* JKColorFromComponents.m */; };
 		A99E2458175A5853003E1D6E /* JKClock.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2457175A5853003E1D6E /* JKClock.m */; };
@@ -106,6 +107,8 @@
 		A9988256175BDC9700E0A3AA /* TransformTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = TransformTest.qtz; sourceTree = "<group>"; };
 		A9988258175D08CC00E0A3AA /* NSArray+JKFiltering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+JKFiltering.h"; sourceTree = "<group>"; };
 		A9988259175D08CC00E0A3AA /* NSArray+JKFiltering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JKFiltering.m"; sourceTree = "<group>"; };
+		A998825C175D2D0100E0A3AA /* JKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImage.h; sourceTree = "<group>"; };
+		A998825D175D2D0100E0A3AA /* JKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImage.m; sourceTree = "<group>"; };
 		A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = "iMessenger Concept.qtz"; sourceTree = "<group>"; };
 		A99E2453175A5127003E1D6E /* JKColorFromComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKColorFromComponents.h; sourceTree = "<group>"; };
 		A99E2454175A5127003E1D6E /* JKColorFromComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKColorFromComponents.m; sourceTree = "<group>"; };
@@ -271,6 +274,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A998825B175D2B9B00E0A3AA /* Values */ = {
+			isa = PBXGroup;
+			children = (
+				A998825C175D2D0100E0A3AA /* JKImage.h */,
+				A998825D175D2D0100E0A3AA /* JKImage.m */,
+			);
+			name = Values;
+			path = ../../../Source/Values;
+			sourceTree = "<group>";
+		};
 		A9EA0E3C1759543200E0E1B8 = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +365,7 @@
 				A9EA0E791759546100E0E1B8 /* JKContextUtil.m */,
 				A9EA0E7A1759546100E0E1B8 /* JKQCView.h */,
 				A9EA0E7B1759546100E0E1B8 /* JKQCView.m */,
+				A998825B175D2B9B00E0A3AA /* Values */,
 				A9EA0E7C1759546100E0E1B8 /* Patches */,
 				A9EA0EA31759546100E0E1B8 /* Util */,
 			);
@@ -639,6 +653,7 @@
 				A9988252175BC86200E0A3AA /* JKConditional.m in Sources */,
 				A9988255175BCFA600E0A3AA /* JKCamera.m in Sources */,
 				A998825A175D08CC00E0A3AA /* NSArray+JKFiltering.m in Sources */,
+				A998825E175D2D0100E0A3AA /* JKImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

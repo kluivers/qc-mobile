@@ -8,7 +8,7 @@
 
 #import "JKPatch.h"
 
-@class CIImage;
+@class JKImage;
 
 @interface JKSprite : JKPatch
 
@@ -26,6 +26,6 @@
 @property(nonatomic, strong) NSNumber *inputCulling;
 @property(nonatomic, strong) NSNumber *inputBlending;
 @property(nonatomic, strong) NSNumber *inputZBuffer;
-@property(nonatomic, strong) CIImage *inputImage;
+@property(nonatomic, strong) JKImage *inputImage;
 
 @end

@@ -9,7 +9,7 @@
 #import "JKImageLoader.h"
 
 @interface JKImageLoader ()
-@property(nonatomic, strong) CIImage *outputImage;
+@property(nonatomic, strong) JKImage *outputImage;
 @end
 
 @implementation JKImageLoader
@@ -37,12 +37,15 @@
         return;
     }
     
-    UIImage *image = [UIImage imageWithData:self.imageData];
-    if (!image) {
-        NSLog(@"Creating image failed");
-    } else {
-        self.outputImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
-    }
+    self.outputImage = [[JKImage alloc] initWithData:self.imageData];
+    
+//    UIImage *image = [UIImage imageWithData:self.imageData];
+//    if (!image) {
+//        NSLog(@"Creating image failed");
+//    } else {
+//        CIImage *ciImage = [[CIImage alloc] initWithCGImage:image.CGImage options:nil];
+//        self.outputImage = [[JKImage alloc] initWithCIImage:ciImage];
+//    }
 }
 
 @end

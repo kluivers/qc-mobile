@@ -10,6 +10,7 @@
 
 #import "JKBillboard.h"
 #import "JKContextUtil.h"
+#import "JKImage.h"
 
 @implementation JKBillboard
 
@@ -33,12 +34,14 @@
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if (!self.inputImage) {
+        NSLog(@"No input image for billboard");
         // does not render when no image present
         return;
     }
     
+    CGSize imageSize = self.inputImage.size;
     CGFloat width, height;
-    CGFloat imageRatio =  self.inputImage.extent.size.height / self.inputImage.extent.size.width;
+    CGFloat imageRatio =  imageSize.height / imageSize.width;
     
     if ([self.sizeMode isEqualToString:@"autoHeight"]) {
         width = [self.inputScale floatValue];
@@ -47,8 +50,8 @@
         height = [self.inputScale floatValue];
         width = height / imageRatio;
     } else if ([self.sizeMode isEqualToString:@"real"]) {
-        width = JKPixelsToUnits(context, self.inputImage.extent.size.width);
-        height = JKPixelsToUnits(context, self.inputImage.extent.size.height); 
+        width = JKPixelsToUnits(context, imageSize.width);
+        height = JKPixelsToUnits(context, imageSize.height);
     } else /*([self.sizeMode isEqualToString:@"custom"]) */ {
         // input width / height unchanged for custom mode
         width = [self.inputWidth floatValue];

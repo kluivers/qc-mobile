@@ -8,11 +8,11 @@
 
 #import "JKPatch.h"
 
-@class CIImage;
+@class JKImage;
 
 @interface JKImageDimensions : JKPatch
 
-@property(nonatomic, strong) CIImage *inputImage;
+@property(nonatomic, strong) JKImage *inputImage;
 
 @property(nonatomic, readonly) NSNumber *outputWidth;
 @property(nonatomic, readonly) NSNumber *outputHeight;
