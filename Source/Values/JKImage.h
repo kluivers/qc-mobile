@@ -20,6 +20,7 @@
 
 - (id) initWithCIImage:(CIImage *)image;
 
-- (GLuint) textureWithContext:(id<JKContext>)context;
+- (GLuint) textureName;
+- (CIImage *) CIImage;
 
 @end

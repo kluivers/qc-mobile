@@ -92,7 +92,7 @@
     if (self.inputImage) {
         effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         effect.texture2d0.target = GLKTextureTarget2D;
-        effect.texture2d0.name = [self.inputImage textureWithContext:qcContext];
+        effect.texture2d0.name = [self.inputImage textureName];
     }
 
     [effect prepareToDraw];
@@ -132,6 +132,8 @@
     
     glEnableVertexAttribArray(GLKVertexAttribColor);
     glVertexAttribPointer(GLKVertexAttribColor, 4, GL_FLOAT, GL_FALSE, 0, colors);
+    
+//    glDisable(GL_ALPHA_TEST);
     
     //glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);

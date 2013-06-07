@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Joris Kluivers. All rights reserved.
 //
 
+#import <CoreImage/CoreImage.h>
+
 #import "JKImage.h"
 
 @interface JKImage ()
@@ -51,7 +53,7 @@
     return self;
 }
 
-- (GLuint) textureWithContext:(id<JKContext>)context
+- (GLuint) textureName
 {
     if (texture) {
         return texture.name;
@@ -63,6 +65,13 @@
 - (CGSize) size
 {
     return _imageSize;
+}
+
+#pragma mark - Other representations
+
+- (CIImage *) CIImage
+{
+    return [CIImage imageWithTexture:texture.name size:_imageSize flipped:YES colorSpace:nil];
 }
 
 #pragma mark - GL texture
