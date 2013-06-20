@@ -90,9 +90,12 @@
     effect.transform.modelviewMatrix = GLKMatrix4Multiply([self.parent transform], transform);
     
     if (self.inputImage) {
+        effect.texture2d0.enabled = GL_TRUE;
         effect.texture2d0.envMode = GLKTextureEnvModeModulate;
         effect.texture2d0.target = GLKTextureTarget2D;
         effect.texture2d0.name = [self.inputImage textureName];
+    } else {
+        effect.texture2d0.enabled = GL_FALSE;
     }
 
     [effect prepareToDraw];
