@@ -9,6 +9,18 @@ By **Joris Kluivers**
 
 ![Screenshot](Screenshot.jpg)
 
+## Getting started
+
+Check out the repository, and init/update the submodules
+
+    git clone git@github.com:kluivers/qc-mobile.git
+    
+    cd qc-mobile
+    
+    git submodule init
+    git submodule update
+
+
 ## Required frameworks
 
 - QuartzCore
