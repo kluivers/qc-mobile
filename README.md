@@ -13,7 +13,7 @@ By **Joris Kluivers**
 
 Check out the repository, and init/update the submodules
 
-    git clone git@github.com:kluivers/qc-mobile.git
+    git clone https://github.com/kluivers/qc-mobile.git
     
     cd qc-mobile
     
