@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90B88DD177736D700005EC4 /* JKImageDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B88DA177733BB00005EC4 /* JKImageDataProvider.m */; };
+		A90B88DE177736DA00005EC4 /* JKImageCoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B88DC1777344000005EC4 /* JKImageCoreProvider.m */; };
+		A90B88E01777370200005EC4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A90B88DF1777370200005EC4 /* ImageIO.framework */; };
 		A9988249175BA0D700E0A3AA /* IteratorTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9988248175BA0D700E0A3AA /* IteratorTest.qtz */; };
 		A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824B175BA17F00E0A3AA /* JKIterator.m */; };
 		A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824E175BA72D00E0A3AA /* JKIteratorVariables.m */; };
@@ -95,6 +98,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A90B88D81777337600005EC4 /* JKImageProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKImageProvider.h; sourceTree = "<group>"; };
+		A90B88D9177733BB00005EC4 /* JKImageDataProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKImageDataProvider.h; sourceTree = "<group>"; };
+		A90B88DA177733BB00005EC4 /* JKImageDataProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKImageDataProvider.m; sourceTree = "<group>"; };
+		A90B88DB1777344000005EC4 /* JKImageCoreProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKImageCoreProvider.h; sourceTree = "<group>"; };
+		A90B88DC1777344000005EC4 /* JKImageCoreProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKImageCoreProvider.m; sourceTree = "<group>"; };
+		A90B88DF1777370200005EC4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		A9988248175BA0D700E0A3AA /* IteratorTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = IteratorTest.qtz; sourceTree = "<group>"; };
 		A998824A175BA17F00E0A3AA /* JKIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKIterator.h; sourceTree = "<group>"; };
 		A998824B175BA17F00E0A3AA /* JKIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIterator.m; sourceTree = "<group>"; };
@@ -257,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A90B88E01777370200005EC4 /* ImageIO.framework in Frameworks */,
 				A9EA0E491759543200E0E1B8 /* UIKit.framework in Frameworks */,
 				A9EA0E4B1759543200E0E1B8 /* Foundation.framework in Frameworks */,
 				A9EA0E4D1759543200E0E1B8 /* CoreGraphics.framework in Frameworks */,
@@ -274,13 +284,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A998825B175D2B9B00E0A3AA /* Values */ = {
+		A998825B175D2B9B00E0A3AA /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				A998825C175D2D0100E0A3AA /* JKImage.h */,
 				A998825D175D2D0100E0A3AA /* JKImage.m */,
+				A90B88D81777337600005EC4 /* JKImageProvider.h */,
+				A90B88D9177733BB00005EC4 /* JKImageDataProvider.h */,
+				A90B88DA177733BB00005EC4 /* JKImageDataProvider.m */,
+				A90B88DB1777344000005EC4 /* JKImageCoreProvider.h */,
+				A90B88DC1777344000005EC4 /* JKImageCoreProvider.m */,
 			);
-			name = Values;
+			name = Images;
 			path = ../../../Source/Values;
 			sourceTree = "<group>";
 		};
@@ -304,6 +319,7 @@
 		A9EA0E471759543200E0E1B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A90B88DF1777370200005EC4 /* ImageIO.framework */,
 				A9EA0E481759543200E0E1B8 /* UIKit.framework */,
 				A9EA0E4A1759543200E0E1B8 /* Foundation.framework */,
 				A9EA0E4C1759543200E0E1B8 /* CoreGraphics.framework */,
@@ -365,7 +381,7 @@
 				A9EA0E791759546100E0E1B8 /* JKContextUtil.m */,
 				A9EA0E7A1759546100E0E1B8 /* JKQCView.h */,
 				A9EA0E7B1759546100E0E1B8 /* JKQCView.m */,
-				A998825B175D2B9B00E0A3AA /* Values */,
+				A998825B175D2B9B00E0A3AA /* Images */,
 				A9EA0E7C1759546100E0E1B8 /* Patches */,
 				A9EA0EA31759546100E0E1B8 /* Util */,
 			);
@@ -603,6 +619,7 @@
 				A9EA0EAC1759546100E0E1B8 /* JKClear.m in Sources */,
 				A9EA0EAD1759546100E0E1B8 /* JKCounter.m in Sources */,
 				A9EA0EAE1759546100E0E1B8 /* JKGradient.m in Sources */,
+				A90B88DD177736D700005EC4 /* JKImageDataProvider.m in Sources */,
 				A9EA0EAF1759546100E0E1B8 /* JKImageDimensions.m in Sources */,
 				A9EA0EB01759546100E0E1B8 /* JKImageFilter.m in Sources */,
 				A9EA0EB11759546100E0E1B8 /* JKImageLoader.m in Sources */,
@@ -651,6 +668,7 @@
 				A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */,
 				A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */,
 				A9988252175BC86200E0A3AA /* JKConditional.m in Sources */,
+				A90B88DE177736DA00005EC4 /* JKImageCoreProvider.m in Sources */,
 				A9988255175BCFA600E0A3AA /* JKCamera.m in Sources */,
 				A998825A175D08CC00E0A3AA /* NSArray+JKFiltering.m in Sources */,
 				A998825E175D2D0100E0A3AA /* JKImage.m in Sources */,

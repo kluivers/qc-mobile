@@ -10,11 +10,18 @@
 
 #import "JKImage.h"
 
+// providers
+#import "JKImageProvider.h"
+#import "JKImageDataProvider.h"
+#import "JKImageCoreProvider.h"
+
 @interface JKImage ()
 @property(nonatomic, strong) CIImage *CIImage;
 @end
 
 @implementation JKImage {
+    id<JKImageProvider> _provider;
+    
     GLuint _textureName;
     GLuint _textureFramebuffer;
     
@@ -28,15 +35,16 @@
     self = [super init];
     
     if (self) {
-        UIImage *image = [UIImage imageWithData:data];
-        _imageSize = image.size;
-        
-        NSError *error = nil;
-        
-        texture = [GLKTextureLoader textureWithCGImage:image.CGImage options:nil error:&error];
-        if (!texture) {
-            NSLog(@"Error creating texture from data");
-        }
+        _provider = [[JKImageDataProvider alloc] initWithData:data];
+//        UIImage *image = [UIImage imageWithData:data];
+//        _imageSize = image.size;
+//        
+//        NSError *error = nil;
+//        
+//        texture = [GLKTextureLoader textureWithCGImage:image.CGImage options:nil error:&error];
+//        if (!texture) {
+//            NSLog(@"Error creating texture from data");
+//        }
     }
     
     return self;
@@ -47,31 +55,34 @@
     self = [super init];
     
     if (self) {
-        _CIImage = image;
+        _provider = [[JKImageCoreProvider alloc] initWithCIImage:image];
+//        _CIImage = image;
     }
     
     return self;
 }
 
-- (GLuint) textureName
-{
-    if (texture) {
-        return texture.name;
-    }
-    
-    return 0;
-}
-
 - (CGSize) size
 {
-    return _imageSize;
+    return [_provider size];
 }
 
-#pragma mark - Other representations
+#pragma mark - Representations
 
 - (CIImage *) CIImage
 {
-    return [CIImage imageWithTexture:texture.name size:_imageSize flipped:YES colorSpace:nil];
+    return [_provider ciImage];
+//    return [CIImage imageWithTexture:texture.name size:_imageSize flipped:YES colorSpace:nil];
+}
+
+- (GLuint) textureName
+{
+    return [_provider textureName];
+//    if (texture) {
+//        return texture.name;
+//    }
+//    
+//    return 0;
 }
 
 #pragma mark - GL texture
