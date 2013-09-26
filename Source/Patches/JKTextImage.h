@@ -8,7 +8,7 @@
 
 #import "JKPatch.h"
 
-@class CIImage;
+@class JKImage;
 
 @interface JKTextImage : JKPatch
 
@@ -21,7 +21,7 @@
 @property(nonatomic, strong) NSNumber *inputKerning;
 @property(nonatomic, strong) NSNumber *inputCulling;
 
-@property(nonatomic, readonly) CIImage *outputImage;
+@property(nonatomic, readonly) JKImage *outputImage;
 @property(nonatomic, readonly) NSNumber *outputWidth;
 @property(nonatomic, readonly) NSNumber *outputHeight;
 

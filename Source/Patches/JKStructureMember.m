@@ -17,18 +17,6 @@
 @dynamic inputStructure;
 @dynamic outputMember;
 
-- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
-{
-    self = [super initWithDictionary:dict composition:composition];
-    
-    if (self) {
-        NSLog(@"IDENTIFIER: %@", self.identifier);
-        NSLog(@"%@", dict);
-    }
-    
-    return self;
-}
-
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if ([self.identifier isEqualToString:@"key"]) {

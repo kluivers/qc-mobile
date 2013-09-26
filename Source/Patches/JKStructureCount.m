@@ -17,17 +17,6 @@
 @dynamic inputStructure;
 @dynamic outputCount;
 
-- (id) initWithDictionary:(NSDictionary *)dict composition:(JKComposition *)composition
-{
-    self = [super initWithDictionary:dict composition:composition];
-    
-    if (self) {
-        NSLog(@"%@", dict);
-    }
-    
-    return self;
-}
-
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     if ([self.inputStructure isKindOfClass:[NSArray class]]) {

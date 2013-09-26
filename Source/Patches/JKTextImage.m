@@ -11,21 +11,36 @@
 #import "JKTextImage.h"
 #import "JKContext.h"
 #import "JKContextUtil.h"
+#import "JKImage.h"
+
+@interface JKTextImage ()
+@property(nonatomic, strong) JKImage *outputImage;
+@end
 
 @implementation JKTextImage
 
+@dynamic inputFontName, inputGlyphSize;
 @dynamic inputString;
+
+@dynamic outputImage;
+
+- (UIFont *) fontOfSize:(CGFloat)size
+{
+    NSString *fontName = self.inputFontName;
+    
+    UIFont *font = [UIFont fontWithName:fontName size:size];
+    if (!font) {
+        font = [UIFont systemFontOfSize:size];
+    }
+
+    return font;
+}
 
 - (NSAttributedString *) attributedStringInContext:(id<JKContext>)ctx
 {
     CGFloat fontSize = JKUnitsToPixels(ctx, [self.inputGlyphSize floatValue]);
-    NSString *fontName = self.inputFontName;
-    NSLog(@"Font name: %@", fontName);
     
-    UIFont *font = [UIFont fontWithName:fontName size:fontSize];
-    NSLog(@"Font: %@", font);
-    
-    return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{NSFontAttributeName: font}];
+    return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{NSFontAttributeName: [self fontOfSize:fontSize]}];
 }
 
 - (CGSize) imageSizeForCurrentInputInContext:(id<JKContext>)ctx
@@ -59,14 +74,13 @@
         return;
     }
     
-    NSLog(@"Input string: %@", self.inputString);
     CGSize size = [self imageSizeForCurrentInputInContext:context];
     
     _outputWidth = @(JKPixelsToUnits(context, size.width));
     _outputHeight = @(JKPixelsToUnits(context, size.height));
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGImageAlphaPremultipliedLast);
+    CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(rgbColorSpace);
     
     CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
@@ -75,16 +89,18 @@
     
     // TODO: core image text rendering
     
-    
+    CGFloat fontSize = JKUnitsToPixels(context, [self.inputGlyphSize floatValue]);
+    UIFont *font = [self fontOfSize:fontSize];
     
     // NSLog(@"Font name: %@", self.inputFontName);
-    // [@"hello world" drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:[UIFont fontWithName:self.inputFontName size:24.0] fontSize:24.0f lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
+    [self.inputString drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:font fontSize:fontSize lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
     
     CGImageRef image = CGBitmapContextCreateImage(ctx);
     
     CGContextRelease(ctx);
     
-    _outputImage = [CIImage imageWithCGImage:image];
+    JKImage *resultImage = [[JKImage alloc] initWithCIImage:[CIImage imageWithCGImage:image]];
+    self.outputImage = resultImage;
     
     CGImageRelease(image);
 }
