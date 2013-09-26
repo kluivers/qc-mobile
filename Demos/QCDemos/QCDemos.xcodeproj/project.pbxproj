@@ -23,6 +23,10 @@
 		A99E2458175A5853003E1D6E /* JKClock.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2457175A5853003E1D6E /* JKClock.m */; };
 		A99E245B175A5F92003E1D6E /* JKLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E245A175A5F92003E1D6E /* JKLogic.m */; };
 		A99E2460175A73EA003E1D6E /* JKBillboard.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E245F175A73EA003E1D6E /* JKBillboard.m */; };
+		A9AF791417F3761100BA7EF8 /* JavascriptTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9AF791317F375EF00BA7EF8 /* JavascriptTest.qtz */; };
+		A9AF791717F3764D00BA7EF8 /* JKJavaScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AF791617F3764D00BA7EF8 /* JKJavaScript.m */; };
+		A9B4930A17F478A400480EBC /* JKStructureMember.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B4930917F478A400480EBC /* JKStructureMember.m */; };
+		A9B4930D17F478FA00480EBC /* JKStructureCount.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B4930C17F478FA00480EBC /* JKStructureCount.m */; };
 		A9EA0E491759543200E0E1B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0E481759543200E0E1B8 /* UIKit.framework */; };
 		A9EA0E4B1759543200E0E1B8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0E4A1759543200E0E1B8 /* Foundation.framework */; };
 		A9EA0E4D1759543200E0E1B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EA0E4C1759543200E0E1B8 /* CoreGraphics.framework */; };
@@ -127,6 +131,13 @@
 		A99E245A175A5F92003E1D6E /* JKLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKLogic.m; sourceTree = "<group>"; };
 		A99E245E175A73EA003E1D6E /* JKBillboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKBillboard.h; sourceTree = "<group>"; };
 		A99E245F175A73EA003E1D6E /* JKBillboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKBillboard.m; sourceTree = "<group>"; };
+		A9AF791317F375EF00BA7EF8 /* JavascriptTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = JavascriptTest.qtz; sourceTree = "<group>"; };
+		A9AF791517F3764D00BA7EF8 /* JKJavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKJavaScript.h; sourceTree = "<group>"; };
+		A9AF791617F3764D00BA7EF8 /* JKJavaScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKJavaScript.m; sourceTree = "<group>"; };
+		A9B4930817F478A400480EBC /* JKStructureMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKStructureMember.h; sourceTree = "<group>"; };
+		A9B4930917F478A400480EBC /* JKStructureMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKStructureMember.m; sourceTree = "<group>"; };
+		A9B4930B17F478FA00480EBC /* JKStructureCount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKStructureCount.h; sourceTree = "<group>"; };
+		A9B4930C17F478FA00480EBC /* JKStructureCount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKStructureCount.m; sourceTree = "<group>"; };
 		A9EA0E451759543200E0E1B8 /* QCDemos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QCDemos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EA0E481759543200E0E1B8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A9EA0E4A1759543200E0E1B8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -449,6 +460,12 @@
 				A9988251175BC86100E0A3AA /* JKConditional.m */,
 				A9988253175BCFA600E0A3AA /* JKCamera.h */,
 				A9988254175BCFA600E0A3AA /* JKCamera.m */,
+				A9AF791517F3764D00BA7EF8 /* JKJavaScript.h */,
+				A9AF791617F3764D00BA7EF8 /* JKJavaScript.m */,
+				A9B4930817F478A400480EBC /* JKStructureMember.h */,
+				A9B4930917F478A400480EBC /* JKStructureMember.m */,
+				A9B4930B17F478FA00480EBC /* JKStructureCount.h */,
+				A9B4930C17F478FA00480EBC /* JKStructureCount.m */,
 			);
 			name = Patches;
 			path = ../../../Source/Patches;
@@ -472,6 +489,7 @@
 		A9EA0ED31759578200E0E1B8 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A9AF791317F375EF00BA7EF8 /* JavascriptTest.qtz */,
 				A9988256175BDC9700E0A3AA /* TransformTest.qtz */,
 				A9988248175BA0D700E0A3AA /* IteratorTest.qtz */,
 				A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */,
@@ -591,6 +609,7 @@
 				A9EA0E5D1759543200E0E1B8 /* Default@2x.png in Resources */,
 				A9EA0E5F1759543200E0E1B8 /* Default-568h@2x.png in Resources */,
 				A9EA0E621759543200E0E1B8 /* MainStoryboard_iPhone.storyboard in Resources */,
+				A9AF791417F3761100BA7EF8 /* JavascriptTest.qtz in Resources */,
 				A9EA0E651759543200E0E1B8 /* MainStoryboard_iPad.storyboard in Resources */,
 				A9EA0EDD1759581D00E0E1B8 /* Bouncing.qtz in Resources */,
 				A9EA0EE01759581D00E0E1B8 /* RotateScroll.qtz in Resources */,
@@ -644,11 +663,13 @@
 				A9EA0F17175A0FC100E0E1B8 /* _DDFunctionTerm.m in Sources */,
 				A9EA0F18175A0FC100E0E1B8 /* _DDFunctionUtilities.m in Sources */,
 				A9EA0F19175A0FC100E0E1B8 /* _DDGroupTerm.m in Sources */,
+				A9B4930A17F478A400480EBC /* JKStructureMember.m in Sources */,
 				A9EA0F1A175A0FC100E0E1B8 /* _DDNumberExpression.m in Sources */,
 				A9EA0F1B175A0FC100E0E1B8 /* _DDNumberTerm.m in Sources */,
 				A9EA0F1C175A0FC100E0E1B8 /* _DDOperatorInfo.m in Sources */,
 				A9EA0F1D175A0FC100E0E1B8 /* _DDOperatorTerm.m in Sources */,
 				A9EA0F1E175A0FC100E0E1B8 /* _DDParserTerm.m in Sources */,
+				A9B4930D17F478FA00480EBC /* JKStructureCount.m in Sources */,
 				A9EA0F1F175A0FC100E0E1B8 /* _DDRewriteRule.m in Sources */,
 				A9EA0F20175A0FC100E0E1B8 /* _DDVariableExpression.m in Sources */,
 				A9EA0F21175A0FC100E0E1B8 /* _DDVariableTerm.m in Sources */,
@@ -668,6 +689,7 @@
 				A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */,
 				A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */,
 				A9988252175BC86200E0A3AA /* JKConditional.m in Sources */,
+				A9AF791717F3764D00BA7EF8 /* JKJavaScript.m in Sources */,
 				A90B88DE177736DA00005EC4 /* JKImageCoreProvider.m in Sources */,
 				A9988255175BCFA600E0A3AA /* JKCamera.m in Sources */,
 				A998825A175D08CC00E0A3AA /* NSArray+JKFiltering.m in Sources */,

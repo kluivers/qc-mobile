@@ -14,6 +14,8 @@
 
 @implementation JKTextImage
 
+@dynamic inputString;
+
 - (NSAttributedString *) attributedStringInContext:(id<JKContext>)ctx
 {
     CGFloat fontSize = JKUnitsToPixels(ctx, [self.inputGlyphSize floatValue]);
@@ -57,6 +59,7 @@
         return;
     }
     
+    NSLog(@"Input string: %@", self.inputString);
     CGSize size = [self imageSizeForCurrentInputInContext:context];
     
     _outputWidth = @(JKPixelsToUnits(context, size.width));
