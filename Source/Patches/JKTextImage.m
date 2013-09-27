@@ -99,7 +99,7 @@
     
     CGContextRelease(ctx);
     
-    JKImage *resultImage = [[JKImage alloc] initWithCIImage:[CIImage imageWithCGImage:image]];
+    JKImage *resultImage = [[JKImage alloc] initWithCIImage:[CIImage imageWithCGImage:image] context:context.ciContext];
     self.outputImage = resultImage;
     
     CGImageRelease(image);
