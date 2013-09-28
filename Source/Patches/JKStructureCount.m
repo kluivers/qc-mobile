@@ -21,6 +21,7 @@
 {
     if ([self.inputStructure isKindOfClass:[NSArray class]]) {
         self.outputCount = @([(NSArray *)self.inputStructure count]);
+        NSLog(@"Output count: %@", self.outputCount);
     }
 }
 

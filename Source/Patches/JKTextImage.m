@@ -15,6 +15,9 @@
 
 @interface JKTextImage ()
 @property(nonatomic, strong) JKImage *outputImage;
+
+@property(nonatomic, strong) NSNumber *outputWidth;
+@property(nonatomic, strong) NSNumber *outputHeight;
 @end
 
 @implementation JKTextImage
@@ -22,6 +25,7 @@
 @dynamic inputFontName, inputGlyphSize;
 @dynamic inputString;
 
+@dynamic outputHeight, outputWidth;
 @dynamic outputImage;
 
 - (UIFont *) fontOfSize:(CGFloat)size
@@ -40,9 +44,11 @@
 {
     CGFloat fontSize = JKUnitsToPixels(ctx, [self.inputGlyphSize floatValue]);
     
+    NSLog(@"Font size: %f", fontSize);
+    
     return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{
-        NSFontAttributeName: [self fontOfSize:fontSize],
-        NSForegroundColorAttributeName: [UIColor redColor]
+        (id)kCTFontAttributeName: [self fontOfSize:fontSize],
+        (id)kCTForegroundColorAttributeName: (id)[UIColor whiteColor].CGColor
     }];
 }
 
@@ -79,8 +85,8 @@
     
     CGSize size = [self imageSizeForString:renderText inContext:context];
     
-    _outputWidth = @(JKPixelsToUnits(context, size.width));
-    _outputHeight = @(JKPixelsToUnits(context, size.height));
+    self.outputWidth = @(JKPixelsToUnits(context, size.width));
+    self.outputHeight = @(JKPixelsToUnits(context, size.height));
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
     CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);

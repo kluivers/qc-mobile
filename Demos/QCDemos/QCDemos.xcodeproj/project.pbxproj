@@ -18,6 +18,7 @@
 		A9988257175BDC9700E0A3AA /* TransformTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9988256175BDC9700E0A3AA /* TransformTest.qtz */; };
 		A998825A175D08CC00E0A3AA /* NSArray+JKFiltering.m in Sources */ = {isa = PBXBuildFile; fileRef = A9988259175D08CC00E0A3AA /* NSArray+JKFiltering.m */; };
 		A998825E175D2D0100E0A3AA /* JKImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A998825D175D2D0100E0A3AA /* JKImage.m */; };
+		A99B39B617F719190008E6FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99B39B517F719190008E6FE /* JavaScriptCore.framework */; };
 		A99E2452175A5064003E1D6E /* iMessenger Concept.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */; };
 		A99E2455175A5127003E1D6E /* JKColorFromComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2454175A5127003E1D6E /* JKColorFromComponents.m */; };
 		A99E2458175A5853003E1D6E /* JKClock.m in Sources */ = {isa = PBXBuildFile; fileRef = A99E2457175A5853003E1D6E /* JKClock.m */; };
@@ -122,6 +123,7 @@
 		A9988259175D08CC00E0A3AA /* NSArray+JKFiltering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+JKFiltering.m"; sourceTree = "<group>"; };
 		A998825C175D2D0100E0A3AA /* JKImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKImage.h; sourceTree = "<group>"; };
 		A998825D175D2D0100E0A3AA /* JKImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKImage.m; sourceTree = "<group>"; };
+		A99B39B517F719190008E6FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		A99E2451175A5064003E1D6E /* iMessenger Concept.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = "iMessenger Concept.qtz"; sourceTree = "<group>"; };
 		A99E2453175A5127003E1D6E /* JKColorFromComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKColorFromComponents.h; sourceTree = "<group>"; };
 		A99E2454175A5127003E1D6E /* JKColorFromComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKColorFromComponents.m; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A99B39B617F719190008E6FE /* JavaScriptCore.framework in Frameworks */,
 				A90B88E01777370200005EC4 /* ImageIO.framework in Frameworks */,
 				A9EA0E491759543200E0E1B8 /* UIKit.framework in Frameworks */,
 				A9EA0E4B1759543200E0E1B8 /* Foundation.framework in Frameworks */,
@@ -330,6 +333,7 @@
 		A9EA0E471759543200E0E1B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A99B39B517F719190008E6FE /* JavaScriptCore.framework */,
 				A90B88DF1777370200005EC4 /* ImageIO.framework */,
 				A9EA0E481759543200E0E1B8 /* UIKit.framework */,
 				A9EA0E4A1759543200E0E1B8 /* Foundation.framework */,
@@ -788,6 +792,7 @@
 		A9EA0E6F1759543200E0E1B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QCDemos/QCDemos-Prefix.pch";
 				INFOPLIST_FILE = "QCDemos/QCDemos-Info.plist";
@@ -799,6 +804,7 @@
 		A9EA0E701759543200E0E1B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QCDemos/QCDemos-Prefix.pch";
 				INFOPLIST_FILE = "QCDemos/QCDemos-Info.plist";

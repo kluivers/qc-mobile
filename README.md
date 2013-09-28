@@ -31,6 +31,7 @@ Check out the repository, and init/update the submodules
 - CoreText
 - OpenGLES
 - GLKit
+- JavaScriptCore
 
 ## Other dependencies
 
