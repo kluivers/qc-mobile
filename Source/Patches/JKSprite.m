@@ -71,9 +71,11 @@
     if (![self._enable boolValue]) {
         return;
     }
-
+    
     GLKBaseEffect *effect = qcContext.effect;
     effect.transform.projectionMatrix = qcContext.projectionMatrix;
+    
+    NSLog(@"Draw sprite at: %@,%@", self.inputX, self.inputY);
     
     GLKMatrix4 translate = GLKMatrix4MakeTranslation([self.inputX floatValue], [self.inputY floatValue], [self.inputZ floatValue]);
     

@@ -44,8 +44,6 @@
 {
     CGFloat fontSize = JKUnitsToPixels(ctx, [self.inputGlyphSize floatValue]);
     
-    NSLog(@"Font size: %f", fontSize);
-    
     return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{
         (id)kCTFontAttributeName: [self fontOfSize:fontSize],
         (id)kCTForegroundColorAttributeName: (id)[UIColor whiteColor].CGColor
@@ -95,9 +93,6 @@
     CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
     CGContextFillRect(ctx, CGRectMake(0, 0, size.width, size.height));
     
-    
-    // TODO: core text rendering
-    
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     
     CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
@@ -113,7 +108,6 @@
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
     CFRelease(framesetter);
     
-    //Draw Frame
     CTFrameDraw(frame, ctx);
     
     CGImageRef image = CGBitmapContextCreateImage(ctx);

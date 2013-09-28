@@ -104,8 +104,6 @@
     
     [self setupCoreImageFramebuffer];
     
-    NSLog(@"Image size: %@", NSStringFromCGRect(_image.extent));
-    
     /*
      OpenGL framebuffer for CIImage drawing
      from: https://github.com/bdudney/Experiments/blob/200d71a5c903fe20eac8a56d338cd409ccd83aab/AVCoreImageIntegration/AVCoreImageIntegration/GFSViewController.m

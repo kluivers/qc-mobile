@@ -12,6 +12,7 @@
 
 @interface JKJavaScript ()
 @property(nonatomic, strong) JSContext *context;
+@property(nonatomic, strong) NSArray *argumentNames;
 @end
 
 @implementation JKJavaScript
@@ -74,6 +75,23 @@
     return newString;
 }
 
+- (NSArray *) mainArgumentNames:(NSString *)arguments
+{
+    NSMutableArray *names = [NSMutableArray array];
+    
+    NSArray *splits = [arguments componentsSeparatedByString:@","];
+    
+    for (NSString *argument in splits) {
+        NSString *argumentName = [argument stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        // TODO: what if the argument is an array?
+        
+        [names addObject:argumentName];
+    }
+    
+    return names;
+}
+
 - (NSString *) preprocessScript:(NSString *)script
 {
     NSLog(@"Process script: %@", script);
@@ -115,14 +133,12 @@
             
             inputAnnotationRange.length = [scanner scanLocation] - inputAnnotationRange.location;
             
-            NSLog(@"Input annotations: %@", inputArguments);
-            
-            
             if (inputArguments) {
                 NSString *cleanInputArguments = [self cleanInputArguments:inputArguments];
-            
-            
-            // remove annotations from input arguments
+                
+                self.argumentNames = [self mainArgumentNames:cleanInputArguments];
+                
+                // remove annotations from input arguments
                 cleanScript = [cleanScript stringByReplacingCharactersInRange:inputAnnotationRange withString:cleanInputArguments];
             }
             
@@ -136,11 +152,36 @@
     return cleanScript;
 }
 
+- (NSArray *) argumentsForMain
+{
+    NSMutableArray *arguments = nil;
+    
+    if ([self.argumentNames count] > 0) {
+        arguments = [NSMutableArray array];
+        
+        for (NSString *argumentName in self.argumentNames) {
+            // TODO: see if argument is array type ([])
+            
+            id value = [self valueForInputKey:argumentName];
+            
+            if (!value) {
+                [arguments addObject:[NSNull null]];
+            } else {
+                [arguments addObject:[self valueForInputKey:argumentName]];
+            }
+        }
+    }
+    
+    return arguments;
+}
+
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
     JSValue *main = self.context[@"main"];
     
-    JSValue *jsResult = [main callWithArguments:nil];
+    NSArray *arguments = [self argumentsForMain];
+    
+    JSValue *jsResult = [main callWithArguments:arguments];
     NSDictionary *dictionaryResult = [jsResult toDictionary];
     
     for (NSString *key in dictionaryResult) {
