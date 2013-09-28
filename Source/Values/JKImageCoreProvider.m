@@ -48,7 +48,7 @@
         NSLog(@"error = %d", error);
     }
     
-    glGenBuffers(1, &_textureFramebuffer);
+    glGenFramebuffers(1, &_textureFramebuffer);
     glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
     glViewport(0, 0, 256, 256);
     
@@ -60,7 +60,8 @@
     // create and attach the texture
     glGenTextures(1, &_textureName);
     glBindTexture(GL_TEXTURE_2D, _textureName);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 256, 256, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
@@ -93,10 +94,6 @@
     if(error != GL_NO_ERROR) {
         NSLog(@"error = %d", error);
     }
-    
-    // bind _sourceTexgture to texture 1
-    //glActiveTexture(GL_TEXTURE1);
-    //glBindTexture(GL_TEXTURE_2D, _textureName);
 }
 
 - (GLuint) textureName
@@ -118,6 +115,9 @@
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldFramebuffer);
     
     glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
+    
+    glClearColor(1.0, 1.0, 0.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
     
     [_context drawImage:_image inRect:CGRectMake(0, 0, 256, 256) fromRect:_image.extent];
     
