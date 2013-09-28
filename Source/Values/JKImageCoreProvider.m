@@ -81,7 +81,7 @@
 	}
     
     // now that the framebuffer is complet clear it to pink
-    glClearColor(1.0, 0.0, 1.0, 1.0);
+    glClearColor(1.0, 0.0, 1.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
     // unbind the _sourceTexture
@@ -116,8 +116,11 @@
     
     glBindFramebuffer(GL_FRAMEBUFFER, _textureFramebuffer);
     
-    glClearColor(1.0, 1.0, 0.0, 1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
     glClear(GL_COLOR_BUFFER_BIT);
+    
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     
     [_context drawImage:_image inRect:CGRectMake(0, 0, 256, 256) fromRect:_image.extent];
     

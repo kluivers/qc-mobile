@@ -40,10 +40,13 @@
 {
     CGFloat fontSize = JKUnitsToPixels(ctx, [self.inputGlyphSize floatValue]);
     
-    return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{NSFontAttributeName: [self fontOfSize:fontSize]}];
+    return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{
+        NSFontAttributeName: [self fontOfSize:fontSize],
+        NSForegroundColorAttributeName: [UIColor redColor]
+    }];
 }
 
-- (CGSize) imageSizeForCurrentInputInContext:(id<JKContext>)ctx
+- (CGSize) imageSizeForString:(NSAttributedString *)string inContext:(id<JKContext>)ctx
 {
     CGSize maxSize = CGSizeMake(FLT_MAX, FLT_MAX);
     
@@ -58,9 +61,7 @@
         maxSize.height = maxHeight;
     }
     
-    NSAttributedString *renderText = [self attributedStringInContext:ctx];
-    
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (__bridge CFAttributedStringRef) renderText);
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)string);
     CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, maxSize, NULL);
     CFRelease(framesetter);
     
@@ -74,7 +75,9 @@
         return;
     }
     
-    CGSize size = [self imageSizeForCurrentInputInContext:context];
+    NSAttributedString *renderText = [self attributedStringInContext:context];
+    
+    CGSize size = [self imageSizeForString:renderText inContext:context];
     
     _outputWidth = @(JKPixelsToUnits(context, size.width));
     _outputHeight = @(JKPixelsToUnits(context, size.height));
@@ -83,17 +86,29 @@
     CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(rgbColorSpace);
     
-    CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
     CGContextFillRect(ctx, CGRectMake(0, 0, size.width, size.height));
     
     
-    // TODO: core image text rendering
+    // TODO: core text rendering
     
-    CGFloat fontSize = JKUnitsToPixels(context, [self.inputGlyphSize floatValue]);
-    UIFont *font = [self fontOfSize:fontSize];
+    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     
-    // NSLog(@"Font name: %@", self.inputFontName);
-    [self.inputString drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:font fontSize:fontSize lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
+    CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
+    CGContextTranslateCTM(ctx, 0, size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
+    
+    //Create Frame
+    CGMutablePathRef path = CGPathCreateMutable();
+    
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));
+    
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)renderText);
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+    CFRelease(framesetter);
+    
+    //Draw Frame
+    CTFrameDraw(frame, ctx);
     
     CGImageRef image = CGBitmapContextCreateImage(ctx);
     
