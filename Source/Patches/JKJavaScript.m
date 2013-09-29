@@ -8,6 +8,8 @@
 
 #import "JKJavaScript.h"
 
+#import "NSArray+JKFiltering.h"
+
 @import JavaScriptCore;
 
 @interface JKJavaScript ()
@@ -75,6 +77,22 @@
     return newString;
 }
 
+- (NSString *) inputArgumentsWithoutArrayAnnotation:(NSString *)input
+{
+    NSArray *arguments = [input componentsSeparatedByString:@","];
+    
+    NSArray *newArguments = [arguments jk_map:^(NSString *argument) {
+        NSRange annotationStart = [argument rangeOfString:@"["];
+        if (annotationStart.location == NSNotFound) {
+            return argument;
+        }
+        
+        return [argument substringToIndex:annotationStart.location];
+    }];
+    
+    return [newArguments componentsJoinedByString:@", "];
+}
+
 - (NSArray *) mainArgumentNames:(NSString *)arguments
 {
     NSMutableArray *names = [NSMutableArray array];
@@ -134,11 +152,15 @@
             inputAnnotationRange.length = [scanner scanLocation] - inputAnnotationRange.location;
             
             if (inputArguments) {
+                // remove type annotations
                 NSString *cleanInputArguments = [self cleanInputArguments:inputArguments];
                 
                 self.argumentNames = [self mainArgumentNames:cleanInputArguments];
                 
-                // remove annotations from input arguments
+                // TODO: also remove array count annotation
+                cleanInputArguments = [self inputArgumentsWithoutArrayAnnotation:cleanInputArguments];
+
+                // replace input arguments in original script
                 cleanScript = [cleanScript stringByReplacingCharactersInRange:inputAnnotationRange withString:cleanInputArguments];
             }
             
@@ -152,6 +174,39 @@
     return cleanScript;
 }
 
+/*! Collects the array of values for function arguments in form of
+ * argumentName[n], to indicate a javascript array of a certain count
+ * as input argument.
+ */
+- (NSArray *) valueArrayForArgument:(NSString *)argument
+{
+    NSRange countRange;
+    countRange.location = [argument rangeOfString:@"["].location + 1;
+    countRange.length = [argument rangeOfString:@"]"].location - countRange.location;
+    
+    NSInteger count = [[argument substringWithRange:countRange] integerValue];
+    NSString *argumentName = [argument substringToIndex:countRange.location - 1];
+    
+    NSMutableArray *values = [NSMutableArray array];
+    
+    for (NSInteger i=0; i<count; i++) {
+        NSString *inputKeyName = [NSString stringWithFormat:@"%@_%d", argumentName, i];
+        
+        id value = [self valueForInputKey:inputKeyName];
+        if (value) {
+            [values addObject:value];
+        } else {
+            [values addObject:[NSNull null]];
+        }
+    }
+    
+    return values;
+}
+
+/*! 
+ * Collects all named arguments for the main function and returns
+ * an array of the values in the correct order.
+ */
 - (NSArray *) argumentsForMain
 {
     NSMutableArray *arguments = nil;
@@ -161,13 +216,19 @@
         
         for (NSString *argumentName in self.argumentNames) {
             // TODO: see if argument is array type ([])
+            id value = nil;
             
-            id value = [self valueForInputKey:argumentName];
+            NSRange arrayRange = [argumentName rangeOfString:@"["];
+            if (arrayRange.location != NSNotFound) {
+                value = [self valueArrayForArgument:argumentName];
+            } else {
+                value = [self valueForInputKey:argumentName];
+            }
             
             if (!value) {
                 [arguments addObject:[NSNull null]];
             } else {
-                [arguments addObject:[self valueForInputKey:argumentName]];
+                [arguments addObject:value];
             }
         }
     }
