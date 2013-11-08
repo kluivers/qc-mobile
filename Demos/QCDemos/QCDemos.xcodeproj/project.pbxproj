@@ -10,6 +10,7 @@
 		A90B88DD177736D700005EC4 /* JKImageDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B88DA177733BB00005EC4 /* JKImageDataProvider.m */; };
 		A90B88DE177736DA00005EC4 /* JKImageCoreProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = A90B88DC1777344000005EC4 /* JKImageCoreProvider.m */; };
 		A90B88E01777370200005EC4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A90B88DF1777370200005EC4 /* ImageIO.framework */; };
+		A94E9090182CFD1F004F5C62 /* ImageWithString.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94E908F182CFD1F004F5C62 /* ImageWithString.qtz */; };
 		A9988249175BA0D700E0A3AA /* IteratorTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9988248175BA0D700E0A3AA /* IteratorTest.qtz */; };
 		A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824B175BA17F00E0A3AA /* JKIterator.m */; };
 		A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824E175BA72D00E0A3AA /* JKIteratorVariables.m */; };
@@ -109,6 +110,7 @@
 		A90B88DB1777344000005EC4 /* JKImageCoreProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JKImageCoreProvider.h; sourceTree = "<group>"; };
 		A90B88DC1777344000005EC4 /* JKImageCoreProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JKImageCoreProvider.m; sourceTree = "<group>"; };
 		A90B88DF1777370200005EC4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		A94E908F182CFD1F004F5C62 /* ImageWithString.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageWithString.qtz; sourceTree = "<group>"; };
 		A9988248175BA0D700E0A3AA /* IteratorTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = IteratorTest.qtz; sourceTree = "<group>"; };
 		A998824A175BA17F00E0A3AA /* JKIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKIterator.h; sourceTree = "<group>"; };
 		A998824B175BA17F00E0A3AA /* JKIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIterator.m; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 		A9EA0ED31759578200E0E1B8 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A94E908F182CFD1F004F5C62 /* ImageWithString.qtz */,
 				A9AF791317F375EF00BA7EF8 /* JavascriptTest.qtz */,
 				A9988256175BDC9700E0A3AA /* TransformTest.qtz */,
 				A9988248175BA0D700E0A3AA /* IteratorTest.qtz */,
@@ -608,6 +611,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A94E9090182CFD1F004F5C62 /* ImageWithString.qtz in Resources */,
 				A9EA0E531759543200E0E1B8 /* InfoPlist.strings in Resources */,
 				A9EA0E5B1759543200E0E1B8 /* Default.png in Resources */,
 				A9EA0E5D1759543200E0E1B8 /* Default@2x.png in Resources */,
