@@ -8,9 +8,11 @@
 
 #import "JKPatch.h"
 
+@class JKImage;
+
 @interface JKImageFilter : JKPatch
 
-@property(nonatomic, strong) CIImage *inputImage;
-@property(nonatomic, readonly) CIImage *outputImage;
+@property(nonatomic, strong) JKImage *inputImage;
+@property(nonatomic, readonly) JKImage *outputImage;
 
 @end

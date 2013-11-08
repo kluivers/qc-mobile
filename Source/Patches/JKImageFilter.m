@@ -9,9 +9,11 @@
 #import <CoreImage/CoreImage.h>
 
 #import "JKImageFilter.h"
+#import "JKImage.h"
+#import "JKContext.h"
 
 @interface JKImageFilter ()
-@property(nonatomic, strong) CIImage *outputImage;
+@property(nonatomic, strong) JKImage *outputImage;
 @end
 
 @implementation JKImageFilter {
@@ -108,10 +110,16 @@
     }
     
     for (NSString *key in [_filter inputKeys]) {
-        [_filter setValue:[self valueForInputKey:key] forKey:key];
+        // TODO: general check to see if input value is JKImage
+        if ([key isEqualToString:@"inputImage"]) {
+            [_filter setValue:[self.inputImage CIImage] forKey:key];
+        } else {
+            [_filter setValue:[self valueForInputKey:key] forKey:key];
+        }
     }
     
-    self.outputImage = [_filter valueForKey:@"outputImage"];
+    CIImage *outputImage = [_filter valueForKey:@"outputImage"];
+    self.outputImage = [[JKImage alloc] initWithCIImage:outputImage context:context.ciContext];
 }
 
 @end
