@@ -342,11 +342,9 @@ NSString * const JKPortTypeColor = @"JKColorPort";
 
 - (void) execute:(id<JKContext>)context atTime:(NSTimeInterval)time
 {
-    /* TODO: enabled is only for renderers
-    if (![self._enable boolValue]) {
+    if ([self isRenderer] && ![self._enable boolValue]) {
         return;
     }
-     */
     
     if ([self.nodes count] < 1) {
         return;
