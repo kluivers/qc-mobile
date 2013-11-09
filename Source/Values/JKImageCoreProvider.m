@@ -28,6 +28,11 @@
     return self;
 }
 
+- (void) dealloc
+{
+    glDeleteTextures(1, &_textureName);
+}
+
 - (CIImage *) ciImage
 {
     return _image;
@@ -128,6 +133,8 @@
     if(error != GL_NO_ERROR) {
         NSLog(@"error = %d", error);
     }
+    
+    glDeleteFramebuffers(1, &_textureFramebuffer);
     
     return _textureName;
 }
