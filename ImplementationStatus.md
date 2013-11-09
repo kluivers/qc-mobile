@@ -21,6 +21,10 @@
 - Iterator
 - IteratorVariables
 - Conditional
+- JavaScript
+- Structure Key Member
+- Structure Index Member
+- Structure Count
 
 ### Virtual patches
 
@@ -30,7 +34,7 @@ Built-in patches that are actually implemented as composition and work because t
 - Pixels to Units
 
 
-## Partial / In progress
+## In progress / Needs improvement
 
 - Iterator
 - TextImage

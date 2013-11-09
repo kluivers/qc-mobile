@@ -11,5 +11,6 @@
 @interface NSArray (JKFiltering)
 
 - (NSArray *) jk_filter:(BOOL(^)(id obj))filterBlock;
+- (NSArray *) jk_map:(id(^)(id obj))mapBlock;
 
 @end

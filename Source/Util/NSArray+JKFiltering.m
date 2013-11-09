@@ -21,4 +21,18 @@
     return result;
 }
 
+- (NSArray *) jk_map:(id(^)(id obj))mapBlock
+{
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (id obj in self) {
+        id mappedObj = mapBlock(obj);
+        if (mappedObj) {
+            [result addObject:mappedObj];
+        }
+    }
+    
+    return result;
+}
+
 @end

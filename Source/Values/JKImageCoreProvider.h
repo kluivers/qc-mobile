@@ -12,6 +12,6 @@
 
 @interface JKImageCoreProvider : NSObject <JKImageProvider>
 
-- (id) initWithCIImage:(CIImage *)image;
+- (id) initWithCIImage:(CIImage *)image context:(CIContext *)context;
 
 @end

@@ -50,12 +50,12 @@
     return self;
 }
 
-- (id) initWithCIImage:(CIImage *)image
+- (id) initWithCIImage:(CIImage *)image context:(CIContext *)context
 {
     self = [super init];
     
     if (self) {
-        _provider = [[JKImageCoreProvider alloc] initWithCIImage:image];
+        _provider = [[JKImageCoreProvider alloc] initWithCIImage:image context:context];
 //        _CIImage = image;
     }
     

@@ -17,7 +17,7 @@
 @property(nonatomic, readonly) CGSize size;
 
 - (id) initWithData:(NSData *)data;
-- (id) initWithCIImage:(CIImage *)image;
+- (id) initWithCIImage:(CIImage *)image context:(CIContext *)context;
 
 - (GLuint) textureName;
 - (CIImage *) CIImage;

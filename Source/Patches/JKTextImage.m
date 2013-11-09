@@ -11,22 +11,46 @@
 #import "JKTextImage.h"
 #import "JKContext.h"
 #import "JKContextUtil.h"
+#import "JKImage.h"
+
+@interface JKTextImage ()
+@property(nonatomic, strong) JKImage *outputImage;
+
+@property(nonatomic, strong) NSNumber *outputWidth;
+@property(nonatomic, strong) NSNumber *outputHeight;
+@end
 
 @implementation JKTextImage
+
+@dynamic inputFontName, inputGlyphSize;
+@dynamic inputString;
+
+@dynamic outputHeight, outputWidth;
+@dynamic outputImage;
+
+- (UIFont *) fontOfSize:(CGFloat)size
+{
+    NSString *fontName = self.inputFontName;
+    
+    UIFont *font = [UIFont fontWithName:fontName size:size];
+    if (!font) {
+        font = [UIFont systemFontOfSize:size];
+    }
+
+    return font;
+}
 
 - (NSAttributedString *) attributedStringInContext:(id<JKContext>)ctx
 {
     CGFloat fontSize = JKUnitsToPixels(ctx, [self.inputGlyphSize floatValue]);
-    NSString *fontName = self.inputFontName;
-    NSLog(@"Font name: %@", fontName);
     
-    UIFont *font = [UIFont fontWithName:fontName size:fontSize];
-    NSLog(@"Font: %@", font);
-    
-    return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{NSFontAttributeName: font}];
+    return [[NSMutableAttributedString alloc] initWithString:self.inputString attributes:@{
+        (id)kCTFontAttributeName: [self fontOfSize:fontSize],
+        (id)kCTForegroundColorAttributeName: (id)[UIColor whiteColor].CGColor
+    }];
 }
 
-- (CGSize) imageSizeForCurrentInputInContext:(id<JKContext>)ctx
+- (CGSize) imageSizeForString:(NSAttributedString *)string inContext:(id<JKContext>)ctx
 {
     CGSize maxSize = CGSizeMake(FLT_MAX, FLT_MAX);
     
@@ -41,9 +65,7 @@
         maxSize.height = maxHeight;
     }
     
-    NSAttributedString *renderText = [self attributedStringInContext:ctx];
-    
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString( (__bridge CFAttributedStringRef) renderText);
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)string);
     CGSize suggestedSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, 0), NULL, maxSize, NULL);
     CFRelease(framesetter);
     
@@ -57,31 +79,46 @@
         return;
     }
     
-    CGSize size = [self imageSizeForCurrentInputInContext:context];
+    NSAttributedString *renderText = [self attributedStringInContext:context];
     
-    _outputWidth = @(JKPixelsToUnits(context, size.width));
-    _outputHeight = @(JKPixelsToUnits(context, size.height));
+    CGSize size = [self imageSizeForString:renderText inContext:context];
+    
+    self.outputWidth = @(JKPixelsToUnits(context, size.width));
+    self.outputHeight = @(JKPixelsToUnits(context, size.height));
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGImageAlphaPremultipliedLast);
+    CGContextRef ctx = CGBitmapContextCreate(NULL, size.width, size.height, 8, size.width * 4, rgbColorSpace, kCGBitmapAlphaInfoMask & kCGImageAlphaPremultipliedLast);
     CGColorSpaceRelease(rgbColorSpace);
     
-    CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor clearColor].CGColor);
     CGContextFillRect(ctx, CGRectMake(0, 0, size.width, size.height));
     
+    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     
-    // TODO: core image text rendering
+    CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
+    CGContextTranslateCTM(ctx, 0, size.height);
+    CGContextScaleCTM(ctx, 1.0, -1.0);
     
+    //Create Frame
+    CGMutablePathRef path = CGPathCreateMutable();
     
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, size.width, size.height));
     
-    // NSLog(@"Font name: %@", self.inputFontName);
-    // [@"hello world" drawAtPoint:CGPointMake(0, 0) forWidth:size.width withFont:[UIFont fontWithName:self.inputFontName size:24.0] fontSize:24.0f lineBreakMode:NSLineBreakByCharWrapping baselineAdjustment:UIBaselineAdjustmentNone];
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)renderText);
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+    CFRelease(framesetter);
+    
+    CTFrameDraw(frame, ctx);
+    
+    CGPathRelease(path);
+    CFRelease(frame);
     
     CGImageRef image = CGBitmapContextCreateImage(ctx);
     
     CGContextRelease(ctx);
     
-    _outputImage = [CIImage imageWithCGImage:image];
+    JKImage *resultImage = [[JKImage alloc] initWithCIImage:[CIImage imageWithCGImage:image] context:context.ciContext];
+    self.outputImage = resultImage;
     
     CGImageRelease(image);
 }
