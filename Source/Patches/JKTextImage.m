@@ -110,6 +110,9 @@
     
     CTFrameDraw(frame, ctx);
     
+    CGPathRelease(path);
+    CFRelease(frame);
+    
     CGImageRef image = CGBitmapContextCreateImage(ctx);
     
     CGContextRelease(ctx);
