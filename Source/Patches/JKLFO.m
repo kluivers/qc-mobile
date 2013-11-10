@@ -41,7 +41,7 @@
         case JKLFOSawtoothUp:
             result = offset - amplitude + 2*amplitude * (1/period) * fmodf(time, period);
             break;
-        case JKLFOSawtootDown:
+        case JKLFOSawtoothDown:
             result = offset + amplitude - 2*amplitude * (1/period) * fmodf(time, period);
             break;
         case JKLFOPWM:

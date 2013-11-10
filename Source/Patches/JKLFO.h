@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, JKLFOType) {
     JKLFOTriangle,
     JKLFOSquare,
     JKLFOSawtoothUp,
-    JKLFOSawtootDown,
+    JKLFOSawtoothDown,
     JKLFOPWM,
     JKLFORandom
 } ;
