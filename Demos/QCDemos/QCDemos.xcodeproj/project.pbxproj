@@ -13,6 +13,8 @@
 		A94E9090182CFD1F004F5C62 /* ImageWithString.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94E908F182CFD1F004F5C62 /* ImageWithString.qtz */; };
 		A94E90D8182D6A5E004F5C62 /* AudioTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94E90D7182D6A5E004F5C62 /* AudioTest.qtz */; };
 		A94E90DA182E7BFA004F5C62 /* JavascriptTestSimple.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94E90D9182E7BFA004F5C62 /* JavascriptTestSimple.qtz */; };
+		A94E90E418303408004F5C62 /* lfo-test.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A94E90E318303408004F5C62 /* lfo-test.qtz */; };
+		A94E90E718303433004F5C62 /* JKLFO.m in Sources */ = {isa = PBXBuildFile; fileRef = A94E90E618303433004F5C62 /* JKLFO.m */; };
 		A9988249175BA0D700E0A3AA /* IteratorTest.qtz in Resources */ = {isa = PBXBuildFile; fileRef = A9988248175BA0D700E0A3AA /* IteratorTest.qtz */; };
 		A998824C175BA17F00E0A3AA /* JKIterator.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824B175BA17F00E0A3AA /* JKIterator.m */; };
 		A998824F175BA72D00E0A3AA /* JKIteratorVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = A998824E175BA72D00E0A3AA /* JKIteratorVariables.m */; };
@@ -115,6 +117,9 @@
 		A94E908F182CFD1F004F5C62 /* ImageWithString.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = ImageWithString.qtz; sourceTree = "<group>"; };
 		A94E90D7182D6A5E004F5C62 /* AudioTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = AudioTest.qtz; sourceTree = "<group>"; };
 		A94E90D9182E7BFA004F5C62 /* JavascriptTestSimple.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = JavascriptTestSimple.qtz; sourceTree = "<group>"; };
+		A94E90E318303408004F5C62 /* lfo-test.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = "lfo-test.qtz"; sourceTree = "<group>"; };
+		A94E90E518303433004F5C62 /* JKLFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKLFO.h; sourceTree = "<group>"; };
+		A94E90E618303433004F5C62 /* JKLFO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKLFO.m; sourceTree = "<group>"; };
 		A9988248175BA0D700E0A3AA /* IteratorTest.qtz */ = {isa = PBXFileReference; lastKnownFileType = "video.quartz-composer"; path = IteratorTest.qtz; sourceTree = "<group>"; };
 		A998824A175BA17F00E0A3AA /* JKIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKIterator.h; sourceTree = "<group>"; };
 		A998824B175BA17F00E0A3AA /* JKIterator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKIterator.m; sourceTree = "<group>"; };
@@ -476,6 +481,8 @@
 				A9B4930917F478A400480EBC /* JKStructureMember.m */,
 				A9B4930B17F478FA00480EBC /* JKStructureCount.h */,
 				A9B4930C17F478FA00480EBC /* JKStructureCount.m */,
+				A94E90E518303433004F5C62 /* JKLFO.h */,
+				A94E90E618303433004F5C62 /* JKLFO.m */,
 			);
 			name = Patches;
 			path = ../../../Source/Patches;
@@ -499,6 +506,7 @@
 		A9EA0ED31759578200E0E1B8 /* Compositions */ = {
 			isa = PBXGroup;
 			children = (
+				A94E90E318303408004F5C62 /* lfo-test.qtz */,
 				A94E90D9182E7BFA004F5C62 /* JavascriptTestSimple.qtz */,
 				A94E90D7182D6A5E004F5C62 /* AudioTest.qtz */,
 				A94E908F182CFD1F004F5C62 /* ImageWithString.qtz */,
@@ -617,6 +625,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A94E90E418303408004F5C62 /* lfo-test.qtz in Resources */,
 				A94E9090182CFD1F004F5C62 /* ImageWithString.qtz in Resources */,
 				A9EA0E531759543200E0E1B8 /* InfoPlist.strings in Resources */,
 				A94E90D8182D6A5E004F5C62 /* AudioTest.qtz in Resources */,
@@ -687,6 +696,7 @@
 				A9EA0F1E175A0FC100E0E1B8 /* _DDParserTerm.m in Sources */,
 				A9B4930D17F478FA00480EBC /* JKStructureCount.m in Sources */,
 				A9EA0F1F175A0FC100E0E1B8 /* _DDRewriteRule.m in Sources */,
+				A94E90E718303433004F5C62 /* JKLFO.m in Sources */,
 				A9EA0F20175A0FC100E0E1B8 /* _DDVariableExpression.m in Sources */,
 				A9EA0F21175A0FC100E0E1B8 /* _DDVariableTerm.m in Sources */,
 				A9EA0F22175A0FC100E0E1B8 /* DDExpression.m in Sources */,
