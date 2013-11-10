@@ -44,6 +44,8 @@ Built-in patches that are actually implemented as composition and work because t
 	- doesn't take into account time between frames
 - MouseInteraction
 	- TODO: Detect correct targets using interaction connections
+- Wave Generator (LFO)
+	- TODO: implement PWM & random type
 
 ## Not implemented
 

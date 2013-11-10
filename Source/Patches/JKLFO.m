@@ -44,7 +44,7 @@
         case JKLFOSawtootDown:
             result = offset + amplitude - 2*amplitude * (1/period) * fmodf(time, period);
             break;
-        case JKLFOPMW:
+        case JKLFOPWM:
             // TODO: implement pmw
         case JKLFORandom:
             // TODO: implement random function
