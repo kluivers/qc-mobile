@@ -7,6 +7,10 @@ By **Joris Kluivers**
 - See the [introductionary blog post](http://joris.kluivers.nl/blog/2013/06/04/quartz-composer-for-ios/)
 - Follow [@kluivers on Twitter][twitter]
 
+To keep track of which patches have been implemented see the [ImplementationStatus.md](https://github.com/kluivers/qc-mobile/blob/master/ImplementationStatus.md) document, which will be kept up to date as much as possible.
+
+**Note: the zip download doesn't work as this project has 2 submodules. See *getting started* below.**
+
 ![Screenshot](Screenshot.jpg)
 
 ## Getting started
@@ -45,7 +49,7 @@ Check out the repository, and init/update the submodules
 
 ## License
 
-Copyright (c) 2012, Joris Kluivers
+Copyright (c) 2013, Joris Kluivers
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
