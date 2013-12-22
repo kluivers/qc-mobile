@@ -17,12 +17,7 @@ To keep track of which patches have been implemented see the [ImplementationStat
 
 Check out the repository, and init/update the submodules
 
-    git clone https://github.com/kluivers/qc-mobile.git
-    
-    cd qc-mobile
-    
-    git submodule init
-    git submodule update
+    $ git clone https://github.com/kluivers/qc-mobile.git --recursive
 
 
 ## Required frameworks
