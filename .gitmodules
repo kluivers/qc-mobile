@@ -3,4 +3,4 @@
 	url = https://bitbucket.org/kluivers/jk-interpolation.git 
 [submodule "Lib/DDMathParser"]
 	path = Lib/DDMathParser
-	url = git@github.com:kluivers/DDMathParser.git
+	url = https://github.com/kluivers/DDMathParser.git 
