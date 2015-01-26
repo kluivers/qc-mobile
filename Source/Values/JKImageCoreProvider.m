@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Joris Kluivers. All rights reserved.
 //
 
+#import <GLKit/GLKit.h>
+
 #import "JKImageCoreProvider.h"
 
 @implementation JKImageCoreProvider {
